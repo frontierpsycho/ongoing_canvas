@@ -1,9 +1,10 @@
 <html>
 <head>
     <title>{% block title %}{% endblock %}</title>
-    {% block javascript-includes %}{% endblock %}
 </head>
 <body>
     {% block content %}{% endblock %}
+    {% block javascript-includes %}{% endblock %}
+    {% block inline-javascript %}{% endblock %}
 </body>
 </html>
