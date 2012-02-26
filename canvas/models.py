@@ -14,12 +14,12 @@ class FeelingData(models.Model):
     posturl = models.URLField(null=True)
     gender = models.NullBooleanField(null=True)
     born = models.SmallIntegerField(null=True)
-    country = models.CharField(max_length=64)
-    state = models.CharField(max_length=16)
-    city = models.CharField(max_length=64)
-    lat = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='latitude')
-    lon = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='longitude')
-    conditions = models.SmallIntegerField(choices=CONDITIONS)
+    country = models.CharField(max_length=64, null=True)
+    state = models.CharField(max_length=16, null=True)
+    city = models.CharField(max_length=64, null=True)
+    lat = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='latitude', null=True)
+    lon = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='longitude', null=True)
+    conditions = models.SmallIntegerField(choices=CONDITIONS, null=True)
     
 class Feeling(models.Model):
     name = models.CharField(max_length=64, blank=False, primary_key=True)

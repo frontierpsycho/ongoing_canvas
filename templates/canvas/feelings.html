@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Feelings{% endblock %}
+
+{% block content %}
+
+<div id="container">
+<table>
+{% for feeling in object_list %}
+	<tr>
+		<td>{{ feeling.id }}</td>
+		<td style="color:{{feeling.feeling.color}};">{{ feeling.feeling.name }}</td>
+		<td>{{ feeling.sentence }}</td>
+	</tr>
+{% endfor %}
+</table>
+</div>
+
+{% endblock %}
