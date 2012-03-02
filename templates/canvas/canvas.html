@@ -25,15 +25,9 @@ var dh = 20;
 var c = document.getElementById('ongoing-canvas');
 var ctx = c.getContext('2d');
 
-var i = 0;
-for(i = 0; i < 1000; i++)
-{
-	dx = (34*i % 60)*10
-	dy = (78*i % 80)*10
-	//dx = (30*i) % 800
-	//dy = (5*i) % 600
-	ctx.drawSvg("{% get_static_prefix %}strokes/circle.svg", dx, dy, dw, dh);
-}
+{% for stroke in strokes %}
+ctx.drawSvg('{{stroke|safe}}', {{forloop.counter}}, {{forloop.counter}}, 20, 20);
+{% endfor %}
 
 </script>
 
