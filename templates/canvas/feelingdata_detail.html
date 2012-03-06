@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %}Ongoing canvas{% endblock %}
+{% block title %}Ongoing canvas - Feeling {{ feeling.id }}{% endblock %}
 
 {% block javascript-includes %}
 <script type="text/javascript" src="{% get_static_prefix %}raphael-svg-import/raphael-min.js"></script>
@@ -10,19 +10,28 @@
 <script type="text/javascript" src="{% get_static_prefix %}raphael-svg-import/raphael-svg-import.js"></script>
 {% endblock %}
 
-{% block content %}
-<div id="container">
-<canvas id="ongoing-canvas" width="800px" height="600px"></canvas>
-</div>
-
-{% endblock %}
-
 {% block inline-javascript %}
 <script type="text/javascript">
-	var paper = Raphael(10, 50, 800,600);
+	var paper = Raphael(10, 10, 100,100);
 
-{% for stroke in strokes %}
 	paper.importSVG('{{ stroke|safe }}');
-{% endfor %}
 </script>
+{% endblock %}
+
+{% block content %}
+<div id="image-div"></div>
+<h2>Feeling number {{ feeling.id }}	</h2>
+<table>
+	<tbody>
+		<tr>
+			<td><b>Feeling:</b></td><td style="color: {{ feeling.feeling.color }};">{{ feeling.feeling.name }}</td>
+		</tr>
+		<tr>
+			<td><b>Sentence:</b></td><td>{{ feeling.sentence }}</td>
+		</tr>
+		<tr>
+			<td><b>Time:</b></td><td>{{ feeling.postdatetime }}</td>
+		</tr>
+	</tbody>
+</table>
 {% endblock %}

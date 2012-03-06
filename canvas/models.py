@@ -20,7 +20,7 @@ class FeelingData(models.Model):
     lat = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='latitude', null=True)
     lon = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='longitude', null=True)
     conditions = models.SmallIntegerField(choices=CONDITIONS, null=True)
-    
+
 class Feeling(models.Model):
     name = models.CharField(max_length=64, blank=False, primary_key=True)
     color = models.CharField(max_length=64, blank=False)

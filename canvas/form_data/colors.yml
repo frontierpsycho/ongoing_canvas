@@ -1,0 +1,11 @@
+[Feeling groups]
+excitement: excited, alive, inspired, giddy
+happiness: awesome, happy, positive, ok
+sadness: miserable,crappy, bad, mediocre
+anger: fighting, angry, upset, worked
+
+[Colors]
+excitement: 40-130
+happiness: 130-220
+sadness: 220-310
+anger: 310-40
