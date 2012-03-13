@@ -7,7 +7,7 @@ from django.views.generic import ListView,DetailView
 from canvas.models import FeelingData
 from canvas.form_generator.form_generator import *
 
-form_generator = FormGenerator("canvas/form_data/colors.cfg", ShapeGenerator(), "fill")
+form_generator = FormGenerator("canvas/form_data/colors.json", ShapeGenerator())
 
 class CanvasView(ListView):
 	global form_generator

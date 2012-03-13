@@ -1,0 +1,16 @@
+{
+	"Feeling groups" : {
+		"group" : [["feeling0", "feeling1", "feeling2", "feeling3", "feeling4", "feeling5", "feeling6", "feeling7", "feeling8", "feeling9", "feeling10", "feeling11", "feeling12", "feeling13", "feeling14", "feeling15", "feeling16", "feeling17", "feeling18", "feeling19", "feeling20", "feeling21", "feeling22", "feeling23", "feeling24"], ["feeling25", "feeling26", "feeling27", "feeling28", "feeling29", "feeling30", "feeling31", "feeling32", "feeling33", "feeling34", "feeling35", "feeling36", "feeling37", "feeling38", "feeling39", "feeling40", "feeling41", "feeling42", "feeling43", "feeling44", "feeling45", "feeling46", "feeling47", "feeling48", "feeling49"], ["feeling50", "feeling51", "feeling52", "feeling53", "feeling54", "feeling55", "feeling56", "feeling57", "feeling58", "feeling59", "feeling60", "feeling61", "feeling62", "feeling63", "feeling64", "feeling65", "feeling66", "feeling67", "feeling68", "feeling69", "feeling70", "feeling71", "feeling72", "feeling73", "feeling74"], ["feeling75", "feeling76", "feeling77", "feeling78", "feeling79", "feeling80", "feeling81", "feeling82", "feeling83", "feeling84", "feeling85", "feeling86", "feeling87", "feeling88", "feeling89", "feeling90", "feeling91", "feeling92", "feeling93", "feeling94", "feeling95", "feeling96", "feeling97", "feeling98", "feeling99"]]
+	},
+	"Coloring schemes" : {
+		"group" : [
+			{ "colors" : ["red", "red", "black"],
+				"red" : "H0|Sia75-100|Via75-100",
+				"black" : "H0|S0|Vid75-100"
+			},
+			{},
+			{},
+			{}
+		]
+	}
+}
