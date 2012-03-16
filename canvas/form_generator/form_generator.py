@@ -4,30 +4,36 @@ import re
 
 class FormGenerator:
 	color_matcher = re.compile("(H|S|V)(?P<rel>[iad]{2})?(\d+$|\d+-\d+$)")
-	def __init__(self, settings_path, shape_generator):
+	def __init__(self, settings_path, shapes_path):
 		self.settings = json.loads(open(settings_path).read())
-		self.shape_generator = shape_generator
+		self.shapes = json.loads(open(shapes_path).read())
 
-	def generate_svg(self, feeling):
-		svg = self.shape_generator.generate(feeling)
-		svg = self.apply_effects(feeling, svg)
-		#print svg
-		return svg
-
-	def apply_effects(self, feeling, svg):
+	def get_feeling_coordinates(feeling_name):
+		# could be much faster with indices if need be
 		found = False
 		for name,group in self.settings["Feeling groups"].items():
 			for subgroup in group:
 				subgroup_index = 0
-				if feeling.feeling.name in subgroup:
+				if feeling_name in subgroup:
 					found = True
-					index = subgroup.index(feeling.feeling.name)
+					index = subgroup.index(feeling_name)
 					current_group = group
 					current_group_name = name
 					break
 				subgroup_index += 1
-		print found
 		if found:
+			return current_group_name,subgroup_index
+		else:
+			return None
+
+
+	def generate_svg(self, feeling):
+		svg = self.apply_effects(feeling, svg)
+		#print svg
+		return svg
+
+	def apply_effects(self, feeling_data, svg):
+		if (current_group_name, subgroup_index) = FormGenerator.get_feeling_coordinates(feeling_data.feeling.name):
 			color = FormGenerator.get_color(self.settings["Coloring schemes"][current_group_name][subgroup_index])
 			print color[0]
 			first_color = "hsl(%d, %d, %d)" % (color[0][0], color[0][1], color[0][2])
@@ -88,6 +94,6 @@ class FormGenerator:
 		_l /= 2
 		return _h, int(_s*100), int(_l*100)
 
-class ShapeGenerator:
-	def generate(self, feeling):
-		return '<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"><circle cx="50" cy="50" r="40" stroke="black" stroke-width="2" fill="{fill}" /></svg>'
+class Shape:
+	def __init__(self, svg_pattern):
+		self.svg_pattern = svg_pattern
