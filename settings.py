@@ -1,5 +1,16 @@
 # Django settings for ongoing_canvas project.
 
+try:
+    from local_settings import *
+except ImportError:
+    pass
+
+try:
+    from production_settings import *
+except ImportError:
+    pass
+
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
