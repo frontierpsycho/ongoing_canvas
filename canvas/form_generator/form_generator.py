@@ -28,18 +28,19 @@ class FormGenerator:
 
 
 	def generate_svg(self, feeling_data):
-		tupleOrNone = self.get_feeling_coordinates(feeling_data.feeling.name)
 		svg = ""
+		
+		tupleOrNone = self.get_feeling_coordinates(feeling_data.feeling.name)
 		if tupleOrNone:
 			(current_group_name,subgroup_index) = tupleOrNone
 			shape = Shape(self.shapes[current_group_name][subgroup_index])
 			
 			color = FormGenerator.get_color(self.settings["Coloring schemes"][current_group_name][subgroup_index])
 			shape.fill1 = "hsl(%d, %d, %d)" % color[0]
-			# TODO add color 
 			# TODO add position
+			# TODO change size
 
-		svg = shape.make_svg()
+			svg = shape.make_svg()
 		print svg
 		return svg
 
