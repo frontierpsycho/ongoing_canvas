@@ -23,4 +23,3 @@ class FeelingData(models.Model):
 
 class Feeling(models.Model):
     name = models.CharField(max_length=64, blank=False, primary_key=True)
-    color = models.CharField(max_length=64, blank=False)
