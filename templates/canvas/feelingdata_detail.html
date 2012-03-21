@@ -10,9 +10,10 @@
 
 {% block inline-javascript %}
 <script type="text/javascript">
-	var paper = Raphael(10, 10, 100,100);
+	var paper = Raphael(10, 10, 1000,1000);
 
-	paper.importSVG('{{ stroke|safe }}');
+	var path = paper{{ stroke|safe }}
+
 </script>
 {% endblock %}
 

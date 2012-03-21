@@ -3,7 +3,7 @@ import json
 import re
 
 class FormGenerator:
-	color_matcher = re.compile("(H|S|V)(?P<rel>[iad]{2})?(\d+$|\d+-\d+$)")
+	colour_matcher = re.compile("(H|S|V)(?P<rel>[iad]{2})?(\d+$|\d+-\d+$)")
 	def __init__(self, settings_path, shapes_path):
 		self.settings = json.loads(open(settings_path).read())
 		self.shapes = json.loads(open(shapes_path).read())
@@ -27,49 +27,46 @@ class FormGenerator:
 			return None
 
 
-	def generate_svg(self, feeling_data):
-		svg = ""
-		
+	def generate_shape(self, feeling_data):
+		shape = None
 		tupleOrNone = self.get_feeling_coordinates(feeling_data.feeling.name)
 		if tupleOrNone:
 			(current_group_name,subgroup_index) = tupleOrNone
 			shape = Shape(self.shapes[current_group_name][subgroup_index])
 			
-			color = FormGenerator.get_color(self.settings["Coloring schemes"][current_group_name][subgroup_index])
-			shape.fill1 = "hsl(%d, %d, %d)" % color[0]
+			colour = FormGenerator.get_colour(self.settings["Coloring schemes"][current_group_name][subgroup_index])
+			shape.colour = "hsl(%d, %d, %d)" % colour[0]
 			# TODO add position
 			# TODO change size
 
-			svg = shape.make_svg()
-		print svg
-		return svg
+		return shape
 
 	@staticmethod
-	def get_color(scheme):
-		colors = scheme["colors"]
+	def get_colour(scheme):
+		colours = scheme["colors"]
 		result = []
-		for color in colors:
-			t = FormGenerator.generate_hsv(scheme[color])
+		for colour in colours:
+			t = FormGenerator.generate_hsv(scheme[colour])
 			hsl = FormGenerator.hsv_to_hsl(t[0], t[1], t[2])
-			# print "HSL color: %d, %d, %d" % (hsl[0], hsl[1], hsl[2])
+			# print "HSL colour: %d, %d, %d" % (hsl[0], hsl[1], hsl[2])
 			result.append(hsl)
 		return result
 
 	@staticmethod
-	def generate_hsv(color_scheme):
-		h,s,v = color_scheme.split("|")
+	def generate_hsv(colour_scheme):
+		h,s,v = colour_scheme.split("|")
 
 		# print "H: %s, S: %s, V: %s" % (h, s, v)
 
-		h = FormGenerator.get_color_value(h)
-		s = FormGenerator.get_color_value(s)
-		v = FormGenerator.get_color_value(v)
+		h = FormGenerator.get_colour_value(h)
+		s = FormGenerator.get_colour_value(s)
+		v = FormGenerator.get_colour_value(v)
 		# print "H: %s, S: %s, V: %s after" % (h, s, v)
 		return (h,s,v)
 
 	@staticmethod
-	def get_color_value(scheme):
-		m = FormGenerator.color_matcher.match(scheme)
+	def get_colour_value(scheme):
+		m = FormGenerator.colour_matcher.match(scheme)
 
 		# print "Scheme: %s" % m.group(3)
 		val_range = m.group(3).split("-")
@@ -98,15 +95,20 @@ class FormGenerator:
 		return _h, int(_s*100), int(_l*100)
 
 class Shape:
-	def __init__(self, svg_pattern):
-		self.svg_pattern = svg_pattern
+	def __init__(self, path):
+		self.path = path
+		self.colour = ""
+		self.transformation_matrix = [1,0,0,1,0,0]
 
-		self.params = [pattern[1:-1] for pattern in (re.findall(r"{[^}]+}", self.svg_pattern))]
-		[setattr(self, pattern, "") for pattern in self.params]
+	def translate(self, x, y):
+		self.transformation_matrix[4]=x
+		self.transformation_matrix[5]=y
 
-	def make_svg(self):
-		kwargs = {}
-		for param in self.params:
-			kwargs[param] = getattr(self, param)
+	def scale(self, scalex, scaley=None):
+		if not scaley:
+			scaley=scalex
+		self.transformation_matrix[0]=scalex
+		self.transformation_matrix[3]=scaley
 
-		return self.svg_pattern.format(**kwargs)
+	def rotate_horizontally(self):
+		raise NotImplementedError()

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load static %}
+{% load canvas_tags %}
 
 {% block title %}Ongoing canvas{% endblock %}
 
@@ -10,17 +11,18 @@
 
 {% block content %}
 <div id="container">
-<!-- canvas id="ongoing-canvas" width="800px" height="600px"></canvas-->
 </div>
 
 {% endblock %}
 
 {% block inline-javascript %}
 <script type="text/javascript">
-	var paper = Raphael(10, 50, 800,600);
+	var paper = Raphael(10, 10, 800,566);
 
-{% for stroke in strokes %}
-	paper.importSVG('{{ stroke|safe }}');
+	m = Raphael.matrix(1,0,0,1,-100,0);
+{% for shape in shapes %}
+	m.add(1,0,0,1,100,0,m);
+	{{ shape|to_raphael:"paper"|safe }}.transform(m.toTransformString());
 {% endfor %}
 </script>
 {% endblock %}

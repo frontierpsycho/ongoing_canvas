@@ -11,23 +11,20 @@ form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data
 
 class CanvasView(ListView):
 	global form_generator
-	context_object_name = "feelingdata"
+	context_object_name = "shapes"
 	template_name="canvas/canvas.html"
 
 	def get_queryset(self):
-		queryset = FeelingData.objects.order_by("postdatetime")[:10]
+		feelingdata = FeelingData.objects.order_by("postdatetime")[:10]
 
-		self.strokes = []
+		shapes = []
 
-		for fd in queryset:
-			self.strokes.append(form_generator.generate_svg(fd))
+		for fd in feelingdata:
+			shape = form_generator.generate_shape(fd)
+			if shape is not None: 
+				shapes.append(shape)
 
-		return queryset
-
-	def get_context_data(self, **kwargs):
-		context = super(CanvasView, self).get_context_data(**kwargs)
-		context["strokes"] = self.strokes
-		return context
+		return shapes
 
 class FeelingDataDetailView(DetailView):
 	global form_generator
@@ -36,7 +33,7 @@ class FeelingDataDetailView(DetailView):
 
 	def get_object(self, **kwargs):
 		object = super(FeelingDataDetailView, self).get_object()
-		self.stroke = form_generator.generate_svg(object)
+		self.stroke = form_generator.generate_shape(object)
 		
 		return object
 
