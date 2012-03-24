@@ -12,10 +12,30 @@ class GridPlacementStrategy:
 
 	def place(self, shape):
 		cell = self.find_place()
-		translate_y = cell[0]*self.cell_height
-		translate_x = cell[1]*self.cell_width
-		shape.translate(translate_x, translate_y)
-		#print translate_x, translate_y
+		depth = self.grid[cell[0]][cell[1]]
+		if depth == 1:
+			self.translate_to_cell(cell, shape)
+		elif depth == 2:
+			shape.scale(0.707)
+			new_cell = (cell[0], cell[1]+1)
+			self.translate_to_cell(new_cell, shape)
+			shape.rotate_horizontally()
+		elif depth == 3:
+			shape.scale(0.5)
+			#new_cell = (cell[0], cell[1]+1)
+			self.translate_to_cell(cell, shape, "lr")
+			shape.rotate_horizontally()
+			
+	def translate_to_cell(self, cell, shape, edge="ul"):
+			translate_y = 2*cell[0]*self.cell_height
+			if edge[0] == "l":
+				translate_y += self.cell_height
+
+			translate_x = cell[1]*self.cell_width
+			if edge[1] == "r":
+				translate_x += self.cell_width
+
+			shape.translate(translate_x, translate_y)
 
 	def find_place(self):
 		for i in range(self.width()):

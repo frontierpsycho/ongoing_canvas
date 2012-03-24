@@ -17,11 +17,9 @@
 
 {% block inline-javascript %}
 <script type="text/javascript">
-	var paper = Raphael(10, 10, 800,566);
-
-	m = Raphael.matrix(1,0,0,1,-100,0);
+	var paper = Raphael(10, 10, {{ width }}, {{ height }});
 {% for shape in shapes %}
-	{{ shape|to_raphael:"paper"|safe }}
+	{{ shape|to_raphael:"paper"|safe }};
 {% endfor %}
 </script>
 {% endblock %}

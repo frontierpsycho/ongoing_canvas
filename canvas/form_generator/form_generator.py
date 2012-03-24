@@ -4,10 +4,11 @@ import re
 
 class FormGenerator:
 	colour_matcher = re.compile("(H|S|V)(?P<rel>[iad]{2})?(\d+$|\d+-\d+$)")
-	def __init__(self, settings_path, shapes_path, placement_strategy):
+	def __init__(self, settings_path, shapes_path, placement_strategy, cells={}):
 		self.settings = json.loads(open(settings_path).read())
 		self.shapes = json.loads(open(shapes_path).read())
 		self.placement_strategy = placement_strategy
+		self.cells = cells
 
 	def get_feeling_coordinates(self, feeling_name):
 		# could be much faster with indices if need be
@@ -27,8 +28,9 @@ class FormGenerator:
 		else:
 			return None
 
-
 	def generate_shape(self, feeling_data):
+		if feeling_data.id in self.cells:
+			return self.cells[feeling_data.id]
 		shape = None
 		tupleOrNone = self.get_feeling_coordinates(feeling_data.feeling.name)
 		if tupleOrNone:
@@ -40,6 +42,7 @@ class FormGenerator:
 			# TODO change size
 			# TODO add position
 			self.placement_strategy.place(shape)
+			self.cells[feeling_data.id] = shape
 
 		return shape
 
@@ -92,7 +95,6 @@ class FormGenerator:
 		if _l <= 1:
 			_s /= _l
 		else:
-			_s /= 2 - _l
 			if _l == 2:
 				_s = 100
 			else:
@@ -101,20 +103,33 @@ class FormGenerator:
 		return _h, int(_s*100), int(_l*100)
 
 class Shape:
+	A = 0
+	B = 1
+	C = 2
+	D = 3
+	E = 4
+	F = 5
 	def __init__(self, path):
 		self.path = path
 		self.colour = ""
 		self.transformation_matrix = [1,0,0,1,0,0]
 
 	def translate(self, x, y):
-		self.transformation_matrix[4]=x
-		self.transformation_matrix[5]=y
+		self.transformation_matrix[self.E]=x
+		self.transformation_matrix[self.F]=y
 
 	def scale(self, scalex, scaley=None):
 		if not scaley:
 			scaley=scalex
-		self.transformation_matrix[0]=scalex
-		self.transformation_matrix[3]=scaley
+		self.transformation_matrix[self.A]=scalex
+		self.transformation_matrix[self.D]=scaley
 
 	def rotate_horizontally(self):
-		raise NotImplementedError()
+		# MATRIX MULTIPLICATION BY HAND - do not try this at home
+		tempA = self.transformation_matrix[self.A]
+		self.transformation_matrix[self.A] = self.transformation_matrix[self.C]
+		tempB = self.transformation_matrix[self.B]
+		self.transformation_matrix[self.B] = self.transformation_matrix[self.D]
+		self.transformation_matrix[self.C] = -tempA
+		self.transformation_matrix[self.D] = -tempB
+		# E and F do not change
