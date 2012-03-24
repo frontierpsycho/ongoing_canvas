@@ -93,6 +93,10 @@ class FormGenerator:
 			_s /= _l
 		else:
 			_s /= 2 - _l
+			if _l == 2:
+				_s = 100
+			else:
+				_s /= 2 - _l
 		_l /= 2
 		return _h, int(_s*100), int(_l*100)
 
