@@ -4,9 +4,10 @@ import re
 
 class FormGenerator:
 	colour_matcher = re.compile("(H|S|V)(?P<rel>[iad]{2})?(\d+$|\d+-\d+$)")
-	def __init__(self, settings_path, shapes_path):
+	def __init__(self, settings_path, shapes_path, placement_strategy):
 		self.settings = json.loads(open(settings_path).read())
 		self.shapes = json.loads(open(shapes_path).read())
+		self.placement_strategy = placement_strategy
 
 	def get_feeling_coordinates(self, feeling_name):
 		# could be much faster with indices if need be
@@ -36,8 +37,9 @@ class FormGenerator:
 			
 			colour = FormGenerator.get_colour(self.settings["Coloring schemes"][current_group_name][subgroup_index])
 			shape.colour = "hsl(%d, %d, %d)" % colour[0]
-			# TODO add position
 			# TODO change size
+			# TODO add position
+			self.placement_strategy.place(shape)
 
 		return shape
 

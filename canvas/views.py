@@ -6,8 +6,9 @@ from django.views.generic import ListView,DetailView
 
 from canvas.models import FeelingData
 from canvas.form_generator.form_generator import *
+from canvas.form_generator.placement_strategy import GridPlacementStrategy
 
-form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json")
+form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(566, 800, 70.70, 100, depth=1))
 
 class CanvasView(ListView):
 	global form_generator

@@ -21,8 +21,7 @@
 
 	m = Raphael.matrix(1,0,0,1,-100,0);
 {% for shape in shapes %}
-	m.add(1,0,0,1,100,0,m);
-	{{ shape|to_raphael:"paper"|safe }}.transform(m.toTransformString());
+	{{ shape|to_raphael:"paper"|safe }}
 {% endfor %}
 </script>
 {% endblock %}

@@ -147,6 +147,10 @@ LOGGING = {
     }
 }
 
+# project settings
+CANVAS_HEIGHT = 566
+CANVAS_WIDTH = 800
+
 try:
     from local_settings import *
 except ImportError:
