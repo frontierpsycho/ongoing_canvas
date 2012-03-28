@@ -14,8 +14,10 @@ class FormGenerator:
 		# could be much faster with indices if need be
 		found = False
 		for name,group in self.settings["Feeling groups"].items():
+			if found:
+				break
+			subgroup_index = 0
 			for subgroup in group:
-				subgroup_index = 0
 				if feeling_name in subgroup:
 					found = True
 					index = subgroup.index(feeling_name)
@@ -35,12 +37,11 @@ class FormGenerator:
 		tupleOrNone = self.get_feeling_coordinates(feeling_data.feeling.name)
 		if tupleOrNone:
 			(current_group_name,subgroup_index) = tupleOrNone
-			shape = Shape(self.shapes[current_group_name][subgroup_index])
+			shape = Shape(self.shapes[current_group_name][0])
 			
 			colour = FormGenerator.get_colour(self.settings["Coloring schemes"][current_group_name][subgroup_index])
 			shape.colour = "hsl(%d, %d, %d)" % colour[0]
 			# TODO change size
-			# TODO add position
 			self.placement_strategy.place(shape)
 			self.cells[feeling_data.id] = shape
 
@@ -93,10 +94,13 @@ class FormGenerator:
 		_l = (2 - s) * v
 		_s = s * v
 		if _l <= 1:
-			_s /= _l
+			if _l == 0:
+				_s = 1
+			else:
+				_s /= _l
 		else:
 			if _l == 2:
-				_s = 100
+				_s = 1
 			else:
 				_s /= 2 - _l
 		_l /= 2
