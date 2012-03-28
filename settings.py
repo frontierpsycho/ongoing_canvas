@@ -148,10 +148,8 @@ LOGGING = {
 }
 
 # project settings
-#CANVAS_HEIGHT = 566
-#CANVAS_WIDTH = 800
-CANVAS_HEIGHT = 283
-CANVAS_WIDTH = 400
+CANVAS_HEIGHT = 637
+CANVAS_WIDTH = 900
 
 try:
     from local_settings import *

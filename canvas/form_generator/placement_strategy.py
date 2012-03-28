@@ -5,11 +5,11 @@ class GridPlacementStrategy:
 		self.canvas_height = canvas_height
 		self.cell_height = cell_height
 		self.depth = depth
-
+		
 		if self.width() == 0 or self.height() == 0:
 			raise ArgumentException("At least one cell should fit in the canvas's width")
-		self.grid = [[0 for d in range(self.height())] for e in range(self.width())]
-
+		self.grid = [[0 for d in range(self.width())] for e in range(self.height())]
+		
 	def place(self, shape):
 		cell = self.find_place()
 		depth = self.grid[cell[0]][cell[1]]
@@ -29,7 +29,7 @@ class GridPlacementStrategy:
 			shape.rotate_horizontally()
 			
 	def translate_to_cell(self, cell, shape, edge="ur"):
-			translate_y = 2*cell[0]*self.cell_height
+			translate_y = cell[0]*self.cell_height
 			if edge[0] == "l":
 				translate_y += self.cell_height
 
@@ -42,9 +42,9 @@ class GridPlacementStrategy:
 	def find_place(self):
 		for i in range(self.width()):
 			for j in range(self.height()):
-				if self.grid[i][j] < self.depth:
-					self.grid[i][j] += 1
-					return i,j
+				if self.grid[j][i] < self.depth:
+					self.grid[j][i] += 1
+					return j,i
 
 	def width(self):
 		return int(self.canvas_width/self.cell_width)

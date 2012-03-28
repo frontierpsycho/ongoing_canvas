@@ -9,7 +9,7 @@ from canvas.models import FeelingData
 from canvas.form_generator.form_generator import *
 from canvas.form_generator.placement_strategy import GridPlacementStrategy
 
-form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, 70.70, 100, depth=3))
+form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, 211, 150, depth=3))
 
 class CanvasView(ListView):
 	global form_generator
@@ -17,8 +17,8 @@ class CanvasView(ListView):
 	template_name="canvas/canvas.html"
 
 	def get_queryset(self):
-		feelingdata = FeelingData.objects.order_by("postdatetime")[:20]
-
+		feelingdata = FeelingData.objects.order_by("postdatetime")[:97]
+		
 		shapes = []
 
 		for fd in feelingdata:

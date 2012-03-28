@@ -1,6 +1,14 @@
 {
 	"Feeling groups" : {
-		"group" : [["feeling0", "feeling1", "feeling2", "feeling3", "feeling4", "feeling5", "feeling6", "feeling7", "feeling8", "feeling9", "feeling10", "feeling11", "feeling12", "feeling13", "feeling14", "feeling15", "feeling16", "feeling17", "feeling18", "feeling19", "feeling20", "feeling21", "feeling22", "feeling23", "feeling24"], ["feeling25", "feeling26", "feeling27", "feeling28", "feeling29", "feeling30", "feeling31", "feeling32", "feeling33", "feeling34", "feeling35", "feeling36", "feeling37", "feeling38", "feeling39", "feeling40", "feeling41", "feeling42", "feeling43", "feeling44", "feeling45", "feeling46", "feeling47", "feeling48", "feeling49"], ["feeling50", "feeling51", "feeling52", "feeling53", "feeling54", "feeling55", "feeling56", "feeling57", "feeling58", "feeling59", "feeling60", "feeling61", "feeling62", "feeling63", "feeling64", "feeling65", "feeling66", "feeling67", "feeling68", "feeling69", "feeling70", "feeling71", "feeling72", "feeling73", "feeling74"], ["feeling75", "feeling76", "feeling77", "feeling78", "feeling79", "feeling80", "feeling81", "feeling82", "feeling83", "feeling84", "feeling85", "feeling86", "feeling87", "feeling88", "feeling89", "feeling90", "feeling91", "feeling92", "feeling93", "feeling94", "feeling95", "feeling96", "feeling97", "feeling98", "feeling99"]]
+		"group" : [["feeling0", "feeling1", "feeling2", "feeling3", "feeling4", "feeling5", "feeling6", "feeling7", "feeling8", "feeling9", "feeling10", "feeling11", "feeling12", "feeling13", "feeling14", "feeling15", "feeling16", "feeling17", "feeling18", "feeling19", "feeling20", "feeling21", "feeling22", "feeling23", "feeling24"], ["feeling25", "feeling26", "feeling27", "feeling28", "feeling29", "feeling30", "feeling31", "feeling32", "feeling33", "feeling34", "feeling35", "feeling36", "feeling37", "feeling38", "feeling39", "feeling40", "feeling41", "feeling42", "feeling43", "feeling44", "feeling45", "feeling46", "feeling47", "feeling48", "feeling49"], ["feeling50", "feeling51", "feeling52", "feeling53", "feeling54", "feeling55", "feeling56", "feeling57", "feeling58", "feeling59", "feeling60", "feeling61", "feeling62", "feeling63", "feeling64", "feeling65", "feeling66", "feeling67", "feeling68", "feeling69", "feeling70", "feeling71", "feeling72", "feeling73", "feeling74"], ["feeling75", "feeling76", "feeling77", "feeling78", "feeling79", "feeling80", "feeling81", "feeling82", "feeling83", "feeling84", "feeling85", "feeling86", "feeling87", "feeling88", "feeling89", "feeling90", "feeling91", "feeling92", "feeling93", "feeling94", "feeling95", "feeling96", "feeling97", "feeling98", "feeling99"]],
+		"anger" : [[ "homicidal", "murderous", "irate", "evil", "wrath", "mad", "cruel", "bursting", "violent", "sinister", "yelling", "vicious", "cursing", "shouting", "furious", "threatening", "hateful"], ["spiteful", "upset", "rough", "pissed", "bastard", "angry", "sold", "disgruntled", "jealous", "bitter"]],
+		"happiness" :[
+			["best", "blessed", "divine", "star", "super", "incredible", "amazing", "invincible", "superficial", "magic", "magical", "triumphant,immune", "perfect", "absolute", "complete", "whole", "full", "alive", "free", "honored", "honoured", "pure", "reborn", "immense", "immortal", "master", "supreme", "fulfilled", "profound", "ultra", "liberated", "original", "independent", "excellent", "glorious", "real", "true", "honest", "ideal", "fair", "religious", "genuine", "virgin", "poetic breathless", "born", "destined", "innocent"], 
+			["greatest", "happiest", "fantastic", "awesome", "giant", "huge", "ecstatic", "luckiest", "amazed", "terrific", "enthusiastic", "terrific", "tremendous", "excited", "million", "party", "throbbing", "singing", "elated", "saved", "exciting", "golden", "gold", "rising", "won", "rich", "laughing", "thrilled", "smashing", "radiating", " happy", "gay", "bright", "cheery", "wonderful", "great", "brilliant", "swell", "smiling", "hilarious", "merry", "frisky", "cheerful", "upbeat", "musical", "sublime", "euphoric", "new", "good", "fun", "playful", "amused", "pleased", "playing", "greater", "chipper", "joking", "entertaining", "entertained", "nice", "happier", "sincere", "joyous", "happening", "uplifted", "sunny", "witty", "tickling intellectual", "sheer", "interested", "surprised", "reasonable", "focused", "comic", "interesting", "fine", "helpful", "changing", "coherent", "rational", "realistic", "informed", "knowledgeable", "certain", "exact", "concrete", "actual", "tangible", "substantial", "logical", "wondering"], 
+			["loyal", "wiser", "healing", "serene", "peaceful", "relieved", "carefree", "weightless", "content", "contented", "completed", "refreshed", "released", "cleansed", "fortunate", "relaxed", "relaxing", "renewed", "light", "chilled", "clean", "clear", "rested", "mellow", "cool", "calm", "smooth", "improving", "refreshing", "understanding", "equal", "faithful", "better", "philosophical", "virtuous", "noble", "vindicated", "centered", "balanced", "improved", "healthier", "changed", "essential", "overcome", "recovering", "recovered", "escaped", "stimulated", "set", "beneficial", "subtle", "solved", "fixed", "loose", "looser", "settled", "disillusioned", "sober", "conscious", "quiet", "alright", "okay", "ok"], 
+			["fabulous", "gorgeous", "model", "hot", "desired", "famous", "proud", "big", "shining", "successful", "center", "wet", "mighty", "charming", "surreal", "sexy", "attractive", "sexual", "erotic", "hot", "young", "stunning", "desirable", "fit", "superior", "golden", "gold", "smug", "younger", "female", "horny", "intimate", "romantic", "popular", "feminine", "sweet", "precious", "favourite", "impressed", "special", "significant", "aroused", "tender", "spontaneous", "festive", "glowing", "touched", "moved", "wanted", "accomplished", "privileged", "beautiful", "naughty", "fancy", "pretty", "akin", "sister,intoxicated", "enjoyable", "lovely", "charged", "cute", "closer", "sociable", "social", "pink", "chatty", "pop", "teenage", "teen", "hip", "pleasant", "trendy", "girly", "satisfying", "romance", "lively", "maternal", "favorite", "prettier", "noticed", "firm", "satisfied", "clever", "classy", "artistic", "tall", "drawn", "thin", "invited", "mysterious", "lean", "woozy", "skinnier", "talkative", "visible", "casual", "drinking", "drunk", "drunken", "slick"], ["beloved", "loved", "loving", "appreciated", "respected", "worthy", "generous", "thankful", "inspired", "freer", "glad", "wise", "charitable", "cherished", "fond", "home", "homey", "healed", "safe", "grown", "fresh", "healthy", "bonded", "pampered", "efficient", "lucky", "protected", "useful", "productive", "creative", "meaningful", "talented", "hopeful", "well", "friendly", "connected", "attached", "secure", "familiar", "mum", "positive", "gentle", "sound", "accepted", "considered", "caring", "active", "understood", "bohemian", "open", "opened", "sharing", "sympathetic", "assured", "decent", "humble advanced", "appropriate", "acceptable", "nicer", "correct", "competent", "valid", "educated", "sane", "polite", "neat", "wide", "proper", "easier", "available", "trusted", "natural", "stable", "patient", "conservative", "allowed", "protective"], ["male", "power", "passionate", "wild", "boss", "man", "manly", "empowered", "intelligent", "brave", "powerful", "victorious", "important", "willing", "masculine", "sharp", "eager", "strong", "tough", "devoted", "valuable", "confident", "justified", "motivated", "political", "determined", "prepared", "necessary", "reliable", "capable", "awake", "winning", "ambitious", "righteous", "right", "adventurous", "necessary", "validated", "expressed", "driven", "serious", "pro", "professional", "organized", "moral", "united", "human", "needed", "involved", "challenging", "daring", "dedicated", "committed", "pursuing", "steady", "vital", "effective", "convinced", "engaged", "critical", "impulsive", "direct", "present", "aware", "responsible"], ["warm", "cozy", "comfy", "comfortable", "peachy", "close", "resolved", "mature", "matured", "closest", "encouraged", "acknowledged", "supported", "sure", "perky", "personal", "energetic", "smart", "optimistic", "connecting", "groovy", "encouraging", "reassured", "induced", "ahead", "senior", "higher", "bigger", "potential", "farther", "learned", "liked", "enlightened", "defined", "solid", "missed", "rolling", "invigorated", "seen", "graduate", "comforted", "comforting", "sheltered", "welcomed", "welcome", "contributing", "included", "supportive", "ready", "able", "curious", "thoughtful", "qualified", "modern", "inclined", "experienced", "shared", "warmed", "linked", "worthwhile", "constructive", "relevant", "luckier", "individual", "specific", "figured", "accountable", "adjusted", "equipped", "compatible", "common"]
+		],
+		"unhappiness" : [["suicidal", "desperate", "tortured", "rotten", "raped", "suffering", "mourning", "crying", "dreadful", "torn", "abused", "beaten", "crushed", "shot", "ripped", "buried", "burnt", "burned", "stabbed", "cursed", "bleeding", "unbearable", "violated", "worthless", "paralyzed", "shit", "bruised", "drowned", "condemned", "terrible", "horrible,sore", "worst", "miserable", "pathetic", "broken", "ruined", "harassed", "bottom", "bottomed", "smashed", "zero", "wicked", "heartbroken", "shattered", "hopeless", "abandoned,filthy", "rotting", "pitiful", "lowest", "small", "teeny", "tiny", "ant", "wee", "claustrophobic", "embarrassed", "homeless", "broke", "petty", "screwed", "wretched", "belittled,oldest,unaccomplished", "victimized", "drained", "depressed", "unloved", "slap", "punished", "cheap", "defeated", "awful", "old", "aged"]]
 	},
 	"Coloring schemes" : {
 		"group" : [
@@ -8,9 +16,51 @@
 				"red" : "H0|Sia75-100|Via75-100",
 				"black" : "H0|S0|Vid75-100"
 			},
-			{},
+			{ "colors" : ["red", "red", "black"],
+				"red" : "H0|Sia75-100|Via75-100",
+				"black" : "H0|S0|Vid75-100"
+			},
 			{},
 			{}
+		], 
+		"anger" : [ 
+			{ "colors" : ["red"],
+				"red" : "H0|S100|V25"
+			},
+			{ "colors" : ["red"],
+				"red" : "H0|S75|V25"
+			}
+		],
+		"happiness" : [
+			{ "colors" : ["white"],
+				"white" : "H0|S0|V100"
+			},
+			{ "colors" : ["yellow"],
+				"yellow" : "H60|S100|V100"
+			},
+			{ "colors" : ["cyan"],
+				"cyan" : "H210|S100|V100"
+			},
+			{ "colors" : ["pink"],
+				"pink" : "H330|S100|V100"
+			},
+			{ "colors" : ["yellow"],
+				"yellow" : "H60|S100|V100"
+			},
+			{ "colors" : ["green"],
+				"green" : "H90|S100|V100"
+			},
+			{ "colors" : ["red"],
+				"red" : "H0|S100|V100"
+			},
+			{ "colors" : ["orange"],
+				"orange" : "H30|S100|V100"
+			}
+		],
+		"unhappiness" : [
+			{ "colors": ["black"],
+				"black" : "H0|S0|V0"
+			}
 		]
 	}
 }
