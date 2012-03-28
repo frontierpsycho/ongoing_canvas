@@ -115,8 +115,8 @@ class Shape:
 		self.transformation_matrix = [1,0,0,1,0,0]
 
 	def translate(self, x, y):
-		self.transformation_matrix[self.E]=x
-		self.transformation_matrix[self.F]=y
+		self.transformation_matrix[self.E] += x
+		self.transformation_matrix[self.F] += y
 
 	def scale(self, scalex, scaley=None):
 		if not scaley:

@@ -17,23 +17,25 @@ class GridPlacementStrategy:
 			self.translate_to_cell(cell, shape)
 		elif depth == 2:
 			shape.scale(0.707)
-			new_cell = (cell[0], cell[1]+1)
-			self.translate_to_cell(new_cell, shape)
-			shape.rotate_horizontally()
+			#shape.translate(self.cell_width, 0)
+			#shape.rotate_horizontally()
+			self.translate_to_cell(cell, shape)
 		elif depth == 3:
 			shape.scale(0.5)
-			#new_cell = (cell[0], cell[1]+1)
-			self.translate_to_cell(cell, shape, "lr")
+			self.translate_to_cell(cell, shape)
+			
+			# move one cell to the right
+			shape.translate(self.cell_width, 0)
 			shape.rotate_horizontally()
 			
-	def translate_to_cell(self, cell, shape, edge="ul"):
+	def translate_to_cell(self, cell, shape, edge="ur"):
 			translate_y = 2*cell[0]*self.cell_height
 			if edge[0] == "l":
 				translate_y += self.cell_height
 
 			translate_x = cell[1]*self.cell_width
-			if edge[1] == "r":
-				translate_x += self.cell_width
+			if edge[1] == "l":
+				translate_x -= self.cell_width
 
 			shape.translate(translate_x, translate_y)
 
