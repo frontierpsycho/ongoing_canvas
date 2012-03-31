@@ -1,3 +1,5 @@
+import random
+
 class GridPlacementStrategy:
 	def __init__(self, canvas_height, canvas_width, cell_height, cell_width, depth=3):
 		self.canvas_width = canvas_width
@@ -17,8 +19,6 @@ class GridPlacementStrategy:
 			self.translate_to_cell(cell, shape)
 		elif depth == 2:
 			shape.scale(0.707)
-			#shape.translate(self.cell_width, 0)
-			#shape.rotate_horizontally()
 			self.translate_to_cell(cell, shape)
 		elif depth == 3:
 			shape.scale(0.5)
@@ -40,10 +40,21 @@ class GridPlacementStrategy:
 			shape.translate(translate_x, translate_y)
 
 	def find_place(self):
-		for i in range(self.width()):
-			for j in range(self.height()):
+		width = range(self.width())
+		random.shuffle(width)
+		height = range(self.height())
+		random.shuffle(height)
+
+		for i in width:
+			for j in height:
 				if self.grid[j][i] < self.depth:
 					self.grid[j][i] += 1
+					return j,i
+
+		for i in width:
+			for j in height:
+				if self.grid[j][i] == self.depth:
+					self.grid[j][i] = 0
 					return j,i
 
 	def width(self):
