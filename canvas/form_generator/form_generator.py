@@ -41,7 +41,6 @@ class FormGenerator:
 			
 			colour = FormGenerator.get_colour(self.settings["Coloring schemes"][current_group_name][subgroup_index])
 			shape.colour = "hsl(%d, %d, %d)" % colour[0]
-			# TODO change size
 			self.placement_strategy.place(shape)
 			self.cells[feeling_data.id] = shape
 

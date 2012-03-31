@@ -10,23 +10,26 @@ class GridPlacementStrategy:
 		
 		if self.width() == 0 or self.height() == 0:
 			raise ArgumentException("At least one cell should fit in the canvas's width")
-		self.grid = [[0 for d in range(self.width())] for e in range(self.height())]
+		self.grid = [[[] for d in range(self.width())] for e in range(self.height())]
 		
 	def place(self, shape):
-		cell = self.find_place()
-		depth = self.grid[cell[0]][cell[1]]
+		coords = self.find_place(id)
+		depth = self.cell_depth(coords)
 		if depth == 1:
-			self.translate_to_cell(cell, shape)
+			self.translate_to_cell(coords, shape)
 		elif depth == 2:
 			shape.scale(0.707)
-			self.translate_to_cell(cell, shape)
+			self.translate_to_cell(coords, shape)
 		elif depth == 3:
 			shape.scale(0.5)
-			self.translate_to_cell(cell, shape)
+			self.translate_to_cell(coords, shape)
 			
 			# move one cell to the right
 			shape.translate(self.cell_width, 0)
 			shape.rotate_horizontally()
+
+	def cell_depth(self, coords):
+		return len(self.grid[coords[0]][coords[1]])
 			
 	def translate_to_cell(self, cell, shape, edge="ur"):
 			translate_y = cell[0]*self.cell_height
@@ -39,7 +42,7 @@ class GridPlacementStrategy:
 
 			shape.translate(translate_x, translate_y)
 
-	def find_place(self):
+	def find_place(self, id):
 		width = range(self.width())
 		random.shuffle(width)
 		height = range(self.height())
@@ -47,14 +50,14 @@ class GridPlacementStrategy:
 
 		for i in width:
 			for j in height:
-				if self.grid[j][i] < self.depth:
-					self.grid[j][i] += 1
+				if self.cell_depth((j,i)) < self.depth:
+					self.grid[j][i].append(id)
 					return j,i
 
 		for i in width:
 			for j in height:
-				if self.grid[j][i] == self.depth:
-					self.grid[j][i] = 0
+				if self.cell_depth((j,i)) == self.depth:
+					self.grid[j][i] = []
 					return j,i
 
 	def width(self):
