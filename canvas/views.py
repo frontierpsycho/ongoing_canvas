@@ -21,7 +21,11 @@ class CanvasView(ListView):
 		feelings_filter = self.request.GET.getlist("feelings")
 		self.feelings_filter = feelings_filter
 
-		feelingdata = FeelingData.objects.filter(feeling__name__in=feelings_filter).order_by("postdatetime")[:200]
+		feelingdata = FeelingData.objects.order_by("postdatetime")
+		if len(feelings_filter) > 0:
+			feelingdata = feelingdata.filter(feeling__name__in=feelings_filter)
+
+		feelingdata = feelingdata[:200]
 
 		all_feelings = []
 		for group in form_generator.settings["Feeling groups"].values():
