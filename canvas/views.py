@@ -4,12 +4,13 @@ import random
 
 from django.views.generic import ListView,DetailView
 from django.conf import settings
+from django.db.models import Q
 
 from canvas.models import FeelingData
 from canvas.form_generator.form_generator import *
 from canvas.form_generator.placement_strategy import GridPlacementStrategy
 
-form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, 211, 150, depth=3))
+form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, 136, 96, depth=3))
 
 class CanvasView(ListView):
 	global form_generator
@@ -17,8 +18,17 @@ class CanvasView(ListView):
 	template_name="canvas/canvas.html"
 
 	def get_queryset(self):
-		feelingdata = FeelingData.objects.order_by("postdatetime")[:97]
-		
+		feelings_filter = self.request.GET.getlist("feelings")
+		self.feelings_filter = feelings_filter
+
+		feelingdata = FeelingData.objects.filter(feeling__name__in=feelings_filter).order_by("postdatetime")[:200]
+
+		all_feelings = []
+		for group in form_generator.settings["Feeling groups"].values():
+			for subgroup in group:
+				all_feelings.extend(subgroup)
+		self.all_feelings = sorted(all_feelings)
+
 		shapes = []
 
 		for fd in feelingdata:
@@ -32,6 +42,8 @@ class CanvasView(ListView):
 		context = super(CanvasView, self).get_context_data(**kwargs)
 		context["width"] = settings.CANVAS_WIDTH
 		context["height"] = settings.CANVAS_HEIGHT
+		context["all_feelings"] = self.all_feelings
+		context["feelings_filter"] = self.feelings_filter
 
 		return context
 

@@ -10,7 +10,13 @@
 {% endblock %}
 
 {% block content %}
-<div id="container">
+<div id="toolbox">
+	<form action="/canvas/">
+	<input type="submit" value="Filter feelings" /><br />
+			{% for f in all_feelings %}
+				<input type="checkbox" name="feelings" value="{{ f }}" {% if f in feelings_filter %}checked="checked"{% endif %}  /> {{ f }}<br />
+			{% endfor %}
+	</form>
 </div>
 
 {% endblock %}
@@ -19,7 +25,11 @@
 <script type="text/javascript">
 	var paper = Raphael(10, 10, {{ width }}, {{ height }});
 {% for shape in shapes %}
-	{{ shape|to_raphael:"paper"|safe }};
+	{{ shape|to_raphael:"paper"|safe }}.click(function(event) { 
+		var new_size = this.getBBox().width + 200;
+		this.attr({ width: new_size } );
+		alert(this.getBBox().width);
+	} );
 {% endfor %}
 </script>
 {% endblock %}

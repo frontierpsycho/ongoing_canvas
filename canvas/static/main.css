@@ -1,4 +1,11 @@
-#image-div {
-	height: 100px;
-	width: 100px;
+body {
+	background-color: #5a5a5a;
+}
+
+#toolbox {
+	background-color: #FFFFFF;
+	overflow: auto;
+	float:right;
+	width: 300px;
+	height: 600px;
 }
