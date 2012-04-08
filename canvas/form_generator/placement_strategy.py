@@ -16,13 +16,18 @@ class GridPlacementStrategy:
 	def place(self, shape):
 		coords = self.find_place(id)
 		depth = self.cell_depth(coords)
+
+		rotated = False
+		
+		if self.chance() and depth > 1:
+			rotated = True
 		
 		shape.scale(self.depths[depth-1])
 		self.translate_to_cell(coords, shape)
-		#if self.chance():
-		#	self.move_to_corner(shape, "lr", depth)
-		
-		if self.chance() and depth > 1:
+		if self.chance():
+			self.move_to_corner(shape, "lr", depth, rotated)
+
+		if rotated:
 			# move one cell to the right
 			shape.translate(self.cell_width, 0)
 			shape.rotate_horizontally()
@@ -36,14 +41,26 @@ class GridPlacementStrategy:
 
 		shape.translate(translate_x, translate_y)
 
-	def move_to_corner(self, shape, corner, depth):
+	def move_to_corner(self, shape, corner, depth, rotated):
 		translate_x = 0
 		translate_y = 0
+
 		if corner[0] == "l":
-			translate_y = (1-self.depths[depth-1])*self.cell_height
+			if rotated:
+				ratio = self.depths[depth-1]*0.707
+			else:
+				ratio = self.depths[depth-1]
+			translate_y = (1-ratio)*self.cell_height
+		
+		if corner[1] == "l":
+			if rotated:
+				ratio = self.depths[depth-1]/0.707
+				translate_x = -(1-ratio)*self.cell_width
 		
 		if corner[1] == "r":
-			translate_x = (1-self.depths[depth-1])*self.cell_width
+			if not rotated:
+				ratio = self.depths[depth-1]
+				translate_x = (1-ratio)*self.cell_width
 
 		shape.translate(translate_x, translate_y)
 
