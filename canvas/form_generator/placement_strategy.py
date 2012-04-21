@@ -24,8 +24,18 @@ class GridPlacementStrategy:
 		
 		shape.scale(self.depths[depth-1])
 		self.translate_to_cell(coords, shape)
+
+		position = []
 		if self.chance():
-			self.move_to_corner(shape, "lr", depth, rotated)
+			position.append("u")
+		else:
+			position.append("l")
+		if self.chance():
+			position.append("r")
+		else:
+			position.append("l")
+		
+		self.move_to_corner(shape, position, depth, rotated)
 
 		if rotated:
 			# move one cell to the right
@@ -88,5 +98,5 @@ class GridPlacementStrategy:
 	def height(self):
 		return int(self.canvas_height/self.cell_height)
 
-	def chance(self):
+	def chance(self, parts=2):
 		return (random.random() < 0.5)
