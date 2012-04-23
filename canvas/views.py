@@ -10,7 +10,15 @@ from canvas.models import FeelingData
 from canvas.form_generator.form_generator import *
 from canvas.form_generator.placement_strategy import GridPlacementStrategy
 
-form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, 136, 96, depth=3))
+def start_generator(cells_manager):
+	form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, 136, 96, depth=3))
+
+manager = Manager()
+
+cells = manager.dict()
+
+p = Process(target=start_generator, args=(cells))
+p.start()
 
 class CanvasView(ListView):
 	global form_generator

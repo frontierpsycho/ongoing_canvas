@@ -1,6 +1,14 @@
 import random
 import json
 import re
+import sys
+
+sys.path.append('../../../')
+from ongoing_canvas import settings
+from django.core.management import setup_environ
+setup_environ(settings)
+
+from canvas.models import FeelingData
 
 class FormGenerator:
 	colour_matcher = re.compile("(H|S|V)(?P<rel>[iad]{2})?(\d+$|\d+-\d+$)")
@@ -9,6 +17,12 @@ class FormGenerator:
 		self.shapes = json.loads(open(shapes_path).read())
 		self.placement_strategy = placement_strategy
 		self.cells = cells
+		while(True):
+			t = Timer(settings.INTERVAL, add_feeling)
+			t.start()
+
+	def add_feeling(self):
+		pass
 
 	def get_feeling_coordinates(self, feeling_name):
 		# could be much faster with indices if need be
