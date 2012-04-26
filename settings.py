@@ -150,6 +150,7 @@ LOGGING = {
 # project settings
 CANVAS_HEIGHT = 637
 CANVAS_WIDTH = 900
+INTERVAL=1
 
 try:
     from local_settings import *

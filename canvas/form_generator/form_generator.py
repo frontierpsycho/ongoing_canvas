@@ -2,6 +2,9 @@ import random
 import json
 import re
 import sys
+import logging
+#from threading import Timer
+import time
 
 sys.path.append('../../../')
 from ongoing_canvas import settings
@@ -11,18 +14,29 @@ setup_environ(settings)
 from canvas.models import FeelingData
 
 class FormGenerator:
+	logging.basicConfig(filename='/tmp/painter.log',level=logging.DEBUG)
+
 	colour_matcher = re.compile("(H|S|V)(?P<rel>[iad]{2})?(\d+$|\d+-\d+$)")
 	def __init__(self, settings_path, shapes_path, placement_strategy, cells={}):
 		self.settings = json.loads(open(settings_path).read())
 		self.shapes = json.loads(open(shapes_path).read())
 		self.placement_strategy = placement_strategy
 		self.cells = cells
-		while(True):
-			t = Timer(settings.INTERVAL, add_feeling)
-			t.start()
+		self.feelingdata = list(FeelingData.objects.order_by("postdatetime")[:200])
+		self.counter = 1
+		#while(True):
+		#	self.add_feeling
+		#	print(time.time())
+			#time.sleep(2)
 
 	def add_feeling(self):
-		pass
+		print("Hm...")
+		if len(self.feelingdata) > 0:
+			print("Yup!")
+			self.generate_shape(self.feelingdata[self.counter])
+			self.counter += 1
+		else:
+			print("Nope.")
 
 	def get_feeling_coordinates(self, feeling_name):
 		# could be much faster with indices if need be
@@ -151,3 +165,25 @@ class Shape:
 		self.transformation_matrix[self.C] = -tempA
 		self.transformation_matrix[self.D] = -tempB
 		# E and F do not change
+
+import threading
+
+class RepeatTimer(threading.Thread):
+	def __init__(self, interval, callable, *args, **kwargs):
+		threading.Thread.__init__(self)
+		self.interval = interval
+		self.callable = callable
+		self.args = args
+		self.kwargs = kwargs
+		self.event = threading.Event()
+		self.event.set()
+
+	def run(self):
+		while self.event.is_set():
+			t = threading.Timer(self.interval, self.callable,
+					self.args, self.kwargs)
+			t.start()
+			t.join()
+
+	def cancel(self):
+		self.event.clear()
