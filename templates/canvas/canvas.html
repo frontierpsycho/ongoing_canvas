@@ -25,7 +25,7 @@
 <script type="text/javascript">
 	var paper = Raphael(10, 10, {{ width }}, {{ height }});
 {% for shape in shapes %}
-	{{ shape|to_raphael:"paper"|safe }}.click(function(event) { 
+	var shape{{ forloop.counter }} = {{ shape|to_raphael:"paper"|safe }}.click(function(event) { 
 		var new_size = this.getBBox().width + 200;
 		this.attr({ width: new_size } );
 		alert(this.getBBox().width);
