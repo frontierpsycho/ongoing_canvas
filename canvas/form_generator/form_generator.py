@@ -23,20 +23,24 @@ class FormGenerator:
 		self.placement_strategy = placement_strategy
 		self.cells = cells
 		self.feelingdata = list(FeelingData.objects.order_by("postdatetime")[:200])
-		self.counter = 1
-		#while(True):
-		#	self.add_feeling
-		#	print(time.time())
-			#time.sleep(2)
+		self.counter = 0
+		while(True):
+			self.add_feeling()
+			time.sleep(2)
 
 	def add_feeling(self):
 		print("Hm...")
-		if len(self.feelingdata) > 0:
-			print("Yup!")
-			self.generate_shape(self.feelingdata[self.counter])
+		if len(self.feelingdata) > self.counter:
+			if self.generate_shape(self.feelingdata[self.counter]):
+				print "Added new shape"
+			else:
+				print "Didn't add shape"
 			self.counter += 1
 		else:
-			print("Nope.")
+			self.feelingata = list(FeelingData.objects.order_by("postdatetime")[:200])
+			self.counter = 0
+
+
 
 	def get_feeling_coordinates(self, feeling_name):
 		# could be much faster with indices if need be
@@ -60,7 +64,7 @@ class FormGenerator:
 
 	def generate_shape(self, feeling_data):
 		if feeling_data.id in self.cells:
-			return self.cells[feeling_data.id]
+			return False
 		shape = None
 		tupleOrNone = self.get_feeling_coordinates(feeling_data.feeling.name)
 		if tupleOrNone:
@@ -72,7 +76,7 @@ class FormGenerator:
 			self.placement_strategy.place(shape)
 			self.cells[feeling_data.id] = shape
 
-		return shape
+		return not (shape == None)
 
 	@staticmethod
 	def get_colour(scheme):
