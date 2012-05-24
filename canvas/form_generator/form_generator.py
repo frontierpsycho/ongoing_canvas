@@ -15,21 +15,20 @@ from canvas.models import FeelingData
 
 class FormGenerator:
 	colour_matcher = re.compile("(H|S|V)(?P<rel>[iad]{2})?(\d+$|\d+-\d+$)")
-	def __init__(self, settings_path, shapes_path, placement_strategy, cells={}):
+	def __init__(self, settings_path, shapes_path, placement_strategy, cells={}, ongoing=False):
 		self.settings = json.loads(open(settings_path).read())
 		self.shapes = json.loads(open(shapes_path).read())
 		self.placement_strategy = placement_strategy
 		self.cells = cells
 		self.feelingdata = list(FeelingData.objects.order_by("postdatetime")[:200])
 		self.counter = 0
-		while(True):
+		while(ongoing):
 			self.add_feeling()
 			time.sleep(2)
 
 	def add_feeling(self):
-		print("Hm...")
 		if len(self.feelingdata) > self.counter:
-			if self.generate_shape(self.feelingdata[self.counter]):
+			if self.add_shape(self.feelingdata[self.counter]):
 				print "Added new shape"
 			else:
 				print "Didn't add shape"
@@ -62,7 +61,7 @@ class FormGenerator:
 
 	def generate_shape(self, feeling_data):
 		if feeling_data.id in self.cells:
-			return False
+			return self.cells[feeling_data.id]
 		shape = None
 		tupleOrNone = self.get_feeling_coordinates(feeling_data.feeling.name)
 		if tupleOrNone:
@@ -72,9 +71,17 @@ class FormGenerator:
 			colour = FormGenerator.get_colour(self.settings["Coloring schemes"][current_group_name][subgroup_index])
 			shape.colour = "hsl(%d, %d, %d)" % colour[0]
 			self.placement_strategy.place(shape)
+			return shape
+		return None
+
+
+	def add_shape(self, feeling_data):
+		shape = self.generate_shape(feeling_data)
+		if shape:
 			self.cells[feeling_data.id] = shape
 
 		return not (shape == None)
+
 
 	@staticmethod
 	def get_colour(scheme):

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load canvas_tags %}
+
+{% block title %}Ongoing canvas{% endblock %}
+
+{% block javascript-includes %}
+<script type="text/javascript" src="{% get_static_prefix %}raphael-min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div id="toolbox">
+	<form action="">
+		{{ form }}
+		<input type="submit" value="Filter feelings" /><br />
+	</form>
+</div>
+
+{% endblock %}
+
+{% block inline-javascript %}
+<script type="text/javascript">
+	var paper = Raphael(10, 10, {{ width }}, {{ height }});
+{% for shape in shapes %}
+	{{ shape|to_raphael:"paper"|safe }}.click(function(event) { 
+		var new_size = this.getBBox().width + 200;
+		this.attr({ width: new_size } );
+		alert(this.getBBox().width);
+	} );
+{% endfor %}
+</script>
+{% endblock %}
