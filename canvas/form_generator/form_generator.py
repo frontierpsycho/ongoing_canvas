@@ -14,8 +14,6 @@ setup_environ(settings)
 from canvas.models import FeelingData
 
 class FormGenerator:
-	logging.basicConfig(filename='/tmp/painter.log',level=logging.DEBUG)
-
 	colour_matcher = re.compile("(H|S|V)(?P<rel>[iad]{2})?(\d+$|\d+-\d+$)")
 	def __init__(self, settings_path, shapes_path, placement_strategy, cells={}):
 		self.settings = json.loads(open(settings_path).read())
