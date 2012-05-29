@@ -3,8 +3,9 @@ import json
 import re
 import sys
 import logging
-#from threading import Timer
 import time
+
+from django_socketio import broadcast_channel
 
 sys.path.append('../../../')
 from ongoing_canvas import settings
@@ -31,6 +32,7 @@ class FormGenerator:
 		if len(self.feelingdata) > self.counter:
 			if self.generate_shape(self.feelingdata[self.counter]):
 				print "Added new shape"
+				broadcast_channel("Added shape!", "shapes")
 			else:
 				print "Didn't add shape"
 			self.counter += 1
