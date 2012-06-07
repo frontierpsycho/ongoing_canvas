@@ -4,8 +4,7 @@ import re
 import sys
 import logging
 import time
-
-from django_socketio import broadcast_channel
+import urllib2
 
 sys.path.append('../../../')
 from ongoing_canvas import settings
@@ -28,11 +27,9 @@ class FormGenerator:
 			time.sleep(2)
 
 	def add_feeling(self):
-		print("Hm...")
 		if len(self.feelingdata) > self.counter:
 			if self.generate_shape(self.feelingdata[self.counter]):
-				print "Added new shape"
-				broadcast_channel("Added shape!", "shapes")
+				self.broadcast(0, "shapes")
 			else:
 				print "Didn't add shape"
 			self.counter += 1
@@ -40,7 +37,8 @@ class FormGenerator:
 			self.feelingata = list(FeelingData.objects.order_by("postdatetime")[:200])
 			self.counter = 0
 
-
+	def broadcast(self, id, channel):
+		urllib2.urlopen("http://localhost:9000/canvas/refresh/%d" % id).read()
 
 	def get_feeling_coordinates(self, feeling_name):
 		# could be much faster with indices if need be

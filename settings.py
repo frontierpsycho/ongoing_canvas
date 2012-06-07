@@ -153,6 +153,8 @@ CANVAS_HEIGHT = 637
 CANVAS_WIDTH = 900
 INTERVAL=1
 
+SOCKETIO_PORT=9001
+
 try:
     from local_settings import *
 except ImportError:

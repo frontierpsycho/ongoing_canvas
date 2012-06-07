@@ -3,9 +3,12 @@ import copy
 import random
 from multiprocessing import Process,Manager
 
+from django.http import HttpResponse
 from django.views.generic import ListView,DetailView
 from django.conf import settings
 from django.db.models import Q
+
+from django_socketio import broadcast_channel, NoSocket
 
 from canvas.models import FeelingData
 from canvas.form_generator.form_generator import *
@@ -76,3 +79,9 @@ class FeelingDataDetailView(DetailView):
 		context = super(FeelingDataDetailView, self).get_context_data(**kwargs)
 		context["stroke"] = self.stroke
 		return context
+
+def broadcast(request, id):
+	shape = self.cells[id]
+	print shape
+	#broadcast_channel({ 'shape': "M12342", 'color': "sdfsdf"} , "shapes")
+	return HttpResponse()
