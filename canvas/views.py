@@ -21,7 +21,7 @@ def start_generator(cells_manager):
 
 manager = Manager()
 
-cells = manager.dict()
+cells = manager.list()
 
 p = Process(target=start_generator, args=(cells,))
 p.start()
@@ -32,7 +32,7 @@ class CanvasView(ListView):
 	template_name="canvas/canvas.html"
 
 	def get_queryset(self):
-		shapes = cells.values()
+		shapes = [t[1] for t in cells] # unpack id, shape pairs
 
 		return shapes
 	
@@ -96,6 +96,7 @@ class FeelingDataDetailView(DetailView):
 
 def broadcast(request, id):
 	global cells
-	shape = cells[int(id)]
-	broadcast_channel({ 'shape': shape.path, 'colour': shape.colour, 'transform': shape.transformation_matrix } , "shapes")
+	if len(cells) > 0:
+		shape = cells[-1][1]
+		broadcast_channel({ 'shape': shape.path, 'colour': shape.colour, 'transform': shape.transformation_matrix } , "shapes")
 	return HttpResponse()

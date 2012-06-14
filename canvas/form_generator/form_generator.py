@@ -15,7 +15,7 @@ from canvas.models import FeelingData
 
 class FormGenerator:
 	colour_matcher = re.compile("(H|S|V)(?P<rel>[iad]{2})?(\d+$|\d+-\d+$)")
-	def __init__(self, settings_path, shapes_path, placement_strategy, cells={}, ongoing=False):
+	def __init__(self, settings_path, shapes_path, placement_strategy, cells=[], ongoing=False):
 		self.settings = json.loads(open(settings_path).read())
 		self.shapes = json.loads(open(shapes_path).read())
 		self.placement_strategy = placement_strategy
@@ -62,8 +62,10 @@ class FormGenerator:
 			return None
 
 	def generate_shape(self, feeling_data):
-		if feeling_data.id in self.cells:
-			return self.cells[feeling_data.id]
+		for t in self.cells:
+			if t[0] == feeling_data.id:
+				return t[1]
+
 		shape = None
 		tupleOrNone = self.get_feeling_coordinates(feeling_data.feeling.name)
 		if tupleOrNone:
@@ -80,7 +82,8 @@ class FormGenerator:
 	def add_shape(self, feeling_data):
 		shape = self.generate_shape(feeling_data)
 		if shape:
-			self.cells[feeling_data.id] = shape
+			#self.cells[feeling_data.id] = shape
+			self.cells.append((feeling_data.id, shape))
 
 		return not (shape == None)
 
