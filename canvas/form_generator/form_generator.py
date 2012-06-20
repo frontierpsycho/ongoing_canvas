@@ -13,8 +13,12 @@ setup_environ(settings)
 
 from canvas.models import FeelingData
 
+logging.basicConfig()
+logger = logging.getLogger("canvas.form_generator")
+
 class FormGenerator:
 	colour_matcher = re.compile("(H|S|V)(?P<rel>[iad]{2})?(\d+$|\d+-\d+$)")
+
 	def __init__(self, settings_path, shapes_path, placement_strategy, cells=[], ongoing=False):
 		self.settings = json.loads(open(settings_path).read())
 		self.shapes = json.loads(open(shapes_path).read())
@@ -32,14 +36,17 @@ class FormGenerator:
 			if self.add_shape(fd):
 				self.broadcast(fd.id, "shapes")
 			else:
-				print "Didn't add shape"
+				logger.warning("Invalid feeling found in database: %d, %s" % (fd.id, str(fd.feeling.name)) )
 			self.counter += 1
 		else:
 			self.feelingata = list(FeelingData.objects.order_by("postdatetime")[:200])
 			self.counter = 0
 
 	def broadcast(self, id, channel):
-		urllib2.urlopen("http://localhost:9000/canvas/refresh/%d" % id).read()
+		try:
+			urllib2.urlopen("http://localhost:9000/canvas/refresh/%d" % id).read()
+		except urllib2.HTTPError as e:
+			logger.error("Error broadcasting: %s " % e)
 
 	def get_feeling_coordinates(self, feeling_name):
 		# could be much faster with indices if need be
