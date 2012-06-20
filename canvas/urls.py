@@ -6,7 +6,8 @@ from canvas.views import *
 
 urlpatterns = patterns('canvas.views',
 	url(r'^$', CanvasView.as_view()),
-	url(r'^playground/$', PlaygroundView.as_view()),
+	url(r'^refresh/(?P<id>\d+)/', 'broadcast'),
+	url(r'^playground/$', PlaygroundView.as_view()),	
 	url(r'^feeling/(?P<pk>\d+)/', FeelingDataDetailView.as_view()),
 	url(r'^feelings$', ListView.as_view(template_name="canvas/feelings.html", model=FeelingData)),
 )

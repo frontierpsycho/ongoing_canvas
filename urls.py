@@ -10,6 +10,8 @@ urlpatterns = patterns('',
     # url(r'^$', 'ongoing-canvas.views.home', name='home'),
     # url(r'^ongoing-canvas/', include('ongoing-canvas.foo.urls')),
     url(r'^canvas/', include('canvas.urls')),
+    
+	url('', include('django_socketio.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

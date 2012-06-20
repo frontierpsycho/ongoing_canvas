@@ -3,8 +3,8 @@ import json
 import re
 import sys
 import logging
-#from threading import Timer
 import time
+import urllib2
 
 sys.path.append('../../../')
 from ongoing_canvas import settings
@@ -13,9 +13,13 @@ setup_environ(settings)
 
 from canvas.models import FeelingData
 
+logging.basicConfig()
+logger = logging.getLogger("canvas.form_generator")
+
 class FormGenerator:
 	colour_matcher = re.compile("(H|S|V)(?P<rel>[iad]{2})?(\d+$|\d+-\d+$)")
-	def __init__(self, settings_path, shapes_path, placement_strategy, cells={}, ongoing=False):
+
+	def __init__(self, settings_path, shapes_path, placement_strategy, cells=[], ongoing=False):
 		self.settings = json.loads(open(settings_path).read())
 		self.shapes = json.loads(open(shapes_path).read())
 		self.placement_strategy = placement_strategy
@@ -28,16 +32,21 @@ class FormGenerator:
 
 	def add_feeling(self):
 		if len(self.feelingdata) > self.counter:
-			if self.add_shape(self.feelingdata[self.counter]):
-				print "Added new shape"
+			fd = self.feelingdata[self.counter]
+			if self.add_shape(fd):
+				self.broadcast(fd.id, "shapes")
 			else:
-				print "Didn't add shape"
+				logger.warning("Invalid feeling found in database: %d, %s" % (fd.id, str(fd.feeling.name)) )
 			self.counter += 1
 		else:
 			self.feelingata = list(FeelingData.objects.order_by("postdatetime")[:200])
 			self.counter = 0
 
-
+	def broadcast(self, id, channel):
+		try:
+			urllib2.urlopen("http://localhost:9000/canvas/refresh/%d" % id).read()
+		except urllib2.HTTPError as e:
+			logger.error("Error broadcasting: %s " % e)
 
 	def get_feeling_coordinates(self, feeling_name):
 		# could be much faster with indices if need be
@@ -60,8 +69,10 @@ class FormGenerator:
 			return None
 
 	def generate_shape(self, feeling_data):
-		if feeling_data.id in self.cells:
-			return self.cells[feeling_data.id]
+		for t in self.cells:
+			if t[0] == feeling_data.id:
+				return t[1]
+
 		shape = None
 		tupleOrNone = self.get_feeling_coordinates(feeling_data.feeling.name)
 		if tupleOrNone:
@@ -78,7 +89,8 @@ class FormGenerator:
 	def add_shape(self, feeling_data):
 		shape = self.generate_shape(feeling_data)
 		if shape:
-			self.cells[feeling_data.id] = shape
+			#self.cells[feeling_data.id] = shape
+			self.cells.append((feeling_data.id, shape))
 
 		return not (shape == None)
 
