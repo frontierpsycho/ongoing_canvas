@@ -39,7 +39,9 @@ class CanvasView(ListView):
 		context = super(CanvasView, self).get_context_data(**kwargs)
 		context["width"] = settings.CANVAS_WIDTH
 		context["height"] = settings.CANVAS_HEIGHT
+		context['ongoing'] = True
 		return context
+
 class PlaygroundView(CanvasView):
 	context_object_name = "shapes"
 	template_name = "canvas/playground.html"
@@ -70,44 +72,9 @@ class PlaygroundView(CanvasView):
 
 	def get_context_data(self, **kwargs):
 		context = super(PlaygroundView, self).get_context_data(**kwargs)
+		context['ongoing'] = False
 		context['form'] = self.form
 		return context
-
-class PlaygroundView(CanvasView):
-	context_object_name = "shapes"
-	template_name = "canvas/playground.html"
-
-	def get_queryset(self):
-		filters = []
-		if self.request.GET:
-			self.form = PlaygroundFilterForm(self.request.GET)
-			if self.form.is_valid(): # All validation rules pass
-				date = self.form.cleaned_data['date']
-				# ugly filter to get data from specific date
-				filters.extend([Q(postdatetime__gte=datetime.datetime.combine(date, datetime.time.min)), Q(postdatetime__lte=datetime.datetime.combine(date, datetime.time.max)) ])
-		else:
-			self.form = PlaygroundFilterForm()
-
-		form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, 136, 96, depth=3))
-
-		feelingdata = FeelingData.objects.filter(*filters).order_by("postdatetime")
-
-		feelingdata = feelingdata[:200]
-
-		shapes = []
-		for fd in feelingdata:
-			shape = form_generator.generate_shape(fd)
-			if shape is not None: 
-				shapes.append(shape)
-
-		return shapes
-
-	def get_context_data(self, **kwargs):
-		context = super(PlaygroundView, self).get_context_data(**kwargs)
-		context['form'] = self.form
-		return context
-
-
 
 class FeelingDataDetailView(DetailView):
 	global form_generator

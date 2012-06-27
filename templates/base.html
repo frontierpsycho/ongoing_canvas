@@ -9,7 +9,9 @@
     {% block javascript-includes %}{% endblock %}
     {% block inline-javascript %}{% endblock %}
 </body>
+{% if ongoing %}
 {% load socketio_tags %}
 {% socketio %}
 <script type="text/javascript" src="{% get_static_prefix %}socket.js"></script>
+{% endif %}
 </html>
