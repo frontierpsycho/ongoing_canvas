@@ -96,5 +96,8 @@ def broadcast(request, id):
 	global cells
 	if len(cells) > 0:
 		shape = cells[-1][1]
-		broadcast_channel({ 'shape': shape.path, 'colour': shape.colour, 'transform': shape.transformation_matrix } , "shapes")
+		try:
+			broadcast_channel({ 'shape': shape.path, 'colour': shape.colour, 'transform': shape.transformation_matrix } , "shapes")
+		except NoSocket:
+			logger.error("No subscribers on channel shapes")
 	return HttpResponse()
