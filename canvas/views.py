@@ -17,7 +17,7 @@ from canvas.form_generator.placement_strategy import GridPlacementStrategy
 from canvas.forms import PlaygroundFilterForm
 
 def start_generator(cells_manager):
-	form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, 136, 96, depth=1), cells_manager, ongoing=True)
+	form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, 72, 72, depth=1), cells_manager, ongoing=True)
 
 manager = Manager()
 
@@ -57,7 +57,7 @@ class PlaygroundView(CanvasView):
 		else:
 			self.form = PlaygroundFilterForm()
 
-		form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, 136, 96, depth=1))
+		form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, 72, 72, depth=1))
 
 		feelingdata = FeelingData.objects.filter(*filters).order_by("postdatetime")
 
