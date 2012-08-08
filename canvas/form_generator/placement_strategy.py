@@ -89,7 +89,7 @@ class GridPlacementStrategy:
 		for i in width:
 			for j in height:
 				if self.cell_depth((j,i)) == self.depth:
-					self.grid[j][i] = []
+					self.grid[j][i] = [id]
 					return j,i
 
 	def width(self):
