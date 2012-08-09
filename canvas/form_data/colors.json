@@ -1,55 +1,138 @@
 {
 	"Feeling groups" : {
-		"anger" : [[ "homicidal", "murderous", "irate", "evil", "wrath", "mad", "cruel", "bursting", "violent", "sinister", "yelling", "vicious", "cursing", "shouting", "furious", "threatening", "hateful"], ["spiteful", "upset", "rough", "pissed", "bastard", "angry", "sold", "disgruntled", "jealous", "bitter"]],
-		"happiness" :[
-			["best", "blessed", "divine", "star", "super", "incredible", "amazing", "invincible", "superficial", "magic", "magical", "triumphant,immune", "perfect", "absolute", "complete", "whole", "full", "alive", "free", "honored", "honoured", "pure", "reborn", "immense", "immortal", "master", "supreme", "fulfilled", "profound", "ultra", "liberated", "original", "independent", "excellent", "glorious", "real", "true", "honest", "ideal", "fair", "religious", "genuine", "virgin", "poetic breathless", "born", "destined", "innocent"], 
-			["greatest", "happiest", "fantastic", "awesome", "giant", "huge", "ecstatic", "luckiest", "amazed", "terrific", "enthusiastic", "terrific", "tremendous", "excited", "million", "party", "throbbing", "singing", "elated", "saved", "exciting", "golden", "gold", "rising", "won", "rich", "laughing", "thrilled", "smashing", "radiating", " happy", "gay", "bright", "cheery", "wonderful", "great", "brilliant", "swell", "smiling", "hilarious", "merry", "frisky", "cheerful", "upbeat", "musical", "sublime", "euphoric", "new", "good", "fun", "playful", "amused", "pleased", "playing", "greater", "chipper", "joking", "entertaining", "entertained", "nice", "happier", "sincere", "joyous", "happening", "uplifted", "sunny", "witty", "tickling intellectual", "sheer", "interested", "surprised", "reasonable", "focused", "comic", "interesting", "fine", "helpful", "changing", "coherent", "rational", "realistic", "informed", "knowledgeable", "certain", "exact", "concrete", "actual", "tangible", "substantial", "logical", "wondering"], 
-			["loyal", "wiser", "healing", "serene", "peaceful", "relieved", "carefree", "weightless", "content", "contented", "completed", "refreshed", "released", "cleansed", "fortunate", "relaxed", "relaxing", "renewed", "light", "chilled", "clean", "clear", "rested", "mellow", "cool", "calm", "smooth", "improving", "refreshing", "understanding", "equal", "faithful", "better", "philosophical", "virtuous", "noble", "vindicated", "centered", "balanced", "improved", "healthier", "changed", "essential", "overcome", "recovering", "recovered", "escaped", "stimulated", "set", "beneficial", "subtle", "solved", "fixed", "loose", "looser", "settled", "disillusioned", "sober", "conscious", "quiet", "alright", "okay", "ok"], 
-			["fabulous", "gorgeous", "model", "hot", "desired", "famous", "proud", "big", "shining", "successful", "center", "wet", "mighty", "charming", "surreal", "sexy", "attractive", "sexual", "erotic", "hot", "young", "stunning", "desirable", "fit", "superior", "golden", "gold", "smug", "younger", "female", "horny", "intimate", "romantic", "popular", "feminine", "sweet", "precious", "favourite", "impressed", "special", "significant", "aroused", "tender", "spontaneous", "festive", "glowing", "touched", "moved", "wanted", "accomplished", "privileged", "beautiful", "naughty", "fancy", "pretty", "akin", "sister,intoxicated", "enjoyable", "lovely", "charged", "cute", "closer", "sociable", "social", "pink", "chatty", "pop", "teenage", "teen", "hip", "pleasant", "trendy", "girly", "satisfying", "romance", "lively", "maternal", "favorite", "prettier", "noticed", "firm", "satisfied", "clever", "classy", "artistic", "tall", "drawn", "thin", "invited", "mysterious", "lean", "woozy", "skinnier", "talkative", "visible", "casual", "drinking", "drunk", "drunken", "slick"], ["beloved", "loved", "loving", "appreciated", "respected", "worthy", "generous", "thankful", "inspired", "freer", "glad", "wise", "charitable", "cherished", "fond", "home", "homey", "healed", "safe", "grown", "fresh", "healthy", "bonded", "pampered", "efficient", "lucky", "protected", "useful", "productive", "creative", "meaningful", "talented", "hopeful", "well", "friendly", "connected", "attached", "secure", "familiar", "mum", "positive", "gentle", "sound", "accepted", "considered", "caring", "active", "understood", "bohemian", "open", "opened", "sharing", "sympathetic", "assured", "decent", "humble advanced", "appropriate", "acceptable", "nicer", "correct", "competent", "valid", "educated", "sane", "polite", "neat", "wide", "proper", "easier", "available", "trusted", "natural", "stable", "patient", "conservative", "allowed", "protective"], ["male", "power", "passionate", "wild", "boss", "man", "manly", "empowered", "intelligent", "brave", "powerful", "victorious", "important", "willing", "masculine", "sharp", "eager", "strong", "tough", "devoted", "valuable", "confident", "justified", "motivated", "political", "determined", "prepared", "necessary", "reliable", "capable", "awake", "winning", "ambitious", "righteous", "right", "adventurous", "necessary", "validated", "expressed", "driven", "serious", "pro", "professional", "organized", "moral", "united", "human", "needed", "involved", "challenging", "daring", "dedicated", "committed", "pursuing", "steady", "vital", "effective", "convinced", "engaged", "critical", "impulsive", "direct", "present", "aware", "responsible"], ["warm", "cozy", "comfy", "comfortable", "peachy", "close", "resolved", "mature", "matured", "closest", "encouraged", "acknowledged", "supported", "sure", "perky", "personal", "energetic", "smart", "optimistic", "connecting", "groovy", "encouraging", "reassured", "induced", "ahead", "senior", "higher", "bigger", "potential", "farther", "learned", "liked", "enlightened", "defined", "solid", "missed", "rolling", "invigorated", "seen", "graduate", "comforted", "comforting", "sheltered", "welcomed", "welcome", "contributing", "included", "supportive", "ready", "able", "curious", "thoughtful", "qualified", "modern", "inclined", "experienced", "shared", "warmed", "linked", "worthwhile", "constructive", "relevant", "luckier", "individual", "specific", "figured", "accountable", "adjusted", "equipped", "compatible", "common"]
-		],
-		"unhappiness" : [["suicidal", "desperate", "tortured", "rotten", "raped", "suffering", "mourning", "crying", "dreadful", "torn", "abused", "beaten", "crushed", "shot", "ripped", "buried", "burnt", "burned", "stabbed", "cursed", "bleeding", "unbearable", "violated", "worthless", "paralyzed", "shit", "bruised", "drowned", "condemned", "terrible", "horrible,sore", "worst", "miserable", "pathetic", "broken", "ruined", "harassed", "bottom", "bottomed", "smashed", "zero", "wicked", "heartbroken", "shattered", "hopeless", "abandoned,filthy", "rotting", "pitiful", "lowest", "small", "teeny", "tiny", "ant", "wee", "claustrophobic", "embarrassed", "homeless", "broke", "petty", "screwed", "wretched", "belittled,oldest,unaccomplished", "victimized", "drained", "depressed", "unloved", "slap", "punished", "cheap", "defeated", "awful", "old", "aged"]],
-		"stress" : [["horrid", "panicked", "panic", "doomed", "choking", "suffocating", "terrified", "shock", "shocked", "paranoid", "trapped", "stressed", "stressful", "shaking", "helpless", "scared", "threatened", "intimidated", "frightened", "bipolar", "psycho", "stifled", "daunted", "overwhelmed", "defeated"]]
+		"virtue": [["best", "blessed", "divine", "star", "super", "solid", "amazing", "invincible", "superficial", "magic", "magical", "immune", "perfect", "absolute", "complete", "whole", "full", "free", "immense", "immortal", "supreme", "fulfilled", "profound", "ultra", "liberated", "real", "true", "honest", "devoted", "ideal", "fair", "religious","moral", "united", "human", "genuine", "virgin", "innocent"],["loyal", "wise", "wiser", "spiritual", "serene", "peaceful", "relieved", "carefree", "weightless", "content", "contented", "completed", "refreshed", "released", "cleansed", "fortunate", "relaxed", "relaxing", "renewed", "equal", "faithful", "better", "responsible", "obliged", "philosophical", "linked", "virtuous", "noble", "vindicated", "centered", "balanced", "improved", "healthier", "supportive", "changed", "essential", "overcome", "dedicated", "committed"],["light", "chilled", "clean", "clear", "rested", "mellow", "cool", "calm", "smooth", "improving", "refreshing", "understanding", "healing", "recovering", "recovered"],["escaped", "stimulated", "set", "polite", "beneficial", "subtle", "swimming", "solved", "fixed", "loose", "looser", "disillusioned", "sober", "appropriate", "decent", "fitting", "conscious", "quiet", "alright", "okay", "ok", "adult", "ordinary", "generic", "stereotypical", "typical", "conservative", "legal", "adequate", "sufficient"]],
+	"happiness" :[["alive", "greatest", "happiest", "fantastic", "awesome", "giant", "huge", "ecstatic", "luckiest", "amazed", "terrific", "enthusiastic", "terrific", "tremendous", "excited", "throbbing", "golden"],["festive", "singing", "dancing", "elated", "exciting", "gold", "rising", "won", "big", "laughing", "smashing", "smashing", "radiating", "happy", "gay", "bright", "cheery", "wonderful", "great", "brilliant", "swell", " smiling", "hilarious", "merry", "frisky", "cheerful", "upbeat", "musical", "sublime", "euphoric", "new", "good", "amused", "pleased", "playing", "greater", "chipper", "joking", "entertaining", "entertained", "nice", "happier", "sincere", "joyous", "happening", "uplifted", "sunny", "witty", "tickling"],["intellectual", "sheer", "interested", "surprised", "reasonable", "focused", "comic", "interesting", "fine],[helpful", "changing", "coherent", "rational", "realistic", "informed", "knowledgeable", "certain", "exact", "concrete", "actual", "tangible", "substantial", "logical", "wondering", "compelling", "accurate", "simple"]],
+	"confidence": [["million", "party", "unique", "fabulous", "gorgeous", "model", "hot", "exciting", "famous", "proud", "big", "shining", "successful", "center", "wet", "mighty", "charming", "surreal", "sexy", "attractive", "sexual", "erotic", "stunning", "desirable", "superior", "golden"],["intense", "male", "power", "passionate", "wild", "boss", "man", "manly", "empowered", "brave", "powerful", "victorious", "important", "willing", "masculine", "sharp", "eager", "strong", "tough", "obsessed", "obsessive", "possessive", "valuable", "confident", "justified", "motivated", "political", "determined", "prepared", "necessary", "reliable", "capable", "awake", "winning", "ambitious", "righteous", "right", "adventurous", "validated", "expressed", "driven", "serious", "pro", "ready", "able"],["biggest", "popular", "horny", "impressed", "invited", "mysterious", "slick","smug", "open", "younger", "female", "intimate", "romantic", "fit", "delicate", "feminine", "sweet", "precious", "favourite", "special", "rare", "significant", "aroused", "tender", "sister", "girly", "satisfying", "romance", "satisfied", "reassured", "induced", "ahead", "senior", "higher", "bigger", "potential", "farther", "touched", "moved", "wanted", "accomplished", "supported", "sure", "perky", "personal", "energetic", "smart", "optimistic"],["closer", "vague", "bohemian", "trivial","different", "spontaneous", "fun", "playful", "glowing", "privileged", "beautiful", "naughty", "fancy", "pretty", "young", "akin", "intoxicated", "enjoyable", "lovely", "giggly", "cute", "sociable", "social", "pink", "chatty", "pop", "teenage", "teen", "hip", "slutty", "trendy", "lively", "favorite", "prettier", "noticed", "defined", "firm", "tall", "drawn", "thin", "lean", "woozy", "skinnier", "talkative", "visible", "casual", "drinking", "drunk", "diet", "drunken", "tipsy", "independent", "master"],["professional", "modern", "needed", "involved", "encouraged", "acknowledged", "challenging", "daring", "pursuing", "steady", "vital", "effective", "convinced", "engaged", "critical", "impulsive", "direct", "present", "aware", "responsible", "obliged", "competitive", "definite", "downright", "obvious", "square", "mortal", "obligated", "obliged", "affected", "bond", "longing", "encouraging", "contributing", "included", "qualified", "experienced", "constructive", "relevant", "luckier", "individual", "specific", "figured", "accountable", "adjusted", "equipped", "compatible", "common", "handled", "sorted", "organized", "mainstream", "alt", "alternative", "alternate", "plain", "plane", "neutral"]],
+	"safety": [["beloved", "loved", "warm", "cozy", "comfy", "comfortable", "peachy", "close", "resolved", "mature", "matured", "closest", "loving"],[ "appreciated", "respected", "worthy", "generous", "thankful", "inspired", "freer", "glad", "charitable", "cherished", "fond", "home", "homey", "healed", "safe", "pleasant", "maternal", "grown", "healthy", "bonded", "pampered","connecting"],["groovy", "learned", "liked", "enlightened", "missed", "rolling", "invigorated", "seen", "graduate", "curious", "thoughtful", "inclined", "shared", "warmed", "worthwhile", "convenient", "efficient", "lucky", "protected", "useful", "productive", "creative", "meaningful", "talented", "hopeful", "joyful", "well","comforted", "comforting", "sheltered", "welcomed", "welcome", "friendly", "connected", "attached", "secure", "familiar", "mum", "positive", "gentle", "sound"],["accepted", "settled", "considered", "caring", "active", "understood", "charged", "bohemian", "open", "opened", "sharing", "sympathetic", "assured", "humble", "advanced", "acceptable", "nicer", "correct", "competent", "valid", "educated", "sane", "neat", "wide", "proper", "easier", "available", "trusted", "natural", "stable", "patient", "conservative", "allowed", "protective","basic", "normal", "regular", "average", "allowed", "middle", "medium", "semi", "same", "usual"]],
+		"unhappiness" : [["black", "dark", "suicidal", "desperate", "tortured", "rotten", "raped", "suffering", "mourning", "crying", "dreadful", "dread", "damned", "torn", "abused", "beaten", "crushed", "shot", "ripped", "buried", "burnt", "burned", "stabbed", "cursed", "bleeding", "vunbearable", "violated", "shit", "bruised", "drowned", "drained", "condemned", "terrible", "horrible", "sore", "worst", "miserable", "pathetic", "broken", "ruined", "dead", "smashed", "zero", "heartbroken", "shattered", "hopeless", "severe", "slave", "tragic", "painful", "injured", "destroyed", "wrecked"],["abandoned", "loneliest", "alienated", "isolated", "separated", "antisocial", "alone", "lone", "misunderstood", "introverted", "unwelcome", "shy", "detached", "disconnected", "rejected", "deserted", "outcast", "blocked", "ignored", "dumped", "unnoticed", "forgotten", "lonesome", "distant", "overlooked", "misplaced", "bottom", "bottomed", "worthless", "thrown", "shitty", "crappy", "shittier", "worn", "shut", "smaller", "hammered", "wasting", "unproductive", "unworthy", "pitiful", "petty", "lowest", "small", "teeny", "tiny", "ant", "wee", "meaningless", "damaged", "homeless", "broke", "sunk", "cracking", "wounded", "screwed", "wretched", "drained", "dejected", "depressed", "unloved", "slap", "punished", "defeated", "awful", "unhappy", "slapped", "blue", "mopey", "oldest", "old", "aged", "sad", "unaccomplished", "unfair", "sorry", "gloomy", "prone", "powerless", "depressing", "hollow", "divided", "sour", "worse"],["laid", "glum", "nostalgic", "melancholy", "melancholic", "aching", "sentimental", "hurt", "unfortunate", "pessimistic", "negative", "unwell", "unlucky", "unable", "melodramatic", "sappy", "moody", "frail", "homesick", "crippled", "failed", "failing", "low", "bad", "stinging", "disappointing", "complicated", "complex", "bland", "lazy", "lethargic", "drowsy", "uncreative", "hesitant", "drifting", "complicated", "complex", "burdened", "intruding", "unfulfilled", "restricted", "confined", "neglectful", "burdened", "missing", "dependant", "dependent", "looser", "heavier", "overweight", "ancient", "off", "redundant", "pointless", "scattered", "futile", "incapable", "useless", "stupid", "brick", "incompetent", "drugged", "speechless", "dry", "discontent", "naive", "clueless", "foreign", "alien", "paid", "owed", "wronged", "ancient", "off", "lower", "thru", "skinny", "thrown", "shitty", "crappy", "shittier", "worn", "shut", "smaller", "hammered", "wasting", "unproductive"],["lifeless","incomplete", "unrequited", "tired", "pale", "sluggish", "stagnant", "slow", "heavy", "boring", "deflated", "inept", "unmotivated", "invalid", "inferior", "latter", "fallen", "bum", "mundane", "dull", "routine", "mediocre", "uninspired", "unfinished", "aimless", "listless", "adrift", "static", "apathetic", "lying", "lacking", "soft", "bored", "sensitive", "introspective", "sleepy", "sheepish", "napping", "flat", "grey", "gray"]],
+	"anger" : [["vicious", "homicidal", "murderous", "killing", "irate", "evil", "wrath", "mad", "cruel", "bursting", "violent", "sinister", "dark", "vicious", "heartless", "yelling", "cursing", "shouting", "furious", "threatening", "hateful", "wicked", "attacking", "attack", "destructive", "hostile", "stabbed", "mean"],["yelled", "spiteful", "upset", "rough", "bastard", "angry", "stabbing", "bloody", "disgruntled", "jealous", "envious", "bitter", "dangerous", "aggressive", "pissed", "ironic", "sarcastic", "irritable", "foul", "idiotic", "obnoxious", "absurd", "arguing", "crabby", "giddy", "disturbed", "dissatisfied", "irritated", "frustrating", "frustrated", "morose", "annoyed", "cynical],[belittled", "degraded", "victimized", "persecuted", "harassed", "unappreciated", "undeserving", "mistreated", "insulted", "unfair", "neglected", "used", "hard", "defensive", "grouchy", "grumpy", "impatient", "uneasy", "bold", "raw"], ["ignorant", "unsatisfied", "jumpy", "bouncy", "bouncing", "rebellious", "stumbling", "cocky", "bitchy", "complaining", "nagging", "whining", "whiny", "childish", "cranky", "stubborn", "reluctant", "insensitive", "teasing", "rebel, thru", "done", "anti", "opposite", "opposed", "icy", "whatever", "indifferent", "unresolved", "distant", "bittersweet", "ambivalent", "mixed"]],
+	"disgust": [["hideous", "racist", "toxic", "hated", "rotting", "filthy", "nasty", "tainted"],["shamed", "ashamed", "shameful", "disgusted", "humiliated", "ugly", "ill", "infected", "contagious", "sicker", "undesirable", "dishonest", "untrue", "betraying", "unattractive", "greedy", "dizzy", "humbled", "embarrassed", "embarrassing", "disgusting", "gross", "queasy", "itchy", "wasted", "sold", "cheap", "coward", "wrong", "vain", "guilty", "regretful", "resentful", "ungrateful", "hypocritical", "lurking", "unpretty", "selfish", "plastic", "fake", "pretentious", "pretend", "spent", "irritating", "disrespectful", "arrogant", "possessive"],["disloyal", "annoying", "slutty", "insulting", "stuffy", "nauseated", "unclean", "trashy", "bloated", "shallow", "offensive", "irresponsible", "fatter", "fatty", "clumsy", "addicted", "twisted", "spoiled", "immature", "unpleasant", "swollen", "swelling", "consumed", "sticky", "stolen", "lousy", "cheesy", "crummy", "dun", "loopy", "goofy", "sloppy", "drifting", "slack"],["cheating", "reckless", "needy", "sickly", "sick", "sickish", "nauseous", "blah", "allergic", "wasteful", "waste", "stale", "moist", "greasy", "strange", "peculiar", "mushy", "awkward", "uncomfortable", "abnormal", "funny", "weird", "odd", "queer", "unusual", "bizarre"]],
+	"stress" : [["horrid", "panicked", "panic", "chaotic", "doomed", "choking", "choked", "terrified", "shock", "shocked", "paranoid", "panicky", "shaking", "helpless", "scared", "threatened", "intimidated", "frightened", "haunted", "manic", "bipolar", "psycho", "psychotic", "stifled", "criminal", "daunted", "overwhelmed", "faint", "defeated", "creepy", "sweaty", "sweating", "fucked", "condemned", "strangled"],["shaky", "crazy", "nuts", "devastated", "claustrophobic", "suffocating", "smothered", "trapped", "cracked", "failing", "indebted", "chained", "locked", "shaken", "rushed", "stretched", "struggling", "forced", "locked", "cornered", "constricted", "compelled", "stiff", "swallowed", "distressed", "oppressed", "constrained", "unhealthy", "troubled", "nervous", "trembling", "unsafe", "bound", "tied", "stuck", "pressed", "pushed", "pressured", "suppressed", "controlled", "cramped", "restrained", "dramatic", "struck", "stressed", "stressful", "war", "anxious", "hectic", "frantic", "edgy", "tense", "intense", "wobbly", "alcoholic", "strained", "irrational", "overloaded", "busy"],["afraid", "stalked", "swamped", "concerned", "mental", "scary", "insecure", "exposed", "naked", "bare", "numb", "suspicious", "iffy", "unprepared", "unstable", "restless", "jittery", "tingly", "tingling", "uptight", "tight", "agitated", "wired", "grouchy", "unnatural", "confined", "packed", "behind", "stuffed", "absorbed", "congested","creeping", "peckish", "frazzled", "lost", "discouraged", "disheartened", "impossible", "bothered", "obsessed", "obsessive", "limited", "suspect", "inappropriate", "tangled", "illegal", "dodgy", "constant", "careful", "tense", "starving", "fatigue", "fatigued", "dehydrated", "paralyzed", "feverish", "frozen", "freezing", "chilly", "weary", "cold", "achy", "exhausted", "thirsty", "hungry", "deaf", "blind", "starved"],["apprehensive", "impending", "imminent", "dazed", "distracted", "disjointed", "incoherent", "crowded", "confusing", "confused", "flustered", "puzzled", "unbalanced", "unsteady", "rambling", "fuzzy", "false", "insufficient", "careless", "compulsive", "hazy", "straw", "irrelevant", "tourist", "unsure", "disoriented", "disorganized", "unsettled", "unorganized", "uncertain"]]
 	},
+
 	"Coloring schemes" : {
-		"anger" : [ 
-			{ "colors" : ["red"],
-				"red" : "H0|S100|V100"
+		"virtue" : [
+			{ "colors" : ["royalblue"],
+				"royalblue" : "H225|S70|V100"
 			},
-			{ "colors" : ["gray"],
-				"gray" : "H0|S0|V50"
+			{ "colors" : ["lightblue"],
+				"lightblue" : "H200|S046|V100"
+			},
+			{ "colors" : ["friendsblue"],
+				"friendsblue" : "H2018|S57|V100"
+			},
+			{ "colors" : ["cariblue"],
+				"cariblue" : "H180|S26|V100"
 			}
 		],
 		"happiness" : [
-			{ "colors" : ["lemon"],
-				"lemon" : "H40|S50|V100"
-			},
-			{ "colors" : ["yellow"],
-				"yellow" : "H45|S50|V100"
-			},
-			{ "colors" : ["cyan"],
-				"cyan" : "H190|S50|V100"
-			},
-			{ "colors" : ["pink"],
-				"pink" : "H330|S50|V100"
-			},
-			{ "colors" : ["green"],
-				"green" : "H120|S50|V100"
-			},
-			{ "colors" : ["red"],
-				"red" : "H0|S75|V100"
+			{ "colors" : ["croque"],
+				"croque" : "H54|S100|V100"
 			},
 			{ "colors" : ["orange"],
-				"orange" : "H20|S50|V100"
+				"orange" : "H43|S100|V100"
+			},
+			{ "colors" : ["champagne"],
+				"champagne" : "H46|S10|V100"
+			},
+			{ "colors" : ["lemon"],
+				"lemon" : "H54|S23|V100"
+			}
+		],
+		"confidence" : [
+			{ "colors": ["deeppink"],
+				"deeppink" : "H327|S92|V100"
+			},
+			{ "colors": ["ferrared"],
+				"ferrared" : "H0|S100|V100"
+			},
+			{ "colors": ["hotpink"],
+				"hotpink" : "H330|S58|V100"
+			},
+			{ "colors": ["darcoral"],
+				"darcoral" : "H9|S72|V100"
+			},
+			{ "colors": ["coral"],
+				"coral" : "H16|S68|V100"
+			}
+		],
+		"safety" : [
+
+			{ "colors" : ["clorogreen"],
+				"clorogreen" : "H83|S81|V100"
+			},
+			{ "colors" : ["lightyellow"],
+				"lightyellow" : "H57|S61|V100"
+			},
+			{ "colors" : ["cozyorange"],
+				"cozyorange" : "H50|S100|V100"
+			},
+			{ "colors" : ["deepgreen"],
+				"deepgreen" : "H120|S75|V80"
 			}
 		],
 		"unhappiness" : [
-			{ "colors": ["black"],
-				"black" : "H270|S50|V50"
+
+			{ "colors" : ["black"],
+				"black" : "H120|S75|V0"
+			},
+			{ "colors" : ["deadpurple"],
+				"deadpurple" : "H240|S30|V50"
+			},
+			{ "colors" : ["nostalgipink"],
+				"nostalgipink" : "H316|S16|V70"
+			},
+			{ "colors" : ["deadgrey"],
+				"deadgrey" : "H247|S7|V78"
+
+			}
+		],
+		"anger" : [
+
+			{ "colors" : ["rage"],
+				"rage" : "H120|S75|V0"
+			},
+			{ "colors" : ["darkred"],
+				"darkred" : "H3|S48|V38"
+			},
+			{ "colors" : ["badgrey"],
+				"badgrey" : "H0|S6|V41"
+			},
+			{ "colors" : ["redgrey"],
+				"redgrey" : "H0|S8|V78"
+
+			}
+		],
+		"disgust" : [
+
+			{ "colors" : ["darkdirt"],
+				"darkdirt" : "H43|S52|V27"
+			},
+			{ "colors" : ["petrol"],
+				"petrol" : "H173|S25|V29"
+			},
+			{ "colors" : ["plumpdirt"],
+				"plumpdirt" : "H330|S36|V43"
+			},
+			{ "colors" : ["haki"],
+				"haki" : "H85|S6|V74"
+
 			}
 		],
 		"stress" : [
-			{ "colors": ["yellow"],
-				"yellow" : "H60|S100|V75"
+
+			{ "colors" : ["darkstress"],
+				"darkstress" : "H0|S0|V0"
+			},
+			{ "colors" : ["panic"],
+				"panic" : "H61|S81|V65"
+			},
+			{ "colors" : ["insecuregray"],
+				"insecuregray" : "H0|S1|V83"
+			},
+			{ "colors" : ["dullgrey"],
+				"dullgrey" : "H60|S12|V51"
+
 			}
 		]
 	}

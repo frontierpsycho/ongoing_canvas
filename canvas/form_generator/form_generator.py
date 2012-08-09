@@ -39,7 +39,7 @@ class FormGenerator:
 				logger.warning("Invalid feeling found in database: %d, %s" % (fd.id, str(fd.feeling.name)) )
 			self.counter += 1
 		else:
-			self.feelingata = list(FeelingData.objects.order_by("postdatetime")[:200])
+			self.feelingata = list(FeelingData.objects.order_by("postdatetime")[:200]) # the database is asynchronously updated, these are mostly new
 			self.counter = 0
 
 	def broadcast(self, id, channel):
