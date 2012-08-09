@@ -69,19 +69,21 @@ class FormGenerator:
 			return None
 
 	def generate_shape(self, feeling_data):
-		for t in self.cells:
-			if t[0] == feeling_data.id:
-				return t[1]
+		if feeling_data in self.cells:
+			return self.cells[feeling_data.id]
 
 		shape = None
 		tupleOrNone = self.get_feeling_coordinates(feeling_data.feeling.name)
 		if tupleOrNone:
 			(current_group_name,subgroup_index) = tupleOrNone
-			shape = Shape(self.shapes[current_group_name][0], feeling_data)
+			try:
+				shape = Shape(self.shapes[current_group_name][0], feeling_data)
+			except KeyError:
+				shape = Shape(self.shapes['default'][0], feeling_data)
 			
 			colour = FormGenerator.get_colour(self.settings["Coloring schemes"][current_group_name][subgroup_index])
 			shape.colour = "hsl(%d, %d, %d)" % colour[0]
-			self.placement_strategy.place(shape)
+			self.placement_strategy.place(feeling_data.id, shape)
 			return shape
 		return None
 
@@ -90,7 +92,8 @@ class FormGenerator:
 		shape = self.generate_shape(feeling_data)
 		if shape:
 			#self.cells[feeling_data.id] = shape
-			self.cells.append((feeling_data.id, shape))
+			#self.cells.append((feeling_data.id, shape))
+			self.cells[feeling_data.id] = shape
 
 		return not (shape == None)
 

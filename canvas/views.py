@@ -16,23 +16,26 @@ from canvas.form_generator.form_generator import *
 from canvas.form_generator.placement_strategy import GridPlacementStrategy
 from canvas.forms import PlaygroundFilterForm
 
-def start_generator(cells_manager):
-	form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, 72, 72, depth=1), cells_manager, ongoing=True)
+def start_generator(cells_manager, grid_manager):
+	form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, 72, 72, grid_manager, depth=1), cells_manager, ongoing=True)
 
 manager = Manager()
 
-cells = manager.list()
+cells = manager.dict()
+grid = manager.list()
 
-p = Process(target=start_generator, args=(cells,))
+p = Process(target=start_generator, args=(cells, grid))
 p.start()
 
 class CanvasView(ListView):
 	global cells
+	global grid
 	context_object_name = "shapes"
 	template_name="canvas/canvas.html"
 
 	def get_queryset(self):
-		shapes = [t[1] for t in cells] # unpack id, shape pairs
+		fd_ids = [subitem for sublist in grid for item in sublist for subitem in item]
+		shapes = [cells[fd_id] for fd_id in fd_ids]
 		return shapes
 	
 	def get_context_data(self, **kwargs):
@@ -95,7 +98,7 @@ class FeelingDataDetailView(DetailView):
 def broadcast(request, id):
 	global cells
 	if len(cells) > 0:
-		shape = cells[-1][1]
+		shape = cells[int(id)]
 		try:
 			broadcast_channel({ 'shape': shape.path, 'colour': shape.colour, 'transform': shape.transformation_matrix } , "shapes")
 		except NoSocket:

@@ -1,7 +1,7 @@
 import random
 
 class GridPlacementStrategy:
-	def __init__(self, canvas_height, canvas_width, cell_height, cell_width, depth=3):
+	def __init__(self, canvas_height, canvas_width, cell_height, cell_width, grid, depth=3):
 		self.canvas_width = canvas_width
 		self.cell_width = cell_width
 		self.canvas_height = canvas_height
@@ -11,10 +11,11 @@ class GridPlacementStrategy:
 		
 		if self.width() == 0 or self.height() == 0:
 			raise ArgumentException("At least one cell should fit in the canvas's width")
-		self.grid = [[[] for d in range(self.width())] for e in range(self.height())]
+		[grid.append([[] for d in range(self.width())]) for e in range(self.height())]
+		self.grid = grid
 		
-	def place(self, shape):
-		coords = self.find_place(id)
+	def place(self, fd_id, shape):
+		coords = self.find_place(fd_id)
 		depth = self.cell_depth(coords)
 
 		rotated = False
@@ -74,7 +75,7 @@ class GridPlacementStrategy:
 
 		shape.translate(translate_x, translate_y)
 
-	def find_place(self, id):
+	def find_place(self, fd_id):
 		width = range(self.width())
 		random.shuffle(width)
 		height = range(self.height())
@@ -83,13 +84,17 @@ class GridPlacementStrategy:
 		for i in width:
 			for j in height:
 				if self.cell_depth((j,i)) < self.depth:
-					self.grid[j][i].append(id)
+					templist = self.grid[j] # grid is a managed sync object
+					templist[i].append(fd_id)
+					self.grid[j] = templist
 					return j,i
 
 		for i in width:
 			for j in height:
 				if self.cell_depth((j,i)) == self.depth:
-					self.grid[j][i] = [id]
+					templist = self.grid[j]
+					templist[i] = [fd_id]
+					self.grid[j] = templist
 					return j,i
 
 	def width(self):
