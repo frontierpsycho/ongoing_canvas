@@ -44,7 +44,7 @@
 				"deeppink" : "H327|S92|V100"
 			},
 			{ "colors": ["ferrared"],
-				"ferrared" : "H0|S100|V100"
+				"ferrared" : "H18|S100|V100"
 			},
 			{ "colors": ["hotpink"],
 				"hotpink" : "H330|S58|V100"
@@ -90,7 +90,7 @@
 		"anger" : [
 
 			{ "colors" : ["rage"],
-				"rage" : "H120|S75|V0"
+				"rage" : "H0|S100|V87"
 			},
 			{ "colors" : ["darkred"],
 				"darkred" : "H3|S48|V38"
@@ -115,7 +115,7 @@
 				"plumpdirt" : "H330|S36|V43"
 			},
 			{ "colors" : ["haki"],
-				"haki" : "H85|S6|V74"
+				"haki" : "H68|S15|V72"
 
 			}
 		],
