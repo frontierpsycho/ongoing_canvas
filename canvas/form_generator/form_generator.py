@@ -4,6 +4,7 @@ import re
 import sys
 import logging
 import time
+import datetime
 import urllib2
 
 sys.path.append('../../../')
@@ -25,7 +26,10 @@ class FormGenerator:
 		self.placement_strategy = placement_strategy
 		self.cells = cells
 		self.feelingdata = list(FeelingData.objects.order_by("postdatetime")[:200])
+		self.latest_postdatetime = self.feelingdata[-1].postdatetime if len(self.feelingdata) > 0 else datetime.datetime.min
 		self.counter = 0
+		for fd in self.feelingdata:
+			self.add_feeling()
 		while(ongoing):
 			self.add_feeling()
 			time.sleep(2)
@@ -39,7 +43,9 @@ class FormGenerator:
 				logger.warning("Invalid feeling found in database: %d, %s" % (fd.id, str(fd.feeling.name)) )
 			self.counter += 1
 		else:
-			self.feelingata = list(FeelingData.objects.order_by("postdatetime")[:200]) # the database is asynchronously updated, these are mostly new
+			if len(self.feelingdata) > 0:
+				self.latest_postdatetime = self.feelingdata[-1].postdatetime 
+			self.feelingdata = list(FeelingData.objects.filter(postdatetime__gt = self.latest_postdatetime).order_by("postdatetime")[:200])
 			self.counter = 0
 
 	def broadcast(self, id, channel):

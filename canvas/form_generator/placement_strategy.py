@@ -97,6 +97,10 @@ class GridPlacementStrategy:
 					self.grid[j] = templist
 					return j,i
 
+	def print_grid(self):
+		for line in self.grid:
+			print line
+
 	def width(self):
 		return int(self.canvas_width/self.cell_width)
 	
