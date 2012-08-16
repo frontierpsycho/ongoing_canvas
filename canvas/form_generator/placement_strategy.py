@@ -7,7 +7,8 @@ class GridPlacementStrategy:
 		self.canvas_height = canvas_height
 		self.cell_height = cell_height
 		self.depth = depth
-		self.depths = [1, 0.707, 0.5]
+		#self.depths = [1, 0.707, 0.5]
+		self.depths = [1,1,1]
 		
 		if self.width() == 0 or self.height() == 0:
 			raise ArgumentException("At least one cell should fit in the canvas's width")
@@ -108,4 +109,5 @@ class GridPlacementStrategy:
 		return int(self.canvas_height/self.cell_height)
 
 	def chance(self, parts=2):
-		return (random.random() < 0.5)
+		#return (random.random() < 0.5)
+		return False
