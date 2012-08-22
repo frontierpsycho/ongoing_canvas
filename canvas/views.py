@@ -3,11 +3,13 @@ import copy
 import random
 from multiprocessing import Process,Manager
 import datetime
+from collections import OrderedDict
 
 from django.http import HttpResponse
 from django.views.generic import ListView,DetailView
 from django.conf import settings
 from django.db.models import Q
+from django.views.decorators.csrf import csrf_exempt
 
 from django_socketio import broadcast_channel, NoSocket
 
@@ -34,8 +36,10 @@ class CanvasView(ListView):
 	template_name="canvas/canvas.html"
 
 	def get_queryset(self):
+		shapes = OrderedDict()
 		fd_ids = [subitem for sublist in grid for item in sublist for subitem in item]
-		shapes = [cells[fd_id] for fd_id in fd_ids]
+		for fd_id in fd_ids:
+			shapes[fd_id] = cells[fd_id]
 		return shapes
 	
 	def get_context_data(self, **kwargs):
@@ -95,12 +99,16 @@ class FeelingDataDetailView(DetailView):
 		context["stroke"] = self.stroke
 		return context
 
-def broadcast(request, id):
+@csrf_exempt
+def broadcast(request):
 	global cells
 	if len(cells) > 0:
-		shape = cells[int(id)]
+		fd_id = request.POST["id"]
+		remove_list = request.POST["remove"]
+
+		shape = cells[int(fd_id)]
 		try:
-			broadcast_channel({ 'shape': shape.path, 'colour': shape.colour, 'transform': shape.transformation_matrix } , "shapes")
+			broadcast_channel({ 'fd_id': fd_id, 'shape': shape.path, 'colour': shape.colour, 'transform': shape.transformation_matrix, "remove": remove_list } , "shapes")
 		except NoSocket:
 			logger.error("No subscribers on channel shapes")
 	return HttpResponse()

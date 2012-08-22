@@ -5,6 +5,7 @@ import sys
 import logging
 import time
 import datetime
+import urllib
 import urllib2
 
 sys.path.append('../../../')
@@ -48,9 +49,14 @@ class FormGenerator:
 			self.feelingdata = list(FeelingData.objects.filter(postdatetime__gt = self.latest_postdatetime).order_by("postdatetime")[:200])
 			self.counter = 0
 
-	def broadcast(self, id, channel):
+	def broadcast(self, id, channel, remove_list=[]):
 		try:
-			urllib2.urlopen("http://localhost:9000/canvas/refresh/%d" % id).read()
+			url = "http://localhost:9000/canvas/refresh/"
+
+			data = { "id" : id, "remove": remove_list }
+			req = urllib2.Request(url, urllib.urlencode(data))
+
+			return urllib2.urlopen(req).read()
 		except urllib2.HTTPError as e:
 			logger.error("Error broadcasting: %s " % e)
 

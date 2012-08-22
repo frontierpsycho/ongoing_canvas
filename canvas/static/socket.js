@@ -1,5 +1,5 @@
-var addShape = function(shape) {
-	paper.path(shape["shape"]).attr({ fill: shape["colour"], "stroke" : "none" }).transform(Raphael.matrix(shape['transform'][0], shape['transform'][1], shape['transform'][2], shape['transform'][3], shape['transform'][4], shape['transform'][5]).toTransformString());
+var addShape = function(data) {
+	paper.path(data["shape"]).attr({ fill: data["colour"], "stroke" : "none" }).transform(Raphael.matrix(data['transform'][0], data['transform'][1], data['transform'][2], data['transform'][3], data['transform'][4], data['transform'][5]).toTransformString());
 };
 
 var socket = new io.Socket();
