@@ -56,6 +56,7 @@ class PlaygroundView(CanvasView):
 
 	def get_queryset(self):
 		filters = []
+		self.feelings = []
 		self.selection = False
 
 		if self.request.GET:
@@ -68,7 +69,7 @@ class PlaygroundView(CanvasView):
 				# ugly filter to get data from specific date
 				filters.extend([Q(postdatetime__gte=datetime.datetime.combine(date, datetime.time.min)), Q(postdatetime__lte=datetime.datetime.combine(date, datetime.time.max)) ])
 
-				self.feelings = self.request.GET.getlist('feeling')
+				self.feelings.extend(self.request.GET.getlist('feeling'))
 				if self.feelings:
 					filters.append(Q(feeling__name__in=self.feelings))
 		else:
@@ -92,8 +93,9 @@ class PlaygroundView(CanvasView):
 		context['ongoing'] = False
 		context['form'] = self.form
 		context['feelingtree'] = self.form_generator.feelings_to_json()
-		if(self.selection):
-			context['checked_nodes'] = json.dumps(self.feelings)
+		print context['feelingtree']
+		context['checked_nodes'] = json.dumps(self.feelings)
+
 		return context
 
 class FeelingDataDetailView(DetailView):

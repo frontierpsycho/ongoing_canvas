@@ -21,7 +21,7 @@ function loadTree(treedata, checked_nodes) {
 		for(node in checked_nodes)
 		{
 			console.log(checked_nodes[node]);
-			data.inst.check_node("#"+checked_nodes[node]+"_node");
+			data.inst.check_node("#"+checked_nodes[node]+"_check");
 		}
 	});
 	return tree;
