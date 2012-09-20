@@ -29,7 +29,8 @@
 <script type="text/javascript" src="{% get_static_prefix %}loadtree.js"></script>
 <script type="text/javascript">
 	var treedata = {{ feelingtree|safe }};
-	loadTree(treedata);
+	var checked_nodes = {{ checked_nodes|safe }};
+	var tree = loadTree(treedata, checked_nodes);
 
 	var paper = Raphael(10, 10, {{ width }}, {{ height }});
 {% for shape in shapes %}

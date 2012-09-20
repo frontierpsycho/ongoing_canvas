@@ -110,7 +110,7 @@ class FormGenerator:
 	def feelings_to_json(self):
 		jsonFeelings = []
 		for feeling, subgroups in self.settings['Feeling groups'].items():
-			newNode = {'data': feeling, 'children': []}
+			newNode = {'data': feeling, 'attr': {'id': feeling+'_node' }, 'children': []}
 			for i,subgroup in enumerate(subgroups):
 				newNode['children'].append({ 'data': str(i), 'children': subgroup})
 			jsonFeelings.append(newNode)
