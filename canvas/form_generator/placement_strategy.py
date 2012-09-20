@@ -1,7 +1,7 @@
 import random
 
 class GridPlacementStrategy:
-	def __init__(self, canvas_height, canvas_width, cell_height, cell_width, grid, depth=3):
+	def __init__(self, canvas_height, canvas_width, cell_height, cell_width, grid=[], depth=3):
 		self.canvas_width = canvas_width
 		self.cell_width = cell_width
 		self.canvas_height = canvas_height

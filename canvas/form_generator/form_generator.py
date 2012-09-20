@@ -103,12 +103,19 @@ class FormGenerator:
 	def add_shape(self, feeling_data):
 		shape = self.generate_shape(feeling_data)
 		if shape:
-			#self.cells[feeling_data.id] = shape
-			#self.cells.append((feeling_data.id, shape))
 			self.cells[feeling_data.id] = shape
 
 		return not (shape == None)
 
+	def feelings_to_json(self):
+		jsonFeelings = []
+		for feeling, subgroups in self.settings['Feeling groups'].items():
+			newNode = {'data': feeling, 'children': []}
+			for i,subgroup in enumerate(subgroups):
+				newNode['children'].append({ 'data': str(i), 'children': subgroup})
+			jsonFeelings.append(newNode)
+
+		return json.dumps(jsonFeelings)
 
 	@staticmethod
 	def get_colour(scheme):

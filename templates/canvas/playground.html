@@ -7,11 +7,17 @@
 
 {% block javascript-includes %}
 <script type="text/javascript" src="{% get_static_prefix %}raphael-min.js"></script>
+<script type="text/javascript" src="{% get_static_prefix %}jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="{% get_static_prefix %}jquery.cookie.js"></script>
+<script type="text/javascript" src="{% get_static_prefix %}jquery.hotkeys.js"></script>
+<script type="text/javascript" src="{% get_static_prefix %}jquery.jstree.js"></script>
 {% endblock %}
 
 {% block content %}
 <div id="toolbox">
 	<form action="">
+		{% csrf_token %}
+		<div id="feelingtree"></div>
 		{{ form }}
 		<input type="submit" value="Filter feelings" /><br />
 	</form>
@@ -20,7 +26,11 @@
 {% endblock %}
 
 {% block inline-javascript %}
+<script type="text/javascript" src="{% get_static_prefix %}loadtree.js"></script>
 <script type="text/javascript">
+	var treedata = {{ feelingtree|safe }};
+	loadTree(treedata);
+
 	var paper = Raphael(10, 10, {{ width }}, {{ height }});
 {% for shape in shapes %}
 	{{ shape|to_raphael:"paper"|safe }}.click(function(event) { 

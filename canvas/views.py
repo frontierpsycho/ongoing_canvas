@@ -37,6 +37,7 @@ class CanvasView(ListView):
 
 	def get_queryset(self):
 		shapes = OrderedDict()
+		# flatten grid
 		fd_ids = [subitem for sublist in grid for item in sublist for subitem in item]
 		for fd_id in fd_ids:
 			shapes[fd_id] = cells[fd_id]
@@ -58,13 +59,17 @@ class PlaygroundView(CanvasView):
 		if self.request.GET:
 			self.form = PlaygroundFilterForm(self.request.GET)
 			if self.form.is_valid(): # All validation rules pass
+				self.feelings = self.request.GET.getlist('feeling')
 				date = self.form.cleaned_data['date']
+
 				# ugly filter to get data from specific date
 				filters.extend([Q(postdatetime__gte=datetime.datetime.combine(date, datetime.time.min)), Q(postdatetime__lte=datetime.datetime.combine(date, datetime.time.max)) ])
+
+				filters.append(Q(feeling__name__in=self.feelings))
 		else:
 			self.form = PlaygroundFilterForm()
 
-		form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, 50, 50, depth=2))
+		self.form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, 50, 50, depth=2))
 
 		feelingdata = FeelingData.objects.filter(*filters).order_by("postdatetime")
 
@@ -72,7 +77,7 @@ class PlaygroundView(CanvasView):
 
 		shapes = []
 		for fd in feelingdata:
-			shape = form_generator.generate_shape(fd)
+			shape = self.form_generator.generate_shape(fd)
 			if shape is not None: 
 				shapes.append(shape)
 		return shapes
@@ -81,6 +86,8 @@ class PlaygroundView(CanvasView):
 		context = super(PlaygroundView, self).get_context_data(**kwargs)
 		context['ongoing'] = False
 		context['form'] = self.form
+		context['feelingtree'] = self.form_generator.feelings_to_json()
+		context['selected_feelings'] = self.feelings
 		return context
 
 class FeelingDataDetailView(DetailView):
