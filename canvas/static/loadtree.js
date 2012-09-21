@@ -15,9 +15,11 @@ function loadTree(treedata, checked_nodes) {
 				return [feeling+"_check", 'feeling', feeling];
 			}
 		},
-		plugins: ['themes', 'json_data', 'ui', 'checkbox']
+		'search': {
+			'show_only_matches': true
+		},
+		plugins: ['themes', 'json_data', 'ui', 'checkbox', 'search']
 	}).bind("loaded.jstree", function (event, data) { 
-		console.log(checked_nodes.length);
 		for(node in checked_nodes)
 		{
 			console.log(checked_nodes[node]);
