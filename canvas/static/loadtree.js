@@ -1,5 +1,8 @@
 function loadTree(treedata, checked_nodes) {
 	var tree = $('#feelingtree').jstree({
+		'core': {
+			'html_titles': true
+		},
 		'json_data': {
 			'data': treedata
 		},
