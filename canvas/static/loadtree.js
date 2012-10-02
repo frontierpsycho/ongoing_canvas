@@ -14,6 +14,11 @@ function loadTree(treedata, checked_nodes) {
 			'real_checkboxes': true,
 			'real_checkboxes_names': function(n) {
 				var feeling = $.trim(n.children("a").text());
+                
+				if(feeling == "")
+				{ /* this is a second level node */
+					feeling = $.trim(n.parent().closest("li").children("a").text())+"_"+n.index();
+				}
 				
 				return [feeling+"_check", 'feeling', feeling];
 			}
@@ -25,7 +30,6 @@ function loadTree(treedata, checked_nodes) {
 	}).bind("loaded.jstree", function (event, data) { 
 		for(node in checked_nodes)
 		{
-			console.log(checked_nodes[node]);
 			data.inst.check_node("#"+checked_nodes[node]+"_check");
 		}
 	});

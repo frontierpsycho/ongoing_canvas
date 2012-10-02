@@ -113,7 +113,7 @@ class FormGenerator:
 			newNode = {'data': category, 'attr': {'id': category+'_node' }, 'children': []}
 			for i,subgroup in enumerate(subgroups):
 				colour = FormGenerator.get_colour(self.settings["Coloring schemes"][category][i])
-				newSubNode = { 'data': "<span style='background-color: hsl(%d, %d%%, %d%%) !important;'>&nbsp;&nbsp;</span>" % colour[0], 'children': []}
+				newSubNode = { 'data': "<span style='background-color: hsl(%d, %d%%, %d%%) !important;'>&nbsp;&nbsp;</span>" % colour[0], 'id': "%s_%d_node" % (category, i), 'children': []}
 				for feeling in subgroup:
 					newSubNode['children'].append({'data': feeling, 'id': feeling+"_node" })
 				newNode['children'].append(newSubNode)
