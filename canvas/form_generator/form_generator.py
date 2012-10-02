@@ -51,7 +51,7 @@ class FormGenerator:
 
 	def broadcast(self, id, channel, remove_list=[]):
 		try:
-			url = "http://localhost:9000/canvas/refresh/"
+			url = "http://%s/canvas/refresh/" % settings.BROADCAST_URL
 
 			data = { "id" : id, "remove": remove_list }
 			req = urllib2.Request(url, urllib.urlencode(data))
