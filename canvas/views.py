@@ -75,15 +75,17 @@ class PlaygroundView(CanvasView):
 		else:
 			self.form = PlaygroundFilterForm()
 
-		self.form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, 50, 50, depth=1))
+		playground_form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, 50, 50, grid=[], depth=1))
 
 		feelingdata = FeelingData.objects.filter(*filters).order_by("postdatetime")
 
 		feelingdata = feelingdata[:200]
+		
+		self.feelingtree = playground_form_generator.feelings_to_json()
 
 		shapes = []
 		for fd in feelingdata:
-			shape = self.form_generator.generate_shape(fd)
+			shape = playground_form_generator.generate_shape(fd)
 			if shape is not None: 
 				shapes.append(shape)
 		return shapes
@@ -92,7 +94,7 @@ class PlaygroundView(CanvasView):
 		context = super(PlaygroundView, self).get_context_data(**kwargs)
 		context['ongoing'] = False
 		context['form'] = self.form
-		context['feelingtree'] = self.form_generator.feelings_to_json()
+		context['feelingtree'] = self.feelingtree
 		context['checked_nodes'] = json.dumps(self.feelings)
 
 		return context
