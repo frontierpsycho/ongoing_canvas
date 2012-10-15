@@ -64,10 +64,11 @@ class PlaygroundView(CanvasView):
 			if self.form.is_valid(): # All validation rules pass
 				self.selection = True # something was selected
 
-				date = self.form.cleaned_data['date']
+				self.date = self.form.cleaned_data['date']
 
-				# ugly filter to get data from specific date
-				filters.extend([Q(postdatetime__gte=datetime.datetime.combine(date, datetime.time.min)), Q(postdatetime__lte=datetime.datetime.combine(date, datetime.time.max)) ])
+				if self.date:
+					# ugly filter to get data from specific date
+					filters.extend([Q(postdatetime__gte=datetime.datetime.combine(self.date, datetime.time.min)), Q(postdatetime__lte=datetime.datetime.combine(self.date, datetime.time.max)) ])
 
 				self.feelings.extend(self.request.GET.getlist('feeling'))
 				if self.feelings:
@@ -96,6 +97,8 @@ class PlaygroundView(CanvasView):
 		context['form'] = self.form
 		context['feelingtree'] = self.feelingtree
 		context['checked_nodes'] = json.dumps(self.feelings)
+		if self.selection:
+			context['chosen_date'] = self.date
 
 		return context
 

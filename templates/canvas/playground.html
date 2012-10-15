@@ -11,29 +11,45 @@
 <script type="text/javascript" src="{% get_static_prefix %}jquery.cookie.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}jquery.hotkeys.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}jquery.jstree.js"></script>
+<script type="text/javascript" src="{% get_static_prefix %}loadtree.js"></script>
+<script type="text/javascript" src="{% get_static_prefix %}menu.js"></script>
 {% endblock %}
 
 {% block content %}
-<div id="toolbox">
-	<input type="text" id="treeSearch" value"Search for feelings" /> <button id="searchButton">Search</button>
+<div id="menu">
+	<ul>
+		<li>
+		<b><a class="submenuToggle" id="feelingChoose_Toggle">Feelings</a></b>
+		</li>
+		<li>
+		<a class="submenuToggle" id="dateChoose_Toggle"><b>Date</b> {{ chosen_date }}</a>
+		</li>
+	</ul>
+</div>
+<div id="submenus">
 	<form action="">
 		{% csrf_token %}
-		<div id="feelingtree"></div>
-		{{ form }}
-		<input type="submit" value="Filter feelings" /><br />
+		<div class="submenu" id="feelingChoose">
+			<input type="text" id="treeSearch" value"Search for feelings" /> <button id="searchButton">Search</button>
+			<div id="feelingtree"></div>
+			<input type="submit" value="Filter feelings" /><br />
+		</div>
+		<div class="submenu" id="dateChoose">
+			{{ form }}
+			<input type="submit" value="Filter feelings" /><br />
+		</div>
 	</form>
 </div>
 
 {% endblock %}
 
 {% block inline-javascript %}
-<script type="text/javascript" src="{% get_static_prefix %}loadtree.js"></script>
 <script type="text/javascript">
 	var treedata = {{ feelingtree|safe }};
 	var checked_nodes = {{ checked_nodes|safe }};
 	var tree = loadTree(treedata, checked_nodes);
 
-	var paper = Raphael(10, 10, {{ width }}, {{ height }});
+	var paper = Raphael(10, 70, {{ width }}, {{ height }});
 {% for shape in shapes %}
 	{{ shape|to_raphael:"paper"|safe }}.click(function(event) { 
 		var new_size = this.getBBox().width + 200;

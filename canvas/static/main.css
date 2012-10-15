@@ -2,10 +2,49 @@ body {
 	background-color: #5a5a5a;
 }
 
-#toolbox {
-	background-color: #FFFFFF;
-	overflow: auto;
-	float:right;
-	width: 300px;
-	height: 600px;
+#menu {
+	background-color: #FFEEEE;
+	z-index: 10;
+}
+
+#menu > ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow:hidden;
+}
+
+#menu > ul > li {
+	float: left;
+}
+
+.submenuToggle {
+	display: block;
+	padding: 5px;
+	width: 250px !important;
+}
+
+div#submenus {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.submenu {
+	padding: 5px 5px 20px 5px;
+	width: 250px !important;
+	background-color: rgba(239, 239, 239, 0.8);
+	position: absolute;
+}
+
+#feelingChoose {
+	display: none;
+}
+
+#dateChoose {
+	display: none;
+}
+
+svg {
+	z-index: -10;
 }
