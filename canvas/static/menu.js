@@ -13,6 +13,10 @@ $('#menu [id$="_Toggle"]').click(function() {
 	$("#"+toggleTarget).css({left: position.left, top: position.top }).slideToggle();
 });
 
+$("#submenus #feelingChoose button").click(function() {
+	$("#menuForm").submit();
+});
+
 $("#menuForm").submit(function(evt) {
 	evt.preventDefault();
 	var checked_nodes = $("#feelingtree").jstree("get_checked", null, false);

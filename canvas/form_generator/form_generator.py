@@ -90,6 +90,20 @@ class FormGenerator:
 		for name in name_list:
 			if name in self.settings["Feeling groups"]:
 				result.extend([item for sublist in self.settings["Feeling groups"][name] for item in sublist])
+			elif re.match(r'\w+_\d+', name):
+				m = re.match(r'(\w+)_(\d+)', name)
+				group = m.group(1)
+				subgroup = int(m.group(2))
+				try:
+					result.extend(self.settings["Feeling groups"][group][subgroup])
+				except KeyError, IndexError:
+					# invalid name, pass
+					pass
+			else:
+				# either a plain feeling or invalid input
+				tupleOrNone = self.get_feeling_coordinates(name)
+				if tupleOrNone is not None:
+					result.expand(self.settings["Feeling groups"][tupleOrNone[0]][tupleOrNone[1]])
 
 		return result
 
