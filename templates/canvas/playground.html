@@ -27,13 +27,13 @@
 	</ul>
 </div>
 <div id="submenus">
-	<form action="">
+	<div class="submenu" id="feelingChoose">
+		<input type="text" id="treeSearch" value"Search for feelings" /> <button id="searchButton">Search</button>
+		<div id="feelingtree"></div>
+		<input type="submit" value="Filter feelings" /><br />
+	</div>
+	<form id="menuForm" action="">
 		{% csrf_token %}
-		<div class="submenu" id="feelingChoose">
-			<input type="text" id="treeSearch" value"Search for feelings" /> <button id="searchButton">Search</button>
-			<div id="feelingtree"></div>
-			<input type="submit" value="Filter feelings" /><br />
-		</div>
 		<div class="submenu" id="dateChoose">
 			{{ form }}
 			<input type="submit" value="Filter feelings" /><br />

@@ -80,6 +80,19 @@ class FormGenerator:
 		else:
 			return None
 
+	def expand_feeling_list(self, name_list):
+		'''Return a full list of feelings or from a list of feelings or feeling group names.
+		
+		The list can contain group or subgroup names in the form
+		'categoryname_subgroupnumber', or plain feeling names. 
+		'''
+		result = []
+		for name in name_list:
+			if name in self.settings["Feeling groups"]:
+				result.extend([item for sublist in self.settings["Feeling groups"][name] for item in sublist])
+
+		return result
+
 	def generate_shape(self, feeling_data):
 		if feeling_data in self.cells:
 			return self.cells[feeling_data.id]

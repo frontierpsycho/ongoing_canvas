@@ -59,6 +59,8 @@ class PlaygroundView(CanvasView):
 		self.feelings = []
 		self.selection = False
 
+		playground_form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, 50, 50, grid=[], depth=1))
+
 		if self.request.GET:
 			self.form = PlaygroundFilterForm(self.request.GET)
 			if self.form.is_valid(): # All validation rules pass
@@ -72,11 +74,10 @@ class PlaygroundView(CanvasView):
 
 				self.feelings.extend(self.request.GET.getlist('feeling'))
 				if self.feelings:
-					filters.append(Q(feeling__name__in=self.feelings))
+					filters.append(Q(feeling__name__in=playground_form_generator.expand_feeling_list(self.feelings)))
 		else:
 			self.form = PlaygroundFilterForm()
 
-		playground_form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, 50, 50, grid=[], depth=1))
 
 		feelingdata = FeelingData.objects.filter(*filters).order_by("postdatetime")
 
