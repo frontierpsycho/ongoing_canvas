@@ -47,6 +47,7 @@
 <script type="text/javascript">
 	var treedata = {{ feelingtree|safe }};
 	var checked_nodes = {{ checked_nodes|safe }};
+	$.jstree._themes="/static/themes/";
 	var tree = loadTree(treedata, checked_nodes);
 
 	var paper = Raphael(10, 70, {{ width }}, {{ height }});
