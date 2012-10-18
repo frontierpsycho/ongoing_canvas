@@ -81,7 +81,7 @@ class PlaygroundView(CanvasView):
 
 		feelingdata = FeelingData.objects.filter(*filters).order_by("postdatetime")
 
-		feelingdata = feelingdata[:200]
+		feelingdata = feelingdata[:playground_form_generator.placement_strategy.number_of_cells()]
 		
 		self.feelingtree = playground_form_generator.feelings_to_json()
 

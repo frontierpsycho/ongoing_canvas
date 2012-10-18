@@ -46,6 +46,9 @@ class GridPlacementStrategy:
 
 	def cell_depth(self, coords):
 		return len(self.grid[coords[0]][coords[1]])
+
+	def number_of_cells(self):
+		return self.width()*self.height()
 			
 	def translate_to_cell(self, cell, shape):
 		translate_y = cell[0]*self.cell_height
