@@ -38,8 +38,9 @@ class FormGenerator:
 	def add_feeling(self):
 		if len(self.feelingdata) > self.counter:
 			fd = self.feelingdata[self.counter]
-			if self.add_shape(fd):
-				self.broadcast(fd.id, "shapes")
+			shape, remove_list = self.add_shape(fd)
+			if shape:
+				self.broadcast(fd.id, "shapes", remove_list)
 			else:
 				logger.warning("Invalid feeling found in database: %d, %s" % (fd.id, str(fd.feeling.name)) )
 			self.counter += 1
@@ -109,7 +110,7 @@ class FormGenerator:
 
 	def generate_shape(self, feeling_data):
 		if feeling_data in self.cells:
-			return self.cells[feeling_data.id]
+			return self.cells[feeling_data.id], None
 
 		shape = None
 		tupleOrNone = self.get_feeling_coordinates(feeling_data.feeling.name)
@@ -122,17 +123,17 @@ class FormGenerator:
 			
 			colour = FormGenerator.get_colour(self.settings["Coloring schemes"][current_group_name][subgroup_index])
 			shape.colour = "hsl(%d, %d, %d)" % colour[0]
-			self.placement_strategy.place(feeling_data.id, shape)
-			return shape
-		return None
+			remove_list = self.placement_strategy.place(feeling_data.id, shape)
+			return shape,remove_list
+		return None,None # always return tuple
 
 
 	def add_shape(self, feeling_data):
-		shape = self.generate_shape(feeling_data)
+		shape, remove_list = self.generate_shape(feeling_data)
 		if shape:
 			self.cells[feeling_data.id] = shape
 
-		return not (shape == None)
+		return shape, remove_list
 
 	def feelings_to_json(self):
 		jsonFeelings = []

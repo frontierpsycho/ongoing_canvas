@@ -16,7 +16,8 @@ class GridPlacementStrategy:
 		self.grid = grid
 		
 	def place(self, fd_id, shape):
-		coords = self.find_place(fd_id)
+		coord_j, coord_i, remove_list = self.find_place(fd_id)
+		coords = (coord_j, coord_i)
 		depth = self.cell_depth(coords)
 
 		rotated = False
@@ -43,6 +44,8 @@ class GridPlacementStrategy:
 			# move one cell to the right
 			shape.translate(self.cell_width, 0)
 			shape.rotate_horizontally()
+
+		return remove_list
 
 	def cell_depth(self, coords):
 		return len(self.grid[coords[0]][coords[1]])
@@ -91,15 +94,16 @@ class GridPlacementStrategy:
 					templist = self.grid[j] # grid is a managed sync object
 					templist[i].append(fd_id)
 					self.grid[j] = templist
-					return j,i
+					return j, i, None # return an empty remove list
 
 		for i in width:
 			for j in height:
 				if self.cell_depth((j,i)) == self.depth:
 					templist = self.grid[j]
+					previous_list = templist[i]
 					templist[i] = [fd_id]
 					self.grid[j] = templist
-					return j,i
+					return j, i, previous_list
 
 	def print_grid(self):
 		for line in self.grid:

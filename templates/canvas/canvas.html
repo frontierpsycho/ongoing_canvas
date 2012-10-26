@@ -24,8 +24,9 @@
 {% block inline-javascript %}
 <script type="text/javascript">
 	var paper = Raphael(10, 10, {{ width }}, {{ height }});
+	var shapes = {};
 {% for fd_id,shape in shapes.items %}
-	var shape{{ fd_id }} = {{ shape|to_raphael:"paper"|safe }}.click(function(event) { 
+	window.shapes["{{ fd_id }}"] = {{ shape|to_raphael:"paper"|safe }}.click(function(event) { 
 		var new_size = this.getBBox().width + 200;
 		this.attr({ width: new_size } );
 		alert(this.getBBox().width);

@@ -87,7 +87,7 @@ class PlaygroundView(CanvasView):
 
 		shapes = []
 		for fd in feelingdata:
-			shape = playground_form_generator.generate_shape(fd)
+			shape, remove_list = playground_form_generator.generate_shape(fd)
 			if shape is not None: 
 				shapes.append(shape)
 		return shapes
