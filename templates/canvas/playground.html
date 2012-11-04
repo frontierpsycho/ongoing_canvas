@@ -63,14 +63,11 @@
 	var timer;
 
 	$("#treeSearch").keyup(function() {
-		console.log("Clearing timeout...");
 		clearTimeout(timer); // Clear the timer so we don't end up with dupes.
 		var text = $(this).val();
 		timer = setTimeout(function() {
-			console.log("Executing...");
 			$("#feelingtree").jstree("search", text);
 		}, 500);
-		console.log("New timeout set.");
 	});
 </script>
 {% endblock %}
