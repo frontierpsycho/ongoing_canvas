@@ -26,11 +26,7 @@
 	var paper = Raphael(10, 10, {{ width }}, {{ height }});
 	var shapes = {};
 {% for fd_id,shape in shapes.items %}
-	window.shapes["{{ fd_id }}"] = {{ shape|to_raphael:"paper"|safe }}.click(function(event) { 
-		var new_size = this.getBBox().width + 200;
-		this.attr({ width: new_size } );
-		alert(this.getBBox().width);
-	} );
+	window.shapes["{{ fd_id }}"] = {{ shape|to_raphael:"paper"|safe }};
 {% endfor %}
 </script>
 {% endblock %}
