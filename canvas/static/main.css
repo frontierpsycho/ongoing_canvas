@@ -1,10 +1,16 @@
 body {
 	background-color: #5a5a5a;
+	margin: 0px;
+}
+
+#canvas {
+	margin: 10px;
 }
 
 #menu {
 	background-color: #FFEEEE;
 	z-index: 10;
+	margin: 10px;
 }
 
 #menu > ul {

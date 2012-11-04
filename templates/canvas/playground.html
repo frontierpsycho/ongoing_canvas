@@ -40,6 +40,8 @@
 		</div>
 	</form>
 </div>
+<div id="canvas">
+</div>
 
 {% endblock %}
 
@@ -50,7 +52,7 @@
 	$.jstree._themes="/static/themes/";
 	var tree = loadTree(treedata, checked_nodes);
 
-	var paper = Raphael(10, 70, {{ width }}, {{ height }});
+	var paper = Raphael("canvas", {{ width }}, {{ height }});
 	var shapes = {};
 {% for shape in shapes %}
 	shapes["{{ shape.fd.id }}"] = {{ shape|to_raphael:"paper"|safe }};
