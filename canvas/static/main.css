@@ -9,6 +9,7 @@ body {
 
 #menu {
 	background-color: #FFEEEE;
+	position: relative;
 	z-index: 10;
 	margin: 10px;
 }
@@ -34,6 +35,7 @@ div#submenus {
 	position: absolute;
 	top: 0;
 	left: 0;
+	z-index: 10;
 }
 
 .submenu {
@@ -49,8 +51,4 @@ div#submenus {
 
 #dateChoose {
 	display: none;
-}
-
-svg {
-	z-index: -10;
 }
