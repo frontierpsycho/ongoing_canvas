@@ -29,8 +29,6 @@ class FormGenerator:
 		self.feelingdata = list(FeelingData.objects.order_by("postdatetime")[:200])
 		self.latest_postdatetime = self.feelingdata[-1].postdatetime if len(self.feelingdata) > 0 else datetime.datetime.min
 		self.counter = 0
-		for fd in self.feelingdata:
-			self.add_feeling()
 		while(ongoing):
 			self.add_feeling()
 			time.sleep(2)
