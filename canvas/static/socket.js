@@ -1,10 +1,14 @@
+/* depends: init.js, interaction.js */
+
 var addShape = function(data) {
 	var remove_list = string_to_list(data["remove"]);
 	remove_list.forEach(function(item) {
-		window.shapes[item].remove();
+		APP.shapes[item].remove();
 	});
 
-	window.shapes[data["fd_id"]] = paper.path(data["shape"]).attr({ fill: data["colour"], "stroke" : "none" }).transform(Raphael.matrix(data['transform'][0], data['transform'][1], data['transform'][2], data['transform'][3], data['transform'][4], data['transform'][5]).toTransformString());
+	APP.shapes[data["fd_id"]] = paper.path(data["shape"]).attr({ fill: data["colour"], "stroke" : "none" }).transform(Raphael.matrix(data['transform'][0], data['transform'][1], data['transform'][2], data['transform'][3], data['transform'][4], data['transform'][5]).toTransformString());
+
+	add_interaction(APP.shapes[data["fd_id"]]);
 };
 
 var socket = new io.Socket();

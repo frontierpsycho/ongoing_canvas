@@ -11,8 +11,12 @@
 <script type="text/javascript" src="{% get_static_prefix %}jquery.cookie.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}jquery.hotkeys.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}jquery.jstree.js"></script>
+<script type="text/javascript" src="{% get_static_prefix %}jquery.bpopup-0.7.0.min.js"></script>
+<!-- done importing libraries, import app specific stuff -->
+<script type="text/javascript" src="{% get_static_prefix %}init.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}loadtree.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}menu.js"></script>
+<script type="text/javascript" src="{% get_static_prefix %}interaction.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -47,15 +51,16 @@
 
 {% block inline-javascript %}
 <script type="text/javascript">
+$(function() {
 	var treedata = {{ feelingtree|safe }};
 	var checked_nodes = {{ checked_nodes|safe }};
 	$.jstree._themes="/static/themes/";
 	var tree = loadTree(treedata, checked_nodes);
 
 	var paper = Raphael("canvas", {{ width }}, {{ height }});
-	var shapes = {};
 {% for shape in shapes %}
-	shapes["{{ shape.fd.id }}"] = {{ shape|to_raphael:"paper"|safe }};
+	APP.shapes["{{ shape.fd.id }}"] = {{ shape|to_raphael:"paper"|safe }};
+	add_interaction(APP.shapes["{{ shape.fd.id }}"]);
 {% endfor %}
 
 	var timer;
@@ -67,5 +72,6 @@
 			$("#feelingtree").jstree("search", text);
 		}, 500);
 	});
+});
 </script>
 {% endblock %}
