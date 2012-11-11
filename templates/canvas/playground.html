@@ -47,6 +47,10 @@
 <div id="canvas">
 </div>
 
+<div id="popup">
+	<div class="content"></div>
+</div>
+
 {% endblock %}
 
 {% block inline-javascript %}
@@ -60,7 +64,7 @@ $(function() {
 	var paper = Raphael("canvas", {{ width }}, {{ height }});
 {% for shape in shapes %}
 	APP.shapes["{{ shape.fd.id }}"] = {{ shape|to_raphael:"paper"|safe }};
-	add_interaction(APP.shapes["{{ shape.fd.id }}"]);
+	add_interaction(APP.shapes["{{ shape.fd.id }}"], {{ shape.fd.id }});
 {% endfor %}
 
 	var timer;

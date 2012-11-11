@@ -1,4 +1,4 @@
-function add_interaction(element) {
+function add_interaction(element, id) {
 	element.hover(
 			function(e) {
 				this.gl = this.glow({ color: "#CCC", width: 5 });
@@ -7,6 +7,11 @@ function add_interaction(element) {
 				this.gl.remove();
 			})
 	.click(function(e) {
-		alert("He-hey!");
+		$('#popup').bPopup({
+			contentContainer: ".content",
+			loadUrl: '/canvas/feeling/'+id+'/', //Uses jQuery.load()
+			position: ['auto','auto'],
+			positionStyle: 'fixed'
+		});
 	});
 }

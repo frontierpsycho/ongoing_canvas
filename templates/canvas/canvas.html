@@ -8,6 +8,7 @@
 {% block javascript-includes %}
 <script type="text/javascript" src="{% get_static_prefix %}raphael-min.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="{% get_static_prefix %}jquery.bpopup-0.7.0.min.js"></script>
 <!-- done importing libraries, import app specific stuff -->
 <script type="text/javascript" src="{% get_static_prefix %}init.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}interaction.js"></script>
@@ -15,6 +16,10 @@
 
 {% block content %}
 <div id="canvas">
+</div>
+
+<div id="popup">
+	<div class="content"></div>
 </div>
 {% endblock %}
 
@@ -25,7 +30,7 @@
 {% for fd_id,shape in shapes.items %}
 	APP.shapes["{{ fd_id }}"] = {{ shape|to_raphael:"paper"|safe }};
 
-	add_interaction(APP.shapes["{{ fd_id }}"]);
+	add_interaction(APP.shapes["{{ fd_id }}"], {{ fd_id }});
 {% endfor %}
 </script>
 {% endblock %}

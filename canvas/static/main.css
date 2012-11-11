@@ -52,3 +52,12 @@ div#submenus {
 #dateChoose {
 	display: none;
 }
+
+#popup { 
+	background-color: #FFFFFF;
+	border-radius: 10px;
+	color: #111111;
+	display: none;
+	padding: 25px;
+	width: 400px;
+} 

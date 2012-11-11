@@ -108,16 +108,15 @@ class FeelingDataDetailView(DetailView):
 	context_object_name = "feeling"
 	queryset=FeelingData.objects.all()
 
+	def dispatch(self, request, *args, **kwargs):
+		if request.is_ajax():
+			self.template_name_suffix = "_detail_ajax"
+		return super(FeelingDataDetailView, self).dispatch(request, *args, **kwargs)
+
 	def get_object(self, **kwargs):
 		object = super(FeelingDataDetailView, self).get_object()
-		self.stroke = form_generator.generate_shape(object)
-		
-		return object
 
-	def get_context_data(self, **kwargs):
-		context = super(FeelingDataDetailView, self).get_context_data(**kwargs)
-		context["stroke"] = self.stroke
-		return context
+		return object
 
 @csrf_exempt
 def broadcast(request):
