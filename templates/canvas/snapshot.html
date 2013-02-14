@@ -1,0 +1,28 @@
+{% load static %}
+{% load canvas_tags %}
+
+{% block javascript-includes %}
+<script type="text/javascript" src="{% get_static_prefix %}raphael-min.js"></script>
+<script type="text/javascript" src="{% get_static_prefix %}jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="{% get_static_prefix %}jquery.bpopup-0.7.0.min.js"></script>
+<!-- done importing libraries, import app specific stuff -->
+<script type="text/javascript" src="{% get_static_prefix %}init.js"></script>
+<script type="text/javascript" src="{% get_static_prefix %}interaction.js"></script>
+{% endblock %}
+
+{% block content %}
+<div id="canvas">
+</div>
+{% endblock %}
+
+{% block inline-javascript %}
+<script type="text/javascript">
+	var paper = Raphael("canvas", {{ width }}, {{ height }});
+	var shapes = {};
+{% for fd_id,shape in shapes.items %}
+	APP.shapes["{{ fd_id }}"] = {{ shape|to_raphael:"paper"|safe }};
+
+	add_interaction(APP.shapes["{{ fd_id }}"], {{ fd_id }});
+{% endfor %}
+</script>
+{% endblock %}

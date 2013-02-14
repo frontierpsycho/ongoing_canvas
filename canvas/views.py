@@ -50,6 +50,9 @@ class CanvasView(ListView):
 		context['ongoing'] = True
 		return context
 
+class SnapshotView(CanvasView):
+	template_name="canvas/snapshot.html"
+
 class PlaygroundView(CanvasView):
 	context_object_name = "shapes"
 	template_name = "canvas/playground.html"
@@ -104,7 +107,6 @@ class PlaygroundView(CanvasView):
 		return context
 
 class FeelingDataDetailView(DetailView):
-	global form_generator
 	context_object_name = "feeling"
 	queryset=FeelingData.objects.all()
 
