@@ -64,10 +64,14 @@ $(function() {
 	var paper = Raphael("canvas", {{ width }}, {{ height }});
 {% for shape in shapes %}
 	APP.shapes["{{ shape.fd.id }}"] = {{ shape|to_raphael:"paper"|safe }};
-	add_interaction(APP.shapes["{{ shape.fd.id }}"], {{ shape.fd.id }});
+	add_interaction(APP.shapes["{{ shape.fd.id }}"], {{ shape.fd.id }}, "{{ shape.colour }}");
 {% endfor %}
 
 	var timer;
+
+	$('div#popup').click(function(event) {
+		$(this).bPopup().close();
+	});
 
 	$("#treeSearch").keyup(function() {
 		clearTimeout(timer); // Clear the timer so we don't end up with dupes.
