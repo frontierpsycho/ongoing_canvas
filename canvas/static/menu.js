@@ -4,11 +4,10 @@ $('#menu [id$="_Toggle"]').click(function() {
 	var toggleTarget = tokens.join("_");
 
 	// get toggle button position to place menu
-	var position = $(this).offset();
+	var position = $("#menu").offset();
 
-	position.top = position.top + $(this).outerHeight();
+	position.top = position.top + $("#menu").outerHeight();
 
-	var previous_pos = $("#"+toggleTarget).offset();
 	
 	$("#"+toggleTarget).css({left: position.left, top: position.top }).slideToggle();
 });

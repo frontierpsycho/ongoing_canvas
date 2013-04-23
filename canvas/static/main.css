@@ -1,34 +1,52 @@
 body {
 	background-color: #5a5a5a;
-	margin: 0px;
+	margin: 0px auto;
+	width: 1000px;
 }
 
 #canvas {
-	margin: 10px;
+	margin: 10px auto;
+	width: 960px;
 }
 
 #menu {
-	background-color: #FFEEEE;
+	background-color: #221E1F;
+	color: #808080;
 	position: relative;
 	z-index: 10;
-	margin: 10px;
+	margin: 10px auto;
+	width: 960px;
+	height: 180px;
+	overflow: hidden;
 }
 
-#menu > ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow:hidden;
-}
-
-#menu > ul > li {
-	float: left;
-}
-
-.submenuToggle {
+#menu > div.menuHeader {
 	display: block;
-	padding: 5px;
-	width: 250px !important;
+	width: 100%;
+	padding: 16px 0;
+	margin: 0;
+	text-align: center;
+}
+
+#menu > div.menuSection {
+	margin: 0;
+	padding: 20px 10px;
+	display: inline-block;
+	width: 296px;
+}
+
+#menu > div.left {
+	border-right: #808080 1px solid;
+	padding: 5px 5px 30px 5px;
+}
+
+#menu > div > button {
+
+	border-radius: 4px;
+	margin: 10px 5px 5px auto;
+	width: 180px !important;
+	height: 25px;
+	display: block;
 }
 
 div#submenus {

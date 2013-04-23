@@ -21,14 +21,15 @@
 
 {% block content %}
 <div id="menu">
-	<ul>
-		<li>
-		<b><a class="submenuToggle" id="feelingChoose_Toggle">Feelings</a></b>
-		</li>
-		<li>
-		<a class="submenuToggle" id="dateChoose_Toggle"><b>Date</b> {{ chosen_date }}</a>
-		</li>
-	</ul>
+		<div class="menuHeader">Filter by:</div>
+		<div class="menuSection left">
+				<button><a id="feelingChoose_Toggle">Feelings</a></button>
+				<button><a id="dateChoose_Toggle">Date {{ chosen_date }}</a></button>
+		</div>
+		<div class="menuSection">
+		</div>
+		<div class="menuSection">
+		</div>
 </div>
 <div id="submenus">
 	<div class="submenu" id="feelingChoose">

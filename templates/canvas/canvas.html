@@ -30,7 +30,7 @@
 {% for fd_id,shape in shapes.items %}
 	APP.shapes["{{ fd_id }}"] = {{ shape|to_raphael:"paper"|safe }};
 
-	add_interaction(APP.shapes["{{ fd_id }}"], {{ fd_id }});
+	add_interaction(APP.shapes["{{ fd_id }}"], {{ fd_id }}, "{{ shape.colour}}" );
 {% endfor %}
 </script>
 {% endblock %}

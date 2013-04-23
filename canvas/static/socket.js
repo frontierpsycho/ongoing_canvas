@@ -8,7 +8,7 @@ var addShape = function(data) {
 
 	APP.shapes[data["fd_id"]] = paper.path(data["shape"]).attr({ fill: data["colour"], "stroke" : "none" }).transform(Raphael.matrix(data['transform'][0], data['transform'][1], data['transform'][2], data['transform'][3], data['transform'][4], data['transform'][5]).toTransformString());
 
-	add_interaction(APP.shapes[data["fd_id"]], data["fd_id"]);
+	add_interaction(APP.shapes[data["fd_id"]], data["fd_id"], data["colour"]);
 };
 
 var socket = new io.Socket();
