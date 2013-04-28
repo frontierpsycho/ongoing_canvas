@@ -140,7 +140,7 @@ class FormGenerator:
 			for i,subgroup in enumerate(subgroups):
 				colour = FormGenerator.get_colour(self.settings["Coloring schemes"][category][i])
 				# OH LORD WHAT AN UGLY HACK - but a necessary evil, my son
-				newSubNode = { 'data': "<span style='display: inline-block; width: 10px; height: 10px; background-color: hsl(%d, %d%%, %d%%) !important;'></span>" % colour[0], 'id': "%s_%d_node" % (category, i), 'children': []}
+				newSubNode = { 'data': "<span class='subCategorySquare' style='background-color: hsl(%d, %d%%, %d%%) !important;'></span>" % colour[0], 'id': "%s_%d_node" % (category, i), 'children': []}
 				for feeling in subgroup:
 					newSubNode['children'].append({'data': feeling, 'id': feeling+"_node" })
 				newNode['children'].append(newSubNode)

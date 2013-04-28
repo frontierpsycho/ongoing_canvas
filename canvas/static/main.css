@@ -89,13 +89,18 @@ body {
 	padding: 0 25px 0 35px;
 }
 
-#menu > div > table tr > td > div {
+.subCategorySquare {
 	width: 10px;
 	height: 10px;
-	background-color: #FF3355;
 	border: 2px #808080 solid;
 	border-radius: 5px;
 	margin: 1px;
+	display: inline-block;
+	vertical-align: bottom;
+}
+
+#menu .subCategorySquare {
+	cursor: pointer;
 }
 
 div#submenus {

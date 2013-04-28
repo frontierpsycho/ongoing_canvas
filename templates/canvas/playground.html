@@ -16,6 +16,7 @@
 <script type="text/javascript" src="{% get_static_prefix %}init.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}loadtree.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}menu.js"></script>
+<script type="text/javascript" src="{% get_static_prefix %}buildmenu.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}interaction.js"></script>
 {% endblock %}
 
@@ -30,51 +31,19 @@
 				<table>
 					<tr>
 						<td class="catName">Confidence</td>
-						<td><div></div></td>
-						<td><div></div></td>
-						<td><div></div></td>
-						<td><div></div></td>
 						<td class="catName">Anger</td>
-						<td><div></div></td>
-						<td><div></div></td>
-						<td><div></div></td>
-						<td><div></div></td>
 					</tr>
 					<tr>
 						<td class="catName">Euphoria</td>
-						<td><div></div></td>
-						<td><div></div></td>
-						<td><div></div></td>
-						<td><div></div></td>
 						<td class="catName">Disgust</td>
-						<td><div></div></td>
-						<td><div></div></td>
-						<td><div></div></td>
-						<td><div></div></td>
 					</tr>
 					<tr>
 						<td class="catName">Safety</td>
-						<td><div></div></td>
-						<td><div></div></td>
-						<td><div></div></td>
-						<td><div></div></td>
 						<td class="catName">Stress</td>
-						<td><div></div></td>
-						<td><div></div></td>
-						<td><div></div></td>
-						<td><div></div></td>
 					</tr>
 					<tr>
 						<td class="catName">Virtue</td>
-						<td><div></div></td>
-						<td><div></div></td>
-						<td><div></div></td>
-						<td><div></div></td>
 						<td class="catName">Sorrow</td>
-						<td><div></div></td>
-						<td><div></div></td>
-						<td><div></div></td>
-						<td><div></div></td>
 					</tr>
 				</table>
 		</div>
@@ -120,6 +89,8 @@ $(function() {
 	APP.shapes["{{ shape.fd.id }}"] = {{ shape|to_raphael:"paper"|safe }};
 	add_interaction(APP.shapes["{{ shape.fd.id }}"], {{ shape.fd.id }}, "{{ shape.colour }}");
 {% endfor %}
+
+	buildMenu(treedata);
 
 	var timer;
 

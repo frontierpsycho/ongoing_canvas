@@ -1,31 +1,52 @@
-$('#menu [id$="_Toggle"]').click(function() {
-	var tokens = $(this).attr("id").split("_");
-	tokens.pop();
-	var toggleTarget = tokens.join("_");
+$(function() {
+	$('#menu [id$="_Toggle"]').click(function() {
+		var tokens = $(this).attr("id").split("_");
+		tokens.pop();
+		var toggleTarget = tokens.join("_");
 
-	// get toggle button position to place menu
-	var position = $("#menu").offset();
+		// get toggle button position to place menu
+		var position = $("#menu").offset();
 
-	position.top = position.top + $("#menu").outerHeight();
+		position.top = position.top + $("#menu").outerHeight();
 
-	
-	$("#"+toggleTarget).css({left: position.left, top: position.top }).slideToggle();
-});
 
-$("#submenus #feelingChoose button").click(function() {
-	$("#menuForm").submit();
-});
-
-$("#menuForm").submit(function(evt) {
-	evt.preventDefault();
-	var checked_nodes = $("#feelingtree").jstree("get_checked", null, false);
-	var array_for_submission = $(this).serializeArray();
-	$.map(checked_nodes, function(node, index) {
-		var checkbox_id = $(node).children("input:checkbox").filter(":first").val();//.attr("id");
-		array_for_submission.push({name: "feeling", value: checkbox_id});
+		$("#"+toggleTarget).css({left: position.left, top: position.top }).slideToggle();
 	});
 
-	var url = "?"+$.param(array_for_submission);
+	$("#submenus #feelingChoose button").click(function() {
+		$("#menuForm").submit();
+	});
 
-	window.location = url;
+	$("#menuForm").submit(function(evt) {
+		evt.preventDefault();
+		var checked_nodes = $("#feelingtree").jstree("get_checked", null, false);
+		var array_for_submission = $(this).serializeArray();
+		$.map(checked_nodes, function(node, index) {
+			var checkbox_id = $(node).children("input:checkbox").filter(":first").val();//.attr("id");
+			array_for_submission.push({name: "feeling", value: checkbox_id});
+		});
+
+		var url = "?"+$.param(array_for_submission);
+
+		window.location = url;
+	});
+
 });
+
+var buildMenu = function(treedata) {
+	for(var i = 0; i < treedata.length; i++) {
+		var treeNode = treedata[i];
+		var category = treeNode.data.charAt(0).toUpperCase() + treeNode.data.substring(1);
+		var categoryNode = $("td.catName:contains('"+category+"')");
+
+		if(treeNode.hasOwnProperty('children')) {
+			for(var j = treeNode.children.length-1; j >= 0 ; j--) {
+				var child = treeNode.children[j];
+				console.log(child);
+				var elementToAdd = '<td>'+child.data+'</td>';
+				categoryNode.after(elementToAdd);
+			}
+		}
+
+	}
+};
