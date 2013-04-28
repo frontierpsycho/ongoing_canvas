@@ -4,7 +4,9 @@ function loadTree(treedata, checked_nodes) {
 			'html_titles': true
 		},
 		'json_data': {
-			'data': treedata
+			'data': treedata,
+			'progressive_render': true
+
 		},
 		'themes': {
 			'icons': false
