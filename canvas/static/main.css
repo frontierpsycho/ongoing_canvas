@@ -27,6 +27,7 @@ body {
 	padding: 5px 0 15px 0;
 	margin: 0;
 	text-align: center;
+	font-size: 13px;
 }
 
 #menu > div.menuFooter {
@@ -36,26 +37,26 @@ body {
 	padding: 5px;
 	margin: 0;
 	text-align: center;
-	border-top: #808080 1px solid;
+	border-top: #474444 1px solid;
 }
 
 #menu > div.menuSection {
 	margin: 0 0 5px 0;
 	display: inline-block;
 	height: 100px;
-	width: 360px;
+	width: 450px;
 	padding-top: 5px;
 	vertical-align: middle;
 }
 
 #menu > div.left {
-	width: 300px;
-	border-right: #808080 1px solid;
+	width: 270px;
+	border-right: #474444 1px solid;
 }
 
 #menu > div.right {
-	width: 300px;
-	border-left: #808080 1px solid;
+	width: 270px;
+	border-left: #474444 1px solid;
 }
 
 #menu > div > button {
@@ -65,6 +66,7 @@ body {
 	width: 180px !important;
 	height: 25px;
 	display: block;
+	border: none;
 }
 
 #menu > div.left > button {
@@ -84,15 +86,16 @@ body {
 }	
 
 #menu > div > table tr > td.catName {
-	min-width: 90px;
+	padding: 0 25px 0 35px;
 }
 
 #menu > div > table tr > td > div {
-	width: 8px;
-	height: 8px;
+	width: 10px;
+	height: 10px;
 	background-color: #FF3355;
 	border: 2px #808080 solid;
-	border-radius: 4px;
+	border-radius: 5px;
+	margin: 1px;
 }
 
 div#submenus {
