@@ -42,9 +42,20 @@ var buildMenu = function(treedata) {
 		if(treeNode.hasOwnProperty('children')) {
 			for(var j = treeNode.children.length-1; j >= 0 ; j--) {
 				var child = treeNode.children[j];
-				console.log(child);
-				var elementToAdd = '<td>'+child.data+'</td>';
+				var checkboxId = "#"+child.attr.id;
+				var elementToAdd = $.parseHTML('<td data-category="'+checkboxId+'">'+child.data+'</td>');
+
 				categoryNode.after(elementToAdd);
+				$(elementToAdd[0]).click(function(event) {
+					var tree = $.jstree._reference("#feelingtree");
+					var nodeId = $(this).data('category');
+					if(tree.is_checked(nodeId)) {
+						tree.uncheck_node(nodeId);
+					} else {
+						tree.check_node(nodeId);
+					}
+					$("#menuForm").submit();
+				});
 			}
 		}
 

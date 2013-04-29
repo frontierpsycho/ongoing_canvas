@@ -1,12 +1,19 @@
 function loadTree(treedata, checked_nodes) {
+	// initially load the whole first level
+	var initially_load = [];
+	//for(var i = 0; i < treedata.length; i++) {
+	//	var node = treedata[i];
+	//	initially_load.push(node.attr.id);
+	//}
+
 	var tree = $('#feelingtree').jstree({
 		'core': {
-			'html_titles': true
+			'html_titles': true,
+			'initially_load': initially_load
 		},
 		'json_data': {
-			'data': treedata,
-			'progressive_render': true
-
+			'data': treedata/*,
+			'progressive_render': true*/
 		},
 		'themes': {
 			'icons': false
@@ -30,7 +37,7 @@ function loadTree(treedata, checked_nodes) {
 		},
 		plugins: ['themes', 'json_data', 'ui', 'checkbox', 'search']
 	}).bind("loaded.jstree", function (event, data) { 
-		for(node in checked_nodes)
+		for(var node in checked_nodes)
 		{
 			data.inst.check_node("#"+checked_nodes[node]+"_check");
 		}

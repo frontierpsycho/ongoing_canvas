@@ -102,7 +102,7 @@ class FormGenerator:
 				# either a plain feeling or invalid input
 				tupleOrNone = self.get_feeling_coordinates(name)
 				if tupleOrNone is not None:
-					result.expand(self.settings["Feeling groups"][tupleOrNone[0]][tupleOrNone[1]])
+					result.extend(self.settings["Feeling groups"][tupleOrNone[0]][tupleOrNone[1]])
 
 		return result
 
@@ -140,9 +140,9 @@ class FormGenerator:
 			for i,subgroup in enumerate(subgroups):
 				colour = FormGenerator.get_colour(self.settings["Coloring schemes"][category][i])
 				# OH LORD WHAT AN UGLY HACK - but a necessary evil, my son
-				newSubNode = { 'data': "<span class='subCategorySquare' style='background-color: hsl(%d, %d%%, %d%%) !important;'></span>" % colour[0], 'id': "%s_%d_node" % (category, i), 'children': []}
+				newSubNode = { 'data': "<span class='subCategorySquare' style='background-color: hsl(%d, %d%%, %d%%) !important;'></span>" % colour[0], 'attr': {'id': "%s_%d_node" % (category, i)}, 'children': []}
 				for feeling in subgroup:
-					newSubNode['children'].append({'data': feeling, 'id': feeling+"_node" })
+					newSubNode['children'].append({'data': feeling, 'attr': { 'id': feeling+"_node" } })
 				newNode['children'].append(newSubNode)
 			jsonFeelings.append(newNode)
 
