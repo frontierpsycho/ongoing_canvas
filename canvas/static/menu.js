@@ -34,6 +34,8 @@ $(function() {
 });
 
 var buildMenu = function(treedata) {
+	var tree = $.jstree._reference("#feelingtree");
+
 	for(var i = 0; i < treedata.length; i++) {
 		var treeNode = treedata[i];
 		var category = treeNode.data.charAt(0).toUpperCase() + treeNode.data.substring(1);
@@ -47,7 +49,6 @@ var buildMenu = function(treedata) {
 
 				categoryNode.after(elementToAdd);
 				$(elementToAdd[0]).click(function(event) {
-					var tree = $.jstree._reference("#feelingtree");
 					var nodeId = $(this).data('category');
 					if(tree.is_checked(nodeId)) {
 						tree.uncheck_node(nodeId);
@@ -59,5 +60,14 @@ var buildMenu = function(treedata) {
 			}
 		}
 
+		categoryNode.click(function(event) {
+			var nodeId = "#"+category+"_node";
+			if(tree.is_checked(nodeId)) {
+				tree.uncheck_node(nodeId);
+			} else {
+				tree.check_node(nodeId);
+			}
+			$("#menuForm").submit();
+		});
 	}
 };

@@ -87,6 +87,7 @@ body {
 
 #menu > div > table tr > td.catName {
 	padding: 0 25px 0 35px;
+	cursor: pointer;
 }
 
 .subCategorySquare {
