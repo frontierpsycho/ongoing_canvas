@@ -15,19 +15,18 @@
 <!-- done importing libraries, import app specific stuff -->
 <script type="text/javascript" src="{% get_static_prefix %}init.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}loadtree.js"></script>
-<script type="text/javascript" src="{% get_static_prefix %}menu.js"></script>
-<script type="text/javascript" src="{% get_static_prefix %}buildmenu.js"></script>
+<script type="text/javascript" src="{% get_static_prefix %}filterbox.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}interaction.js"></script>
 {% endblock %}
 
 {% block content %}
-<div id="menu">
-		<div class="menuHeader">Filter by:</div>
-		<div class="menuSection left">
+<div id="filterbox">
+		<div class="filterboxHeader">Filter by:</div>
+		<div class="filterboxSection left">
 				<button id="feelingChoose_Toggle">Specific Mood</button>
 				<button id="dateChoose_Toggle">Date {{ chosen_date }}</button>
 		</div>
-		<div class="menuSection">
+		<div class="filterboxSection">
 				<table>
 					<tr>
 						<td class="catName">Confidence</td>
@@ -47,11 +46,11 @@
 					</tr>
 				</table>
 		</div>
-		<div class="menuSection right">
+		<div class="filterboxSection right">
 				<button><a>Apply Filters</a></button>
 				<button><a>Clear Filters</a></button>
 		</div>
-		<div class="menuFooter">^</div>
+		<div class="filterboxFooter">^</div>
 </div>
 <div id="submenus">
 	<div class="submenu" id="feelingChoose">
@@ -59,7 +58,7 @@
 		<div id="feelingtree"></div>
 		<button>Display</button><br />
 	</div>
-	<form id="menuForm" action="">
+	<form id="filterboxForm" action="">
 		{% csrf_token %}
 		<div class="submenu" id="dateChoose">
 			{{ form }}

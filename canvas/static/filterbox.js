@@ -1,23 +1,23 @@
 $(function() {
-	$('#menu [id$="_Toggle"]').click(function() {
+	$('#filterbox [id$="_Toggle"]').click(function() {
 		var tokens = $(this).attr("id").split("_");
 		tokens.pop();
 		var toggleTarget = tokens.join("_");
 
-		// get toggle button position to place menu
-		var position = $("#menu").offset();
+		// get toggle button position to place dialog
+		var position = $("#filterbox").offset();
 
-		position.top = position.top + $("#menu").outerHeight();
+		position.top = position.top + $("#filterbox").outerHeight();
 
 
 		$("#"+toggleTarget).css({left: position.left, top: position.top }).slideToggle();
 	});
 
 	$("#submenus #feelingChoose button").click(function() {
-		$("#menuForm").submit();
+		$("#filterboxForm").submit();
 	});
 
-	$("#menuForm").submit(function(evt) {
+	$("#filterboxForm").submit(function(evt) {
 		evt.preventDefault();
 		var checked_nodes = $("#feelingtree").jstree("get_checked", null, false);
 		var array_for_submission = $(this).serializeArray();
@@ -55,7 +55,7 @@ var buildMenu = function(treedata) {
 					} else {
 						tree.check_node(nodeId);
 					}
-					$("#menuForm").submit();
+					$("#filterboxForm").submit();
 				});
 			}
 		}
@@ -67,7 +67,7 @@ var buildMenu = function(treedata) {
 			} else {
 				tree.check_node(nodeId);
 			}
-			$("#menuForm").submit();
+			$("#filterboxForm").submit();
 		});
 	}
 };

@@ -9,7 +9,7 @@ body {
 	width: 960px;
 }
 
-#menu {
+#filterbox {
 	background-color: #221E1F;
 	color: #808080;
 	z-index: 10;
@@ -20,7 +20,7 @@ body {
 	font-weight: bold;
 }
 
-#menu > div.menuHeader {
+#filterbox > div.filterboxHeader {
 	display: block;
 	width: 100%;
 	height: 15px;
@@ -30,7 +30,7 @@ body {
 	font-size: 13px;
 }
 
-#menu > div.menuFooter {
+#filterbox > div.filterboxFooter {
 	display: block;
 	width: 100%;
 	height: 15px;
@@ -40,7 +40,7 @@ body {
 	border-top: #474444 1px solid;
 }
 
-#menu > div.menuSection {
+#filterbox > div.filterboxSection {
 	margin: 0 0 5px 0;
 	display: inline-block;
 	height: 100px;
@@ -49,17 +49,17 @@ body {
 	vertical-align: middle;
 }
 
-#menu > div.left {
+#filterbox > div.left {
 	width: 270px;
 	border-right: #474444 1px solid;
 }
 
-#menu > div.right {
+#filterbox > div.right {
 	width: 270px;
 	border-left: #474444 1px solid;
 }
 
-#menu > div > button {
+#filterbox > div > button {
 	border-radius: 4px;
 	margin-top: 2px;
    	margin-bottom: 15px;
@@ -69,23 +69,23 @@ body {
 	border: none;
 }
 
-#menu > div.left > button {
+#filterbox > div.left > button {
 	margin-left: auto;
 	margin-right: 15px;
 }
 
-#menu > div.right > button {
+#filterbox > div.right > button {
 	margin-left: 15px;
 	margin-right: auto;
 }
 
-#menu > div > table {
+#filterbox > div > table {
 	color: #808080;
 	width: 340px;
 	font-weight: bold;
 }	
 
-#menu > div > table tr > td.catName {
+#filterbox > div > table tr > td.catName {
 	padding: 0 25px 0 35px;
 	cursor: pointer;
 }
@@ -100,7 +100,7 @@ body {
 	vertical-align: bottom;
 }
 
-#menu .subCategorySquare {
+#filterbox .subCategorySquare {
 	cursor: pointer;
 }
 
