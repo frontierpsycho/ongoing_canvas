@@ -1,7 +1,8 @@
 body {
 	background-color: #5a5a5a;
 	margin: 0px auto;
-	width: 1000px;
+	width: 960px;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
 #canvas {
@@ -9,12 +10,69 @@ body {
 	width: 960px;
 }
 
+#menu {
+	height: 80px;
+	background-color: #221E1F;
+	color: #808080;
+	margin: 0 auto;
+	width: 960px;
+	position: relative;
+}
+
+#menuLogo {
+	position: absolute;
+	left: 40px;
+	top: 21px;
+	
+}
+
+#menuArrow {
+	position: absolute;
+	left: 490px;
+	top: 60px;
+}
+
+#menuList {
+	margin: 0 auto;
+	width: 960px;
+	text-align: center; 
+	font-size: 21px;
+	font-weight: bold;
+	line-height: 80px;
+}
+
+#menuList > ul {
+	list-style-type: none;
+	margin: 0 auto;
+	padding: 0;
+}
+
+#menuList > ul > li {
+	display: inline;
+	margin: 0 10px; 
+	min-height: 80px;
+}
+
+#menuList > ul > li > a:link, a:visited {
+	color: #808080;
+	text-decoration: none;
+}
+
+#menuList > ul > li > a:hover {
+	color: #FFF;
+}
+
+#menuList > ul > li > a.active {
+	color: #FFF;
+	text-shadow: 0 0 3px rgba(255, 255, 255, 0.65);
+}
+
 #filterbox {
 	background-color: #221E1F;
 	color: #808080;
 	z-index: 10;
-	margin: 10px auto;
-	width: 1000px;
+	margin: 0 auto;
+	width: 960px;
 	overflow: hidden;
 	font-family: sans-serif;
 	font-weight: bold;
@@ -44,18 +102,18 @@ body {
 	margin: 0 0 5px 0;
 	display: inline-block;
 	height: 100px;
-	width: 450px;
+	width: 430px;
 	padding-top: 5px;
 	vertical-align: middle;
 }
 
 #filterbox > div.left {
-	width: 270px;
+	width: 260px;
 	border-right: #474444 1px solid;
 }
 
 #filterbox > div.right {
-	width: 270px;
+	width: 260px;
 	border-left: #474444 1px solid;
 }
 

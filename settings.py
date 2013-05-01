@@ -100,6 +100,12 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = ( 
+	'django.core.context_processors.debug',
+	'django.core.context_processors.media',
+	'django.core.context_processors.request'
+)
+
 ROOT_URLCONF = 'ongoing_canvas.urls'
 
 TEMPLATE_DIRS = (

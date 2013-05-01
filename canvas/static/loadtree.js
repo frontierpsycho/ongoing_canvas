@@ -12,8 +12,8 @@ function loadTree(treedata, checked_nodes) {
 			'initially_load': initially_load
 		},
 		'json_data': {
-			'data': treedata/*,
-			'progressive_render': true*/
+			'data': treedata,
+			'progressive_render': true
 		},
 		'themes': {
 			'icons': false

@@ -120,6 +120,9 @@ class FeelingDataDetailView(DetailView):
 
 		return object
 
+def statistics(request):
+	return "Stats!"
+
 @csrf_exempt
 def broadcast(request):
 	global cells
