@@ -11,6 +11,7 @@
 <script type="text/javascript" src="{% get_static_prefix %}jquery.cookie.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}jquery.hotkeys.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}jquery.jstree.js"></script>
+<script type="text/javascript" src="{% get_static_prefix %}jquery.textfill.min.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}jquery.bpopup-0.7.0.min.js"></script>
 <!-- done importing libraries, import app specific stuff -->
 <script type="text/javascript" src="{% get_static_prefix %}init.js"></script>
@@ -92,10 +93,6 @@ $(function() {
 	buildMenu(treedata);
 
 	var timer;
-
-	$('div#popup').click(function(event) {
-		$(this).bPopup().close();
-	});
 
 	$("#treeSearch").keyup(function() {
 		clearTimeout(timer); // Clear the timer so we don't end up with dupes.

@@ -1,19 +1,8 @@
 {% load static %}
 
-<h2>Feeling {{ feeling.id }}	</h2>
-<table>
-	<tbody>
-		<tr>
-			<td><b>Feeling:</b></td><td>{{ feeling.feeling.name }}</td>
-		</tr>
-		<tr>
-			<td><b>Sentence:</b></td><td>{{ feeling.sentence }}</td>
-		</tr>
-		<tr>
-			<td><b>Time:</b></td><td>{{ feeling.postdatetime }}</td>
-		</tr>
-		<tr>
-			<td><a href="{{ feeling.posturl }}">Source</a></td>
-		</tr>
-	</tbody>
-</table>
+<div id="header">
+	<div id="feelingName">{{ feeling.feeling.name }}</div>
+	<div id="feelingDate">{{ feeling.postdatetime }}</div>
+</div>
+<div id="feelingData" class="textfill" style="width: 856px; height: 480px;"><span>{{ feeling.sentence }}</span></div>
+<div id="closeButton"><object data="{% get_static_prefix %}/images/x_symbol.svg" type="image/svg+xml"></object></div>

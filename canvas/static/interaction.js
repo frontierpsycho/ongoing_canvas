@@ -18,6 +18,9 @@ function add_interaction(element, id, colour) {
 			loadUrl: '/canvas/feeling/'+id+'/', //Uses jQuery.load()
 			position: ['auto','auto'],
 			positionStyle: 'fixed'
-		});	
+		},
+		function() {
+			$('#popup div.textfill').textfill( { maxFontPixels: 72, debug: true } );
+		});
 	});
 }
