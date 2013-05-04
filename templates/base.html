@@ -10,9 +10,9 @@
 		<div id="menuLogo"><object data="{% get_static_prefix %}images/mini_m.svg" type="image/svg+xml"></object></div>
 		<div id="menuList">
 			<ul>
-				<li><a class="{% navactive request 'canvas' %}" href="{% url canvas %}">Live Mosaic</a></li>
-				<li><a class="{% navactive request 'playground' %}" href="{% url playground %}">Playground</a></li>
-				<li><a class="{% navactive request 'statistics' %}" href="{% url statistics %}">Statistics</a></li>
+				<li><a class="{% navactive request 'canvas' %}" href="{% url 'canvas' %}">Live Mosaic</a></li>
+				<li><a class="{% navactive request 'playground' %}" href="{% url 'playground' %}">Playground</a></li>
+				<li><a class="{% navactive request 'statistics' %}" href="{% url 'statistics' %}">Statistics</a></li>
 			</ul>
 		</div>
 		<div id="menuArrow"><object data="{% get_static_prefix %}images/Playground_Arrow_down.svg" type="image/svg+xml"></object></div>
