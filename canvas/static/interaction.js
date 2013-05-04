@@ -20,7 +20,7 @@ function add_interaction(element, id, colour) {
 			positionStyle: 'fixed'
 		},
 		function() {
-			$('#popup div.textfill').textfill( { maxFontPixels: 72, debug: true } );
+			$('#popup div.textfill').textfill( { maxFontPixels: 72 } );
 		});
 	});
 }

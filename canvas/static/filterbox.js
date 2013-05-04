@@ -40,6 +40,7 @@ var buildMenu = function(treedata) {
 		var treeNode = treedata[i];
 		var category = treeNode.data.charAt(0).toUpperCase() + treeNode.data.substring(1);
 		var categoryNode = $("td.catName:contains('"+category+"')");
+		categoryNode.data('category', "#"+treeNode.attr.id);
 
 		if(treeNode.hasOwnProperty('children')) {
 			for(var j = treeNode.children.length-1; j >= 0 ; j--) {
@@ -48,15 +49,16 @@ var buildMenu = function(treedata) {
 				var elementToAdd = $.parseHTML('<td data-category="'+checkboxId+'">'+child.data+'</td>');
 
 				categoryNode.after(elementToAdd);
-				$(elementToAdd[0]).click(function(event) {
-					var nodeId = $(this).data('category');
+				$(elementToAdd[0]).click($.proxy(function(event) {
+					var nodeId = $(this.elementToAdd).data('category');
+					tree.load_node(this.parentId, function() {}, function() {});
 					if(tree.is_checked(nodeId)) {
 						tree.uncheck_node(nodeId);
 					} else {
 						tree.check_node(nodeId);
 					}
 					$("#filterboxForm").submit();
-				});
+				}, { parentId: categoryNode.data('category'), elementToAdd: elementToAdd[0] }));
 			}
 		}
 
