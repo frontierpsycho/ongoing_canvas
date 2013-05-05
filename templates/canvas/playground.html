@@ -22,40 +22,54 @@
 
 {% block content %}
 <div id="filterbox">
-		<div class="filterboxHeader">Filter by:</div>
+	<div class="filterboxContent">
+		<div class="filterboxHeader">Show me:</div>
 		<div class="filterboxSection left">
-				<button id="feelingChoose_Toggle">Specific Mood</button>
-				<button id="dateChoose_Toggle">Date {{ chosen_date }}</button>
+			<button id="feelingChoose_Toggle">by Specific Mood</button>
+			<button id="dateChoose_Toggle">by Date {{ chosen_date }}</button>
 		</div>
 		<div class="filterboxSection">
-				<table>
-					<tr>
-						<td class="catName">Confidence</td>
-						<td class="catName">Anger</td>
-					</tr>
-					<tr>
-						<td class="catName">Euphoria</td>
-						<td class="catName">Disgust</td>
-					</tr>
-					<tr>
-						<td class="catName">Safety</td>
-						<td class="catName">Stress</td>
-					</tr>
-					<tr>
-						<td class="catName">Virtue</td>
-						<td class="catName">Sorrow</td>
-					</tr>
-				</table>
+			<table>
+				<tr>
+					<td class="catName">Confidence</td>
+				</tr>
+				<tr>
+					<td class="catName">Euphoria</td>
+				</tr>
+				<tr>
+					<td class="catName">Safety</td>
+				</tr>
+				<tr>
+					<td class="catName">Virtue</td>
+				</tr>
+			</table>
+		</div>
+		<div class="filterboxSection">
+			<table>
+				<tr>
+					<td class="catName">Anger</td>
+				</tr>
+				<tr>
+					<td class="catName">Disgust</td>
+				</tr>
+				<tr>
+					<td class="catName">Stress</td>
+				</tr>
+				<tr>
+					<td class="catName">Sorrow</td>
+				</tr>
+			</table>
 		</div>
 		<div class="filterboxSection right">
-				<button><a>Apply Filters</a></button>
-				<button><a>Clear Filters</a></button>
+			<button><a>Apply Filters</a></button>
+			<button><a>Clear Filters</a></button>
 		</div>
 		<div class="filterboxFooter">^</div>
+	</div>
 </div>
 <div id="submenus">
 	<div class="submenu" id="feelingChoose">
-		<input type="text" id="treeSearch" value"Search for feelings" /> <button id="searchButton">Search</button>
+		<input type="text" id="treeSearch" /> <button id="searchButton">Search</button>
 		<div id="feelingtree"></div>
 		<button>Display</button><br />
 	</div>
