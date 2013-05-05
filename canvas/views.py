@@ -1,12 +1,9 @@
-import xml.etree.ElementTree as ET
-import copy
-import random
-from multiprocessing import Process,Manager
+from multiprocessing import Process, Manager
 import datetime
 from collections import OrderedDict
 
 from django.http import HttpResponse
-from django.views.generic import ListView,DetailView
+from django.views.generic import ListView, DetailView
 from django.conf import settings
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
@@ -73,7 +70,7 @@ class PlaygroundView(CanvasView):
 
 				if self.date:
 					# ugly filter to get data from specific date
-					filters.extend([Q(postdatetime__gte=datetime.datetime.combine(self.date, datetime.time.min)), Q(postdatetime__lte=datetime.datetime.combine(self.date, datetime.time.max)) ])
+					filters.extend([Q(postdatetime__gte=datetime.datetime.combine(self.date, datetime.time.min)), Q(postdatetime__lte=datetime.datetime.combine(self.date, datetime.time.max))])
 
 				self.feelings.extend(self.request.GET.getlist('feeling'))
 				if self.feelings:
@@ -108,7 +105,7 @@ class PlaygroundView(CanvasView):
 
 class FeelingDataDetailView(DetailView):
 	context_object_name = "feeling"
-	queryset=FeelingData.objects.all()
+	queryset = FeelingData.objects.all()
 
 	def dispatch(self, request, *args, **kwargs):
 		if request.is_ajax():
