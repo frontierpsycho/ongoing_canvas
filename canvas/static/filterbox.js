@@ -68,15 +68,15 @@ var buildFilterBox = function(treedata) {
 			}
 		}
 
-		categoryNode.click(function(event) {
-			var nodeId = "#"+category+"_node";
+		categoryNode.click($.proxy(function(event) {
+			var nodeId = "#"+this.category+"_node";
 			if(tree.is_checked(nodeId)) {
 				tree.uncheck_node(nodeId);
 			} else {
 				tree.check_node(nodeId);
 			}
 			$("#filterboxForm").submit();
-		});
+		}, { category: category }));
 	}
 };
 
