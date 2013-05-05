@@ -6,7 +6,7 @@ body {
 }
 
 #canvas {
-	margin: 10px auto;
+	margin: 0 auto;
 	width: 960px;
 }
 
@@ -198,7 +198,7 @@ div#submenus {
 
 #popup div#header {
 	margin: 20px 0;
-	border-bottom: 1px solid #FFF;
+	border-bottom: 2px solid #FFF;
 	font-size: 48px;
 }
 
@@ -216,8 +216,28 @@ div#submenus {
 	height: 480px;
 }
 
+#popup div#feelingData a:link, a:visited {
+    text-decoration: none;
+    color: #FFF;
+}
+
+#popup div#feelingData a:hover {
+    text-decoration: underline;
+}
+
 #popup div#closeButton {
 	width: 40px;
 	height: 40px;
 	margin: 40px auto;
+    position: relative;
+    z-index: 0;
+}
+
+#popup div#closeButton div#actualButton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    z-index: 1;
 }

@@ -16,11 +16,14 @@ function add_interaction(element, id, colour) {
 		.bPopup({
 			contentContainer: ".content",
 			loadUrl: '/canvas/feeling/'+id+'/', //Uses jQuery.load()
+            loadCallback: function() {
+                $("#popup div.textfill").textfill( { maxFontPixels: 72 } );
+                $("#popup div#actualButton").click(function(event) {
+                    $("div#popup").bPopup().close();
+                });
+		    },
 			position: ['auto','auto'],
 			positionStyle: 'fixed'
-		},
-		function() {
-			$('#popup div.textfill').textfill( { maxFontPixels: 72 } );
 		});
 	});
 }

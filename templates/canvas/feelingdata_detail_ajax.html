@@ -4,5 +4,5 @@
 	<div id="feelingName">{{ feeling.feeling.name }}</div>
 	<div id="feelingDate">{{ feeling.postdatetime }}</div>
 </div>
-<div id="feelingData" class="textfill" style="width: 856px; height: 480px;"><span>{{ feeling.sentence }}</span></div>
-<div id="closeButton"><object data="{% get_static_prefix %}images/x_symbol.svg" type="image/svg+xml"></object></div>
+<div id="feelingData" class="textfill" style="width: 856px; height: 480px;"><span><a href="{{ feeling.posturl }}">{{ feeling.sentence }}</a></span></div>
+<div id="closeButton"><div id="actualButton"></div><object data="{% get_static_prefix %}images/x_symbol.svg" type="image/svg+xml"></object></div>
