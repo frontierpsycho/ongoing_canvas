@@ -33,7 +33,7 @@ function add_interaction(element, id, colour) {
 				};
 				interval = setInterval(textFillFunction(100), 10);
 
-				$("div#popup div#actualButton").click(function(event) {
+				$("div#popup div#closeButton div.actualButton").click(function(event) {
 					$("div#popup").bPopup().close();
 				});
 			},

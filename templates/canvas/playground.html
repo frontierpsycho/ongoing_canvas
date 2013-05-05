@@ -64,7 +64,12 @@
 			<button><a>Apply Filters</a></button>
 			<button><a>Clear Filters</a></button>
 		</div>
-		<div class="filterboxFooter">^</div>
+		<div class="filterboxFooter">
+			<div id="closeButton">
+				<div class="actualButton"></div>
+				<object data="{% get_static_prefix %}images/Playground_Arrow_up.svg" type="image/svg+xml"></object>
+			</div>
+		</div>
 	</div>
 </div>
 <div id="submenus">
@@ -104,7 +109,7 @@ $(function() {
 	add_interaction(APP.shapes["{{ shape.fd.id }}"], {{ shape.fd.id }}, "{{ shape.colour }}");
 {% endfor %}
 
-	buildMenu(treedata);
+	buildFilterBox(treedata);
 
 	var timer;
 

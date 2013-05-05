@@ -4,7 +4,6 @@ $(function() {
 		tokens.pop();
 		var toggleTarget = tokens.join("_");
 
-		// get toggle button position to place dialog
 		var position = $("#filterbox").offset();
 
 		position.top = position.top + $("#filterbox").outerHeight();
@@ -31,9 +30,16 @@ $(function() {
 		window.location = url;
 	});
 
+	$("#filterbox #closeButton div.actualButton").click(function(event) {
+		collapseFilterBox();
+	});
+
+	$("#menu #openButton div.actualButton").click(function(event) {
+		expandFilterBox();
+	});
 });
 
-var buildMenu = function(treedata) {
+var buildFilterBox = function(treedata) {
 	var tree = $.jstree._reference("#feelingtree");
 
 	for(var i = 0; i < treedata.length; i++) {
@@ -73,3 +79,24 @@ var buildMenu = function(treedata) {
 		});
 	}
 };
+
+var expandFilterBox = function() {
+	// get menu position to place filterbox
+	var position = $("#menu").offset();
+	position.top = position.top + $("#menu").outerHeight();
+
+	$("#filterbox").css({left: position.left, top: position.top }).slideToggle();
+
+	// make arrow disappear
+	$("#menu #menuArrow").hide();
+}
+
+var collapseFilterBox = function() {
+	$("#filterbox").slideToggle({
+		complete: function() {
+			// make arrow reappear
+			$("#menu #menuArrow").show();
+		}
+	});
+
+}

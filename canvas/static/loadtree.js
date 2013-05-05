@@ -23,7 +23,7 @@ function loadTree(treedata, checked_nodes) {
 			'real_checkboxes': true,
 			'real_checkboxes_names': function(n) {
 				var feeling = $.trim(n.children("a").text());
-                
+
 				if(feeling == "")
 				{ /* this is a second level node */
 					feeling = $.trim(n.parent().closest("li").children("a").text())+"_"+n.index();
@@ -36,7 +36,8 @@ function loadTree(treedata, checked_nodes) {
 			'show_only_matches': true
 		},
 		plugins: ['themes', 'json_data', 'ui', 'checkbox', 'search']
-	}).bind("loaded.jstree", function (event, data) { 
+	}).bind("loaded.jstree", function (event, data) {
+		expandFilterBox();
 		for(var node in checked_nodes)
 		{
 			data.inst.check_node("#"+checked_nodes[node]+"_check");
