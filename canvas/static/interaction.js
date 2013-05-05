@@ -1,6 +1,6 @@
 function add_interaction(element, id, colour) {
 	// HACKISH add percentage sign after second and third value
-	colourParts = colour.split(',');
+	var colourParts = colour.split(',');
 	colourParts[1] += "%";
 	colourParts[2] = colourParts[2].substring(0,colourParts[2].length-1)+"%)";
 	colour = colourParts.join(',');
@@ -16,12 +16,28 @@ function add_interaction(element, id, colour) {
 		.bPopup({
 			contentContainer: ".content",
 			loadUrl: '/canvas/feeling/'+id+'/', //Uses jQuery.load()
-            loadCallback: function() {
-                $("#popup div.textfill").textfill( { maxFontPixels: 72 } );
-                $("#popup div#actualButton").click(function(event) {
-                    $("div#popup").bPopup().close();
-                });
-		    },
+			loadCallback: function() {
+				var interval;
+				var textFill = function() {
+					$("div#popup div.textfill").textfill( { maxFontPixels: 72 } );
+					window.clearInterval(interval);
+				}
+				var textFillFunction = function(count) {
+					return function() {
+						if(count == 0 || $('div.textfill span:visible').length > 0) {
+							textFill();
+							return;
+						}
+						count -= 1;
+					}
+				};
+				interval = setInterval(textFillFunction(100), 10);
+
+				$("div#popup div#actualButton").click(function(event) {
+					$("div#popup").bPopup().close();
+				});
+			},
+			speed: 10,
 			position: ['auto','auto'],
 			positionStyle: 'fixed'
 		});
