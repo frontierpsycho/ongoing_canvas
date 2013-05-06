@@ -156,6 +156,7 @@ body {
 	width: 170px;
 	font-weight: bold;
 	table-layout: fixed;
+	border-spacing: 0;
 }
 
 #filterbox div > table tr > td.catName {
