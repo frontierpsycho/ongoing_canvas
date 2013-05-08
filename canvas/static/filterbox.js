@@ -39,32 +39,39 @@ $(function() {
 	});
 });
 
-var buildFilterBox = function(treedata) {
+var buildFilterBox = function(treedata, checked_nodes) {
 	var tree = $.jstree._reference("#feelingtree");
+	console.log(checked_nodes);
 
 	for(var i = 0; i < treedata.length; i++) {
 		var treeNode = treedata[i];
 		var category = treeNode.data.charAt(0).toUpperCase() + treeNode.data.substring(1);
 		var categoryNode = $("td.catName:contains('"+category+"')");
 		categoryNode.data('category', "#"+treeNode.attr.id);
+		if($.inArray(treeNode.attr.id.replace(/_node$/, ""), checked_nodes) > -1) {
+			categoryNode.addClass("active");
+		}
 
 		if(treeNode.hasOwnProperty('children')) {
 			for(var j = treeNode.children.length-1; j >= 0 ; j--) {
 				var child = treeNode.children[j];
 				var checkboxId = "#"+child.attr.id;
-				var elementToAdd = $.parseHTML('<td data-category="'+checkboxId+'">'+child.data+'</td>');
+				var elementToAdd = $.parseHTML('<td data-category="'+checkboxId+'">'+child.data+'</td>')[0];
+				if($.inArray(child.attr.id.replace(/_node$/, ""), checked_nodes) > -1) {
+					$(elementToAdd).addClass("active");
+				}
 
 				categoryNode.after(elementToAdd);
-				$(elementToAdd[0]).click($.proxy(function(event) {
+				$(elementToAdd).click($.proxy(function(event) {
 					var nodeId = $(this.elementToAdd).data('category');
-					tree.load_node(this.parentId, function() {}, function() {});
+					//tree.load_node(this.parentId, function() {}, function() {});
 					if(tree.is_checked(nodeId)) {
 						tree.uncheck_node(nodeId);
 					} else {
 						tree.check_node(nodeId);
 					}
 					$("#filterboxForm").submit();
-				}, { parentId: categoryNode.data('category'), elementToAdd: elementToAdd[0] }));
+				}, { parentId: categoryNode.data('category'), elementToAdd: elementToAdd }));
 			}
 		}
 

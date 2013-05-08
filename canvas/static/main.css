@@ -165,6 +165,15 @@ body {
 	cursor: pointer;
 }
 
+#filterbox div > table tr > td.catName:hover {
+	color: #FFF;
+}
+
+#filterbox div > table tr > td.catName.active {
+	color: #FFF;
+	text-shadow: 0 0 3px rgba(255, 255, 255, 0.65);
+}
+
 .subCategorySquare {
 	width: 10px;
 	height: 10px;
@@ -175,8 +184,14 @@ body {
 	vertical-align: bottom;
 }
 
-#filterbox .subCategorySquare {
+.subCategorySquare:hover {
+	border-color: #FFF;
 	cursor: pointer;
+}
+
+td.active > .subCategorySquare {
+	border-color: #FFF;
+	box-shadow: 0 0 3px rgba(255, 255, 255, 0.65);
 }
 
 div#submenus {

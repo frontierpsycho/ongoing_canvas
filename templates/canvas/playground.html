@@ -109,7 +109,7 @@ $(function() {
 	add_interaction(APP.shapes["{{ shape.fd.id }}"], {{ shape.fd.id }}, "{{ shape.colour }}");
 {% endfor %}
 
-	buildFilterBox(treedata);
+	buildFilterBox(treedata, checked_nodes);
 
 	var timer;
 
