@@ -258,8 +258,7 @@ div#submenus {
 	height: 480px;
 }
 
-#popup div#feelingData a:link, a:visited {
-	text-decoration: none;
+#popup div#feelingData a:link, #popup div#feelingData a:visited {
 	color: #FFF;
 }
 
