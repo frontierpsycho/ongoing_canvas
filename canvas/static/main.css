@@ -5,6 +5,8 @@ body {
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
+a:link { text-decoration: none; }
+
 #canvas {
 	margin: 0 auto;
 	width: 960px;
@@ -59,7 +61,6 @@ body {
 
 #menuList > ul > li > a:link, a:visited {
 	color: #808080;
-	text-decoration: none;
 }
 
 #menuList > ul > li > a:hover {
@@ -136,7 +137,7 @@ body {
 	padding-left: 20px;
 }
 
-#filterbox div > button {
+#filterbox div  button {
 	border-radius: 4px;
 	width: 100%;
 	height: 36px;
@@ -145,9 +146,18 @@ body {
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	color: #808080;
 	font-weight: bold;
+	cursor: pointer;
 }
 
-#filterbox div > button:first-of-type {
+#filterbox div.left  button {
+}
+
+#filterbox div.right button {
+	background-color: rgba(0, 0, 0, 0);
+	border: 2px #808080 solid;
+}
+
+#filterbox div button:first-of-type {
 	margin-bottom: 8px;
 }
 
