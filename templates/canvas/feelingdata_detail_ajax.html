@@ -1,8 +1,14 @@
 {% load static %}
+{% load canvas_tags %}
 
 <div id="header">
-	<div id="feelingName">{{ feeling.feeling.name }}</div>
+	<div id="feelingName"><span id="feelingShape"></span>{{ feeling.feeling.name }} <span id="feelingCategory">({{ category }})</span></div>
 	<div id="feelingDate">{{ feeling.postdatetime|date:"N d o" }}</div>
 </div>
 <div id="feelingData" class="textfill" style="width: 856px; height: 480px;"><span><a href="{{ feeling.posturl }}">{{ feeling.sentence }}</a></span></div>
 <div id="closeButton"><div class="actualButton"></div><object data="{% get_static_prefix %}images/x_symbol.svg" type="image/svg+xml"></object></div>
+
+<script type="text/javascript">
+	var feelingShape = Raphael("feelingShape", 40, 40);
+	{{ shape|to_raphael:"feelingShape"|safe }};
+</script>

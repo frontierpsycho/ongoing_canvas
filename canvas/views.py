@@ -18,6 +18,8 @@ from canvas.forms import PlaygroundFilterForm
 def start_generator(cells_manager, grid_manager):
 	form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, settings.SHAPE_HEIGHT, settings.SHAPE_WIDTH, grid_manager, depth=1), cells_manager, ongoing=True)
 
+detail_form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, settings.SHAPE_HEIGHT, settings.SHAPE_WIDTH, depth=1))
+
 manager = Manager()
 
 cells = manager.dict()
@@ -116,6 +118,18 @@ class FeelingDataDetailView(DetailView):
 		object = super(FeelingDataDetailView, self).get_object()
 
 		return object
+
+	def get_context_data(self, **kwargs):
+		context = super(FeelingDataDetailView, self).get_context_data(**kwargs)
+		tupleOrNone = detail_form_generator.get_feeling_coordinates(self.get_object().feeling.name)
+		if tupleOrNone:
+			(current_group_name, subgroup_index) = tupleOrNone
+			shape = Shape(detail_form_generator.shapes[current_group_name][0], self.get_object())
+			shape.colour = "hsl(%d, %d, %d)" % (0, 0, 100)  # make shape white
+			context['shape'] = shape
+			context['category'] = current_group_name
+
+		return context
 
 def statistics(request):
 	return "Stats!"
