@@ -147,6 +147,7 @@ a:link { text-decoration: none; }
 	color: #808080;
 	font-weight: bold;
 	cursor: pointer;
+	background-color: white;
 }
 
 #filterbox div.left  button {
