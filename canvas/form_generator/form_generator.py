@@ -7,11 +7,12 @@ import time
 import datetime
 import urllib
 import urllib2
+import os
 
 sys.path.append('../../../')
+sys.path.append('../')
+os.environ['DJANGO_SETTINGS_MODULE'] = 'ongoing_canvas.settings'
 from ongoing_canvas import settings
-from django.core.management import setup_environ
-setup_environ(settings)
 
 from canvas.models import FeelingData
 
