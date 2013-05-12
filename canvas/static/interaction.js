@@ -15,7 +15,7 @@ function add_interaction(element, id, colour) {
 		$('div#popup').css('background-color', colour).css('opacity', '0.9')
 		.bPopup({
 			contentContainer: ".content",
-			loadUrl: '/canvas/feeling/'+id+'/', //Uses jQuery.load()
+			loadUrl: '/feeling/'+id+'/', //Uses jQuery.load()
 			loadCallback: function() {
 				var interval;
 				var textFill = function() {
