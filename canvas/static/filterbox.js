@@ -70,7 +70,7 @@ var buildFilterBox = function(treedata, checked_nodes) {
 					} else {
 						tree.check_node(nodeId);
 					}
-					$("#filterboxForm").submit();
+					$(this.elementToAdd).toggleClass('active');
 				}, { parentId: categoryNode.data('category'), elementToAdd: elementToAdd }));
 			}
 		}
@@ -82,8 +82,8 @@ var buildFilterBox = function(treedata, checked_nodes) {
 			} else {
 				tree.check_node(nodeId);
 			}
-			$("#filterboxForm").submit();
-		}, { category: category }));
+			this.node.toggleClass('active');
+		}, { node: categoryNode, category: category }));
 	}
 };
 
@@ -103,6 +103,7 @@ var collapseFilterBox = function() {
 		complete: function() {
 			// make arrow reappear
 			$("#menu #menuArrow").show();
+			$("#filterboxForm").submit();
 		}
 	});
 

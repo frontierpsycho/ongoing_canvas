@@ -7,14 +7,16 @@ function loadTree(treedata, checked_nodes) {
 	}
 
 	var tree = $('#feelingtree').bind("loaded.jstree", function (event, data) {
-		expandFilterBox();
+		if(typeof(checked_nodes) === "undefined" || checked_nodes.length == 0) {
+			expandFilterBox();
 		/*for(var node in checked_nodes) {
 			console.log('Got',checked_nodes[node], 'must load', data.inst._get_parent("#"+checked_nodes[node]+"_node"));
 			initially_load.push("#virtue_node");
 			//initially_load.push("#"+checked_nodes[node]+"_node");
 		}*/
-		for(var i = 0; i < checked_nodes.length; i++) {
-			data.inst.check_node("#"+checked_nodes[i]+"_node");
+			for(var i = 0; i < checked_nodes.length; i++) {
+				data.inst.check_node("#"+checked_nodes[i]+"_node");
+			}
 		}
 	})
 	.jstree({
