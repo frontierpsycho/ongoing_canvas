@@ -41,7 +41,6 @@ $(function() {
 
 var buildFilterBox = function(treedata, checked_nodes) {
 	var tree = $.jstree._reference("#feelingtree");
-	console.log(checked_nodes);
 
 	for(var i = 0; i < treedata.length; i++) {
 		var treeNode = treedata[i];
