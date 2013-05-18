@@ -70,6 +70,7 @@ var buildFilterBox = function(treedata, checked_nodes) {
 						tree.check_node(nodeId);
 					}
 					$(this.elementToAdd).toggleClass('active');
+					APP.filtersChanged = true;
 				}, { parentId: categoryNode.data('category'), elementToAdd: elementToAdd }));
 			}
 		}
@@ -82,6 +83,7 @@ var buildFilterBox = function(treedata, checked_nodes) {
 				tree.check_node(nodeId);
 			}
 			this.node.toggleClass('active');
+			APP.filtersChanged = true;
 		}, { node: categoryNode, category: category }));
 	}
 };
@@ -102,7 +104,9 @@ var collapseFilterBox = function() {
 		complete: function() {
 			// make arrow reappear
 			$("#menu #menuArrow").show();
-			$("#filterboxForm").submit();
+			if(APP.filtersChanged) {
+				$("#filterboxForm").submit();
+			}
 		}
 	});
 

@@ -111,6 +111,8 @@ $(function() {
 
 	buildFilterBox(treedata, checked_nodes);
 
+	APP.filtersChanged = false;
+
 	var timer;
 
 	$("#treeSearch").keyup(function() {
