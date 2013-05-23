@@ -1,5 +1,5 @@
 body {
-	background-color: #5a5a5a;
+	background-color: #fff;
 	margin: 0px auto;
 	width: 960px;
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
@@ -73,12 +73,12 @@ a:link { text-decoration: none; }
 }
 
 #filterbox {
-	background-color: #221E1F;
+	background-color: rgba(34, 30, 31, 0.95);
 	color: #808080;
 	z-index: 10;
 	margin: 0 auto;
 	width: 960px;
-	height: 200px;
+	height: 201px;
 	overflow: hidden;
 	font-weight: bold;
 	display: none;

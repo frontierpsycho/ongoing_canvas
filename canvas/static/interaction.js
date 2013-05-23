@@ -19,7 +19,7 @@ function add_interaction(element, id, colour) {
 			loadCallback: function() {
 				var interval;
 				var textFill = function() {
-					$("div#popup div.textfill").textfill( { maxFontPixels: 72 } );
+					$("div#popup div.textfill").textfill( { maxFontPixels: 500 } );
 					window.clearInterval(interval);
 				}
 				var textFillFunction = function(count) {
