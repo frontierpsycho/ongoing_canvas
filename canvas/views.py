@@ -79,10 +79,8 @@ class PlaygroundView(CanvasView):
 					if self.form.cleaned_data[intensity]:
 						self.intensities.append(index)
 
-				if not self.intensities:
-					self.intensities = range(4)
-
 				self.blackwhite = self.form.cleaned_data['blackwhite']
+				playground_form_generator.blackwhite = self.blackwhite
 
 				self.feelings.extend(self.request.GET.getlist('feeling'))
 				if self.feelings:

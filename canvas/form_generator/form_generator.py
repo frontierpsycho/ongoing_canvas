@@ -30,6 +30,7 @@ class FormGenerator:
 		self.feelingdata = list(FeelingData.objects.order_by("postdatetime")[:200])
 		self.latest_postdatetime = self.feelingdata[-1].postdatetime if len(self.feelingdata) > 0 else datetime.datetime.min
 		self.counter = 0
+		self.blackwhite = False
 		while(ongoing):
 			self.add_feeling()
 			time.sleep(2)
@@ -124,8 +125,11 @@ class FormGenerator:
 				shape = Shape(self.shapes[current_group_name][0], feeling_data)
 			except KeyError:
 				shape = Shape(self.shapes['default'][0], feeling_data)
-			
-			colour = FormGenerator.get_colour(self.settings["Coloring schemes"][current_group_name][subgroup_index])
+
+			if self.blackwhite:
+				colour = [(0, 100, 0)]
+			else:
+				colour = FormGenerator.get_colour(self.settings["Coloring schemes"][current_group_name][subgroup_index])
 			shape.colour = "hsl(%d, %d, %d)" % colour[0]
 			remove_list = self.placement_strategy.place(feeling_data.id, shape)
 			return shape, remove_list
