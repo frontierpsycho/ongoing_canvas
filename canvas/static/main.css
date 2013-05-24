@@ -185,6 +185,20 @@ a:link { text-decoration: none; }
 	text-shadow: 0 0 3px rgba(255, 255, 255, 0.65);
 }
 
+#filterbox div.right > table {
+	margin: 7px 0;
+}
+
+#filterbox div.right > table tr > td > span.subCategorySquare {
+	font-size: 10px;
+	text-align: center;
+	line-height: 10px;
+}
+
+#filterbox div.right > table tr > td > span.subCategorySquare:hover {
+	color: #FFF;
+}
+
 .subCategorySquare {
 	width: 10px;
 	height: 10px;
@@ -203,6 +217,7 @@ a:link { text-decoration: none; }
 td.active > .subCategorySquare {
 	border-color: #FFF;
 	box-shadow: 0 0 3px rgba(255, 255, 255, 0.65);
+	color: #FFF;
 }
 
 div#submenus {

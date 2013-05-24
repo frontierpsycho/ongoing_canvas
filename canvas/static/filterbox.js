@@ -39,7 +39,7 @@ $(function() {
 	});
 });
 
-var buildFilterBox = function(treedata, checked_nodes) {
+var buildFilterBox = function(treedata, checked_nodes, special) {
 	var tree = $.jstree._reference("#feelingtree");
 
 	for(var i = 0; i < treedata.length; i++) {
@@ -85,6 +85,30 @@ var buildFilterBox = function(treedata, checked_nodes) {
 			this.node.toggleClass('active');
 			APP.filtersChanged = true;
 		}, { node: categoryNode, category: category }));
+	}
+
+	var specialNames = ['blackwhite', 'intensity0', 'intensity1','intensity2', 'intensity3']
+	var activateSpecial = function(name) {
+		return function() {
+			$(this).parent('td').toggleClass('active');
+			$("#filterboxForm #id_"+name).val($(this).parent('td').hasClass('active'));
+			APP.filtersChanged = true;
+		};
+	};
+	for(var i = 0; i < specialNames.length; i++) {
+		if(specialNames[i].indexOf('intensity') == 0) {
+			// this is an intensity, if activated add class
+			intensity = parseInt(specialNames[i].charAt(specialNames[i].length - 1));
+			if(special.intensities.indexOf(intensity) != -1) {
+				$("#"+specialNames[i]).parent('td').addClass('active');
+			}
+		} else {
+			// this is blackwhite, if activated add class
+			if(special.blackwhite) {
+				$("#"+specialNames[i]).parent('td').addClass('active');
+			}
+		}
+		$("#"+specialNames[i]).click(activateSpecial(specialNames[i]));
 	}
 };
 

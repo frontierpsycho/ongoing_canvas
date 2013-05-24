@@ -80,25 +80,30 @@ class FormGenerator:
 		else:
 			return None
 
-	def expand_feeling_list(self, name_list):
-		'''Return a full list of feelings from a list of feelings or feeling group names.
-		
+	def expand_feeling_list(self, name_list, intensity_list=[0, 1, 2, 3]):
+		"""Return a full list of feelings from a list of feelings or feeling group names.
+
 		The list can contain group or subgroup names in the form
-		'categoryname_subgroupnumber', or plain feeling names. 
-		'''
+		'categoryname_subgroupnumber', or plain feeling names.
+		"""
+		if not intensity_list:
+			intensity_list = range(4)
 		result = []
 		for name in name_list:
 			if name in self.settings["Feeling groups"]:
-				result.extend([item for sublist in self.settings["Feeling groups"][name] for item in sublist])
+				for intensity in intensity_list:
+					for item in self.settings["Feeling groups"][name][intensity]:
+						result.append(item)
 			elif re.match(r'\w+_\d+', name):
 				m = re.match(r'(\w+)_(\d+)', name)
 				group = m.group(1)
 				subgroup = int(m.group(2))
-				try:
-					result.extend(self.settings["Feeling groups"][group][subgroup])
-				except KeyError, IndexError:
-					# invalid name, pass
-					pass
+				if subgroup in intensity_list:
+					try:
+						result.extend(self.settings["Feeling groups"][group][subgroup])
+					except KeyError, IndexError:
+						# invalid name, pass
+						pass
 			else:
 				# either a plain feeling or invalid input
 				tupleOrNone = self.get_feeling_coordinates(name)
@@ -114,7 +119,7 @@ class FormGenerator:
 		shape = None
 		tupleOrNone = self.get_feeling_coordinates(feeling_data.feeling.name)
 		if tupleOrNone:
-			(current_group_name,subgroup_index) = tupleOrNone
+			(current_group_name, subgroup_index) = tupleOrNone
 			try:
 				shape = Shape(self.shapes[current_group_name][0], feeling_data)
 			except KeyError:
@@ -123,8 +128,8 @@ class FormGenerator:
 			colour = FormGenerator.get_colour(self.settings["Coloring schemes"][current_group_name][subgroup_index])
 			shape.colour = "hsl(%d, %d, %d)" % colour[0]
 			remove_list = self.placement_strategy.place(feeling_data.id, shape)
-			return shape,remove_list
-		return None,None # always return tuple
+			return shape, remove_list
+		return None, None  # always return tuple
 
 
 	def add_shape(self, feeling_data):

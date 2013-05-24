@@ -59,24 +59,34 @@ class PlaygroundView(CanvasView):
 	def get_queryset(self):
 		filters = []
 		self.feelings = []
-		self.selection = False
+		self.date = None
+		self.intensities = []
+		self.blackwhite = False
 
 		playground_form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, settings.SHAPE_HEIGHT, settings.SHAPE_WIDTH, grid=[], depth=1))
 
 		if self.request.GET:
 			self.form = PlaygroundFilterForm(self.request.GET)
 			if self.form.is_valid(): # All validation rules pass
-				self.selection = True # something was selected
-
 				self.date = self.form.cleaned_data['date']
 
 				if self.date:
 					# ugly filter to get data from specific date
 					filters.extend([Q(postdatetime__gte=datetime.datetime.combine(self.date, datetime.time.min)), Q(postdatetime__lte=datetime.datetime.combine(self.date, datetime.time.max))])
 
+				intensities = ["intensity%d" % i for i in range(4)]
+				for index, intensity in enumerate(intensities):
+					if self.form.cleaned_data[intensity]:
+						self.intensities.append(index)
+
+				if not self.intensities:
+					self.intensities = range(4)
+
+				self.blackwhite = self.form.cleaned_data['blackwhite']
+
 				self.feelings.extend(self.request.GET.getlist('feeling'))
 				if self.feelings:
-					filters.append(Q(feeling__name__in=playground_form_generator.expand_feeling_list(self.feelings)))
+					filters.append(Q(feeling__name__in=playground_form_generator.expand_feeling_list(self.feelings, intensity_list=self.intensities)))
 		else:
 			self.form = PlaygroundFilterForm()
 
@@ -100,7 +110,8 @@ class PlaygroundView(CanvasView):
 		context['form'] = self.form
 		context['feelingtree'] = self.feelingtree
 		context['checked_nodes'] = json.dumps(self.feelings)
-		if self.selection:
+		context['special'] = json.dumps({'intensities': self.intensities, 'blackwhite': self.blackwhite})
+		if self.date:
 			context['chosen_date'] = self.date
 
 		return context

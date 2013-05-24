@@ -61,7 +61,19 @@
 			</table>
 		</div>
 		<div class="filterboxSection right">
-			<button><a>Apply Filters</a></button>
+			<table>
+				<tr>
+					<td class="catName">No color</td>
+					<td><span class="subCategorySquare" id="blackwhite" style="background-image: url({% get_static_prefix %}images/blackwhite.png)"></span></td>
+				</tr>
+				<tr>
+					<td class="catName">Volume</td>
+					<td><span class="subCategorySquare" id="intensity0">4</span></td>
+					<td><span class="subCategorySquare" id="intensity1">3</span></td>
+					<td><span class="subCategorySquare" id="intensity2">2</span></td>
+					<td><span class="subCategorySquare" id="intensity3">1</span></td>
+				</tr>
+			</table>
 			<a href="{% url 'playground' %}"><button>Clear Filters</button></a>
 		</div>
 		<div class="filterboxFooter">
@@ -100,6 +112,7 @@
 $(function() {
 	var treedata = {{ feelingtree|safe }};
 	var checked_nodes = {{ checked_nodes|safe }};
+	var special = {{ special|safe }};
 	$.jstree._themes="/static/themes/";
 	var tree = loadTree(treedata, checked_nodes);
 
@@ -109,7 +122,7 @@ $(function() {
 	add_interaction(APP.shapes["{{ shape.fd.id }}"], {{ shape.fd.id }}, "{{ shape.colour }}");
 {% endfor %}
 
-	buildFilterBox(treedata, checked_nodes);
+	buildFilterBox(treedata, checked_nodes, special);
 
 	APP.filtersChanged = false;
 
