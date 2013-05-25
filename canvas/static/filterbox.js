@@ -47,8 +47,10 @@ var buildFilterBox = function(treedata, checked_nodes, special) {
 		var category = treeNode.data.charAt(0).toUpperCase() + treeNode.data.substring(1);
 		var categoryNode = $("td.catName:contains('"+category+"')");
 		categoryNode.data('category', "#"+treeNode.attr.id);
+		var categoryActive = false;
 		if($.inArray(treeNode.attr.id.replace(/_node$/, ""), checked_nodes) > -1) {
 			categoryNode.addClass("active");
+			categoryActive = true;
 		}
 
 		if(treeNode.hasOwnProperty('children')) {
@@ -56,7 +58,7 @@ var buildFilterBox = function(treedata, checked_nodes, special) {
 				var child = treeNode.children[j];
 				var checkboxId = "#"+child.attr.id;
 				var elementToAdd = $.parseHTML('<td data-category="'+checkboxId+'">'+child.data+'</td>')[0];
-				if($.inArray(child.attr.id.replace(/_node$/, ""), checked_nodes) > -1) {
+				if(categoryActive || $.inArray(child.attr.id.replace(/_node$/, ""), checked_nodes) > -1) {
 					$(elementToAdd).addClass("active");
 				}
 
