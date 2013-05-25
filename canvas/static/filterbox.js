@@ -83,6 +83,11 @@ var buildFilterBox = function(treedata, checked_nodes, special) {
 				tree.check_node(nodeId);
 			}
 			this.node.toggleClass('active');
+			if(this.node.hasClass('active')) {
+				this.node.siblings().addClass('active');
+			} else {
+				this.node.siblings().removeClass('active');
+			}
 			APP.filtersChanged = true;
 		}, { node: categoryNode, category: category }));
 	}

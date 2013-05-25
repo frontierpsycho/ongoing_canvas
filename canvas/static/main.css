@@ -184,6 +184,11 @@ a:link { text-decoration: none; }
 	text-shadow: 0 0 3px rgba(255, 255, 255, 0.65);
 }
 
+#filterbox div > table tr > td.rowName {
+	padding: 0;
+	width: 90px;
+}
+
 #filterbox div.right > table {
 	margin: 7px 0;
 }
