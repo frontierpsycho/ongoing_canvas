@@ -72,8 +72,20 @@ var buildFilterBox = function(treedata, checked_nodes, special) {
 						tree.check_node(nodeId);
 					}
 					$(this.elementToAdd).toggleClass('active');
+
+					// if whole row is selected, select category as well
+					// WARNING: MESSES UP NEXT CHECK, MUST BE FIRST
+					if($(this.elementToAdd).siblings(":not(.catName)").not('.active').length == 0) {
+						this.parent.addClass('active');
+					}
+
+					// if category selected, and I was just deselected, deselect category
+					if( !$(this.elementToAdd).hasClass('active') && this.parent.hasClass('active') ) {
+						this.parent.removeClass('active');
+					}
+
 					APP.filtersChanged = true;
-				}, { parentId: categoryNode.data('category'), elementToAdd: elementToAdd }));
+				}, { parent: categoryNode, elementToAdd: elementToAdd }));
 			}
 		}
 
