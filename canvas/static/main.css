@@ -259,9 +259,10 @@ div#submenus {
 }
 
 #popup div#header {
-	margin: 20px 0;
+	padding: 20px 0;
 	border-bottom: 2px solid #FFF;
 	font-size: 48px;
+	margin: 0 0 40px 0;
 }
 
 #popup div#feelingName {

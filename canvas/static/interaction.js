@@ -38,7 +38,7 @@ function add_interaction(element, id, colour) {
 				});
 			},
 			speed: 10,
-			position: ['auto','auto'],
+			position: ['auto', 0],
 			positionStyle: 'fixed'
 		});
 	});
