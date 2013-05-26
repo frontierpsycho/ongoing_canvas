@@ -3,3 +3,5 @@
 *~
 production_settings.py
 local_settings.py
+CACHE/
+.sass-cache/
