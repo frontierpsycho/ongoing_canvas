@@ -79,7 +79,13 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    #'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'compressor.finders.CompressorFinder',
+)
+
+COMPRESS_PRECOMPILERS = (
+    ('text/coffeescript', 'coffee --compile --stdio'),
+    ('text/x-scss', 'sass --scss {infile} {outfile}'),
 )
 
 # Make this unique, and don't share it with anybody.
@@ -89,7 +95,7 @@ SECRET_KEY = 's!w@r6izdvg&+y@+=_9a@30m0#qpwuxy7(h5^n@goq*2@_=ihz'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    #'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -126,6 +132,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'compressor',
     'south',
     'django_socketio',
     'canvas'
@@ -140,9 +147,9 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'filters': {
-         'require_debug_false': {
-             '()': 'django.utils.log.RequireDebugFalse'
-         }
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
     },
     'handlers': {
         'mail_admins': {
@@ -165,9 +172,9 @@ CANVAS_HEIGHT = 640
 CANVAS_WIDTH = 960
 SHAPE_HEIGHT = 40
 SHAPE_WIDTH = 40
-INTERVAL=1
+INTERVAL = 1
 
-SOCKETIO_PORT=9001
+SOCKETIO_PORT = 9001
 
 try:
     from local_settings import *

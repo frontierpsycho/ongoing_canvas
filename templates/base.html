@@ -1,9 +1,12 @@
 {% load static %}
 {% load base_extras %}
+{% load compress %}
 <html>
 <head>
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href="{% get_static_prefix %}main.css" /> 
+    {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% get_static_prefix %}main.scss" />
+    {% endcompress %}
 </head>
 <body>
 	<div id="menu">

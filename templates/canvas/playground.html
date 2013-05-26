@@ -2,6 +2,7 @@
 
 {% load static %}
 {% load canvas_tags %}
+{% load compress %}
 
 {% block title %}Ongoing canvas{% endblock %}
 
@@ -13,11 +14,13 @@
 <script type="text/javascript" src="{% get_static_prefix %}jquery.jstree.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}jquery.textfill.min.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}jquery.bpopup.min.js"></script>
+{% compress js %}
 <!-- done importing libraries, import app specific stuff -->
 <script type="text/javascript" src="{% get_static_prefix %}init.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}loadtree.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}filterbox.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}interaction.js"></script>
+{% endcompress %}
 {% endblock %}
 
 {% block content %}
