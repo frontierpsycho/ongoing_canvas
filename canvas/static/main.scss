@@ -30,7 +30,7 @@ a:link {
 
 #menuArrow {
   position: absolute;
-  left: 490px;
+  left: 471px;
   top: 60px;
   div#openButton {
     width: 20px;
@@ -40,11 +40,13 @@ a:link {
 
 #menuList {
   margin: 0 auto;
-  width: 962px;
+  #width: 962px;
   text-align: center;
   font-size: 21px;
   font-weight: bold;
   line-height: 80px;
+  position: relative;
+  left: -10px;
   > ul {
     list-style-type: none;
     margin: 0 auto;
