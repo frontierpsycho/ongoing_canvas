@@ -83,8 +83,8 @@ class PlaygroundView(CanvasView):
 				playground_form_generator.blackwhite = self.blackwhite
 
 				self.feelings.extend(self.request.GET.getlist('feeling'))
-				if self.feelings:
-					filters.append(Q(feeling__name__in=playground_form_generator.expand_feeling_list(self.feelings, intensity_list=self.intensities)))
+
+				filters.append(Q(feeling__name__in=playground_form_generator.expand_feeling_list(self.feelings, intensity_list=self.intensities)))
 		else:
 			self.form = PlaygroundFilterForm()
 

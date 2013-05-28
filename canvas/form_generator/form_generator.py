@@ -88,7 +88,10 @@ class FormGenerator:
 		'categoryname_subgroupnumber', or plain feeling names.
 		"""
 		if not intensity_list:
-			intensity_list = range(4)
+			intensity_list = range(4)  # in case an empty list is given
+		if not name_list:
+			name_list = self.settings["Feeling groups"].keys()
+
 		result = []
 		for name in name_list:
 			if name in self.settings["Feeling groups"]:
