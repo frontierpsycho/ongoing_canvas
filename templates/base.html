@@ -5,8 +5,9 @@
 <head>
     <title>{% block title %}{% endblock %}</title>
     {% compress css %}
-    <link rel="stylesheet" type="text/x-scss" href="{% get_static_prefix %}main.scss" />
+    <link rel="stylesheet" type="text/x-scss" href="{% get_static_prefix %}css/main.scss" />
     {% endcompress %}
+    {% block head-includes %}{% endblock %}
 </head>
 <body>
 	<div id="menu">

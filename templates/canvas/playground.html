@@ -14,6 +14,7 @@
 <script type="text/javascript" src="{% get_static_prefix %}jquery.jstree.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}jquery.textfill.min.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}jquery.bpopup.min.js"></script>
+<script type="text/javascript" src="{% get_static_prefix %}jquery-ui-1.10.3.custom.min.js"></script>
 {% compress js %}
 <!-- done importing libraries, import app specific stuff -->
 <script type="text/javascript" src="{% get_static_prefix %}init.js"></script>
@@ -23,13 +24,17 @@
 {% endcompress %}
 {% endblock %}
 
+{% block head-includes %}
+<link rel="stylesheet" type="text/css" href="{% get_static_prefix %}css/vader/jquery-ui-1.10.3.custom.min.css" />
+{% endblock %}
+
 {% block content %}
 <div id="filterbox">
 	<div class="filterboxContent">
 		<div class="filterboxHeader">Show me:</div>
 		<div class="filterboxSection left">
 			<button id="feelingChoose_Toggle">by Specific Mood</button>
-			<button id="dateChoose_Toggle">by Date {{ chosen_date }}</button>
+			<input type="text" id="id_date" placeholder="by Date {{ chosen_date }}" name="date" form="filterboxForm"/>
 		</div>
 		<div class="filterboxSection">
 			<table>
@@ -96,7 +101,11 @@
 	<form id="filterboxForm" action="">
 		{% csrf_token %}
 		<div class="submenu" id="dateChoose">
-			{{ form }}
+			{{ form.intensity0 }}
+			{{ form.intensity1 }}
+			{{ form.intensity2 }}
+			{{ form.intensity3 }}
+			{{ form.blackwhite }}
 			<input type="submit" value="Display" /><br />
 		</div>
 	</form>

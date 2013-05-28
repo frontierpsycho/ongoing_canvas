@@ -12,6 +12,12 @@ $(function() {
 		$("#"+toggleTarget).css({left: position.left, top: position.top }).slideToggle();
 	});
 
+	$("#filterbox #id_date").datepicker({
+		onSelect: function() {
+			APP.filtersChanged = true;
+		}
+	});
+
 	$("#submenus #feelingChoose button").click(function() {
 		$("#filterboxForm").submit();
 	});

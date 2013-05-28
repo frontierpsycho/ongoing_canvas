@@ -17,6 +17,7 @@ body {
   margin: 0px auto;
   width: $total-width;
   font-family: "Trebuchet MS", Helvetica, sans-serif;
+  color: #EEE;
 }
 
 a:link {
@@ -136,6 +137,16 @@ a:visited {
       border-right: #474444 2px solid;
       margin: 0;
       padding-right: 20px;
+      input {
+        border: none;
+        outline: none;
+        border-radius: 4px;
+        height: 36px;
+        color: #808080;
+        width: 100%;
+        text-align: center;
+        font-weight: bold;
+      }
     }
     &.right {
       border-left: #474444 2px solid;
@@ -304,4 +315,8 @@ div.actualButton {
   width: inherit;
   height: inherit;
   cursor: pointer;
+}
+
+#ui-datepicker-div {
+  font-size: 9.5px;
 }
