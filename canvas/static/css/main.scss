@@ -169,6 +169,10 @@ a:visited {
       background-color: rgba(0, 0, 0, 0);
       border: 2px #808080 solid;
     }
+    &.right button:hover {
+      color: #FFF;
+      border-color: #FFF;
+    }
     button:first-of-type {
       margin-bottom: 8px;
     }
