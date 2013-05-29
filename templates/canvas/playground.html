@@ -33,7 +33,8 @@
 	<div class="filterboxContent">
 		<div class="filterboxHeader">Show me:</div>
 		<div class="filterboxSection left">
-			<button id="feelingChoose_Toggle">by Specific Mood</button>
+			<input type="text" id="specificFeeling" placeholder="by Specific Mood" name="specificFeeling" form="filterboxForm" {% if specificFeeling %}value="{{ specificFeeling }}"{% endif %}/>
+			<span id="specificFeelingWrapper"></span>
 			<input type="text" id="id_date" placeholder="by Date {{ chosen_date }}" name="date" form="filterboxForm"/>
 		</div>
 		<div class="filterboxSection">
@@ -122,7 +123,8 @@
 {% block inline-javascript %}
 <script type="text/javascript">
 $(function() {
-	var treedata = {{ feelingtree|safe }};
+	var treedata = {{ feelingtree|safe }}
+	var search_list = {{ search_list|safe }};
 	var checked_nodes = {{ checked_nodes|safe }};
 	var special = {{ special|safe }};
 	$.jstree._themes="/static/themes/";
@@ -135,6 +137,16 @@ $(function() {
 {% endfor %}
 
 	buildFilterBox(treedata, checked_nodes, special);
+
+	$("#filterbox #specificFeeling").autocomplete({
+		source: search_list,
+		appendTo: "#specificFeelingWrapper",
+		change: function() {
+			APP.filtersChanged = true;
+		}
+	}).focus(function(event) {
+		$(this).val("");
+	});
 
 	APP.filtersChanged = false;
 

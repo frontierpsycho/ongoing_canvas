@@ -112,7 +112,7 @@ class FormGenerator:
 				# either a plain feeling or invalid input
 				tupleOrNone = self.get_feeling_coordinates(name)
 				if tupleOrNone is not None:
-					result.extend(self.settings["Feeling groups"][tupleOrNone[0]][tupleOrNone[1]])
+					result.append(name)
 
 		return result
 
@@ -146,19 +146,23 @@ class FormGenerator:
 
 		return shape, remove_list
 
-	def feelings_to_json(self):
+	def feeling_categories_to_json(self):
 		jsonFeelings = []
 		for category, subgroups in self.settings['Feeling groups'].items():
 			newNode = {'data': category, 'attr': {'id': category+'_node' }, 'children': []}
-			for i,subgroup in enumerate(subgroups):
+			for i, subgroup in enumerate(subgroups):
 				colour = FormGenerator.get_colour(self.settings["Coloring schemes"][category][i])
 				# OH LORD WHAT AN UGLY HACK - but a necessary evil, my son
 				newSubNode = { 'data': "<span class='subCategorySquare' style='background-color: hsl(%d, %d%%, %d%%) !important;'></span>" % colour[0], 'attr': {'id': "%s_%d_node" % (category, i)}, 'children': []}
-				for feeling in subgroup:
-					newSubNode['children'].append({'data': feeling, 'attr': { 'id': feeling+"_node" } })
+				#for feeling in subgroup:
+				#	newSubNode['children'].append({'data': feeling, 'attr': { 'id': feeling+"_node" } })
 				newNode['children'].append(newSubNode)
 			jsonFeelings.append(newNode)
 
+		return json.dumps(jsonFeelings)
+
+	def feelings_to_json(self):
+		jsonFeelings = [feeling for subgroups in self.settings['Feeling groups'].values() for subgroup in subgroups for feeling in subgroup]
 		return json.dumps(jsonFeelings)
 
 	@staticmethod

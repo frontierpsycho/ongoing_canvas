@@ -83,6 +83,9 @@ class PlaygroundView(CanvasView):
 				playground_form_generator.blackwhite = self.blackwhite
 
 				self.feelings.extend(self.request.GET.getlist('feeling'))
+				if 'specificFeeling' in self.request.GET:
+					self.specificFeeling = self.request.GET['specificFeeling']
+					self.feelings.append(self.specificFeeling)
 
 				filters.append(Q(feeling__name__in=playground_form_generator.expand_feeling_list(self.feelings, intensity_list=self.intensities)))
 		else:
@@ -93,7 +96,8 @@ class PlaygroundView(CanvasView):
 
 		feelingdata = feelingdata[:playground_form_generator.placement_strategy.number_of_cells()]
 		
-		self.feelingtree = playground_form_generator.feelings_to_json()
+		self.feelingtree = playground_form_generator.feeling_categories_to_json()
+		self.search_list = playground_form_generator.feelings_to_json()
 
 		shapes = []
 		for fd in feelingdata:
@@ -107,10 +111,13 @@ class PlaygroundView(CanvasView):
 		context['ongoing'] = False
 		context['form'] = self.form
 		context['feelingtree'] = self.feelingtree
+		context['search_list'] = self.search_list
 		context['checked_nodes'] = json.dumps(self.feelings)
 		context['special'] = json.dumps({'intensities': self.intensities, 'blackwhite': self.blackwhite})
 		if self.date:
 			context['chosen_date'] = self.date
+		if self.specificFeeling:
+			context['specificFeeling'] = self.specificFeeling
 
 		return context
 
