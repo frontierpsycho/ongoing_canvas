@@ -162,7 +162,17 @@ class FormGenerator:
 		return json.dumps(jsonFeelings)
 
 	def feelings_to_json(self):
-		jsonFeelings = [feeling for subgroups in self.settings['Feeling groups'].values() for subgroup in subgroups for feeling in subgroup]
+		jsonFeelings = []
+		for subgroups in self.settings['Feeling groups'].values():
+			for subgroup in subgroups:
+				for feeling in subgroup:
+					tupleOrNone = self.get_feeling_coordinates(feeling)
+					if tupleOrNone:
+						(current_group_name, subgroup_index) = tupleOrNone
+						colour = FormGenerator.get_colour(self.settings["Coloring schemes"][current_group_name][subgroup_index])
+						jsonFeelings.append({ "label": "<span style=\"color: hsl(%d, %d%%, %d%%)\">%s</span>" % (colour[0][0], colour[0][1], colour[0][2], feeling), "value": feeling })
+					else:
+						jsonFeelings.append({ "label": feeling, "value": feeling })
 		return json.dumps(jsonFeelings)
 
 	@staticmethod

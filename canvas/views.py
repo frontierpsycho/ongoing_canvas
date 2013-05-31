@@ -62,6 +62,7 @@ class PlaygroundView(CanvasView):
 		self.date = None
 		self.intensities = []
 		self.blackwhite = False
+		self.specificFeeling = ""
 
 		playground_form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, settings.SHAPE_HEIGHT, settings.SHAPE_WIDTH, grid=[], depth=1))
 

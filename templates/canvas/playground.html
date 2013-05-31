@@ -15,6 +15,7 @@
 <script type="text/javascript" src="{% get_static_prefix %}jquery.textfill.min.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}jquery.bpopup.min.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}jquery-ui-1.10.3.custom.min.js"></script>
+<script type="text/javascript" src="{% get_static_prefix %}jquery.ui.autocomplete.html.js"></script>
 {% compress js %}
 <!-- done importing libraries, import app specific stuff -->
 <script type="text/javascript" src="{% get_static_prefix %}init.js"></script>
@@ -34,7 +35,6 @@
 		<div class="filterboxHeader">Show me:</div>
 		<div class="filterboxSection left">
 			<input type="text" id="specificFeeling" placeholder="by Specific Mood" name="specificFeeling" form="filterboxForm" {% if specificFeeling %}value="{{ specificFeeling }}"{% endif %}/>
-			<span id="specificFeelingWrapper"></span>
 			<input type="text" id="id_date" placeholder="by Date {{ chosen_date }}" name="date" form="filterboxForm"/>
 		</div>
 		<div class="filterboxSection">
@@ -93,6 +93,7 @@
 		</div>
 	</div>
 </div>
+<span id="specificFeelingWrapper"></span>
 <div id="submenus">
 	<div class="submenu" id="feelingChoose">
 		<input type="text" id="treeSearch" /> <button id="searchButton">Search</button>
@@ -143,7 +144,9 @@ $(function() {
 		appendTo: "#specificFeelingWrapper",
 		change: function() {
 			APP.filtersChanged = true;
-		}
+		},
+		minLength: 3,
+		html: true
 	}).focus(function(event) {
 		$(this).val("");
 	});
