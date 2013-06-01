@@ -7,6 +7,7 @@ from django.views.generic import ListView, DetailView
 from django.conf import settings
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render
 
 from django_socketio import broadcast_channel, NoSocket
 
@@ -149,7 +150,11 @@ class FeelingDataDetailView(DetailView):
 		return context
 
 def statistics(request):
-	return "Stats!"
+	feelingDataSize = FeelingData.objects.count()
+	context = {
+		"feelingDataSize": feelingDataSize
+	}
+	return render(request, 'canvas/statistics.html', context)
 
 @csrf_exempt
 def broadcast(request):
