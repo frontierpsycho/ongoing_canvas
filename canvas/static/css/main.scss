@@ -261,6 +261,15 @@ div#submenus {
   display: none;
 }
 
+#statistics {
+  padding: 5px;
+  background-color: #808080;
+  div {
+    padding: 10px;
+    vertical-align: top;
+  }  
+}
+
 #popup {
   color: #FFF;
   display: none;

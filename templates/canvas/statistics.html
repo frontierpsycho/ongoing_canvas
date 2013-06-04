@@ -1,9 +1,49 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block title %}Statistics{% endblock %}
 
+{% block javascript-includes %}
+<script type="text/javascript" src="{% get_static_prefix %}raphael-min.js"></script>
+<script type="text/javascript" src="{% get_static_prefix %}graphael/g.raphael-min.js"></script>
+<script type="text/javascript" src="{% get_static_prefix %}graphael/g.pie-min.js"></script>
+{% endblock %}
+
+{% block inline-javascript %}
+<script type="text/javascript">
+	var paper = new Raphael("feelingsPieChart", 400, 300);
+	
+	paper.piechart(200, 150, 100, {{ feelingCounts|safe }}, { 
+		legend: {{ feelingLegend|safe}},
+		minPercent: 1.5
+	});
+	
+	paper = new Raphael("categoriesPieChart", 400, 300);
+	
+	paper.piechart(200, 150, 100, {{ categoryCounts|safe }}, { 
+		legend: {{ categoryLegend|safe}},
+		minPercent: 1.5
+	});
+</script>
+{% endblock %}
+
 {% block content %}
+<div id="statistics">
 	<div>
 		<h2>Number of collected feelings: {{ feelingDataSize }}</h2>
 	</div>
+	<hr />
+	<div>
+		<h2>Feelings by count</h2>
+		<div id="feelingsPieChart">
+		</div>
+	</div>
+	<hr />
+	<div>
+		<h2>Categories by count</h2>
+		<div id="categoriesPieChart">
+		</div>
+	</div>
+</div>
 {% endblock %}

@@ -1,17 +1,18 @@
 from multiprocessing import Process, Manager
 import datetime
-from collections import OrderedDict
+from collections import OrderedDict, defaultdict
+
 
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView
 from django.conf import settings
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 
 from django_socketio import broadcast_channel, NoSocket
 
-from canvas.models import FeelingData
+from canvas.models import FeelingData, Feeling
 from canvas.form_generator.form_generator import *
 from canvas.form_generator.placement_strategy import GridPlacementStrategy
 from canvas.forms import PlaygroundFilterForm
@@ -151,8 +152,20 @@ class FeelingDataDetailView(DetailView):
 
 def statistics(request):
 	feelingDataSize = FeelingData.objects.count()
+	annotated_feelings = [(annotated_feeling, annotated_feeling.fd_count) for annotated_feeling in Feeling.objects.annotate(fd_count=Count('feelingdata')).order_by('-fd_count') if annotated_feeling.fd_count > 0]
+	categoryCounts = defaultdict(int)
+	for annotated_feeling in annotated_feelings:
+		tupleOrNone = detail_form_generator.get_feeling_coordinates(annotated_feeling[0].name)
+		if tupleOrNone:
+			categoryCounts[tupleOrNone[0]] += annotated_feeling[1]
+	categoryCounts = categoryCounts.items()
+
 	context = {
-		"feelingDataSize": feelingDataSize
+		"feelingDataSize": feelingDataSize,
+		"feelingCounts": json.dumps([t[1] for t in annotated_feelings]),
+		"feelingLegend": json.dumps([t[0].name for t in annotated_feelings]),
+		"categoryCounts": json.dumps([t[1] for t in categoryCounts]),
+		"categoryLegend": json.dumps([t[0] for t in categoryCounts])
 	}
 	return render(request, 'canvas/statistics.html', context)
 
