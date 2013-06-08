@@ -6,6 +6,7 @@ from collections import OrderedDict, defaultdict
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView
 from django.conf import settings
+from django.db import connections
 from django.db.models import Q, Count
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
@@ -159,13 +160,33 @@ def statistics(request):
 		if tupleOrNone:
 			categoryCounts[tupleOrNone[0]] += annotated_feeling[1]
 	categoryCounts = categoryCounts.items()
+	
+	feelingsByMonth = FeelingData.objects.extra(select={'month': connections[FeelingData.objects.db].ops.date_trunc_sql('month', 'postdatetime')}).values('month', 'feeling__name').annotate(Count('pk'))
+	
+	categoryCountsByMonth = defaultdict(lambda: defaultdict(int))
+	for item in feelingsByMonth:
+		month = time.strptime(item['month'], "%Y-%m-%d %H:%M:%S").tm_mon
+		tupleOrNone = detail_form_generator.get_feeling_coordinates(item['feeling__name'])
+		if tupleOrNone:
+			categoryCountsByMonth[month][tupleOrNone[0]] += item['pk__count']
+
+	categories = detail_form_generator.settings["Feeling groups"].keys()
+	monthlyBreakdown = []
+	for category in categories:
+		for month in range(12):
+			monthlyBreakdown.append(categoryCountsByMonth[month][category])
+
+	print monthlyBreakdown
+	print categories
 
 	context = {
 		"feelingDataSize": feelingDataSize,
 		"feelingCounts": json.dumps([t[1] for t in annotated_feelings]),
 		"feelingLegend": json.dumps([t[0].name for t in annotated_feelings]),
 		"categoryCounts": json.dumps([t[1] for t in categoryCounts]),
-		"categoryLegend": json.dumps([t[0] for t in categoryCounts])
+		"categoryLegend": json.dumps([t[0] for t in categoryCounts]),
+		"categories": json.dumps(categories),
+		"monthlyBreakdown": json.dumps(monthlyBreakdown)
 	}
 	return render(request, 'canvas/statistics.html', context)
 

@@ -8,23 +8,54 @@
 <script type="text/javascript" src="{% get_static_prefix %}raphael-min.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}graphael/g.raphael-min.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}graphael/g.pie-min.js"></script>
+<script type="text/javascript" src="{% get_static_prefix %}graphael/g.dot-min.js"></script>
 {% endblock %}
 
 {% block inline-javascript %}
 <script type="text/javascript">
-	var paper = new Raphael("feelingsPieChart", 400, 300);
-	
-	paper.piechart(200, 150, 100, {{ feelingCounts|safe }}, { 
-		legend: {{ feelingLegend|safe}},
-		minPercent: 1.5
-	});
-	
-	paper = new Raphael("categoriesPieChart", 400, 300);
-	
-	paper.piechart(200, 150, 100, {{ categoryCounts|safe }}, { 
-		legend: {{ categoryLegend|safe}},
-		minPercent: 1.5
-	});
+var paper = new Raphael("feelingsPieChart", 400, 300);
+
+paper.piechart(200, 150, 100, {{ feelingCounts|safe }}, { 
+	legend: {{ feelingLegend|safe}},
+	minPercent: 1.5
+});
+
+paper = new Raphael("categoriesPieChart", 400, 300);
+
+paper.piechart(200, 150, 100, {{ categoryCounts|safe }}, { 
+	legend: {{ categoryLegend|safe}},
+	minPercent: 1.5
+});
+
+paper = new Raphael("monthlyBreakdown", 800, 300);
+
+var categories = {{ categories|safe }};
+var xs = []
+var ys = [];
+for(var i = categories.length; i > 0; i--) {
+	console.log(categories.length - i);
+	xs.push(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11); // meh
+	ys.push(i, i, i, i, i, i, i, i, i, i, i, i);
+}
+var data = {{ monthlyBreakdown|safe }};
+var axisx = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+paper.dotchart(10, 10, 800, 300, xs, ys, data, {
+	symbol: "o",
+	max: 10,
+	heat: true,
+	axis: "0 0 1 1",
+	axisxstep: 11,
+	axisystep: categories.length - 1,
+	axisxlabels: axisx,
+	axisxtype: " ",
+	axisytype: " ",
+	axisylabels: categories
+}).hover(function() {
+	this.marker = this.marker || paper.tag(this.x, this.y, this.value, 0, this.r + 2).insertBefore(this);
+	this.marker.show();
+}, function() {
+	this.marker && this.marker.hide();
+});
 </script>
 {% endblock %}
 
@@ -34,16 +65,20 @@
 		<h2>Number of collected feelings: {{ feelingDataSize }}</h2>
 	</div>
 	<hr />
-	<div>
+	<div class="piechart">
 		<h2>Feelings by count</h2>
 		<div id="feelingsPieChart">
 		</div>
 	</div>
-	<hr />
-	<div>
+	<div class="piechart">
 		<h2>Categories by count</h2>
 		<div id="categoriesPieChart">
 		</div>
+	</div>
+	<hr />
+	<div>
+		<h2>Monthly breakdown</h2>
+		<div id="monthlyBreakdown"></div>
 	</div>
 </div>
 {% endblock %}

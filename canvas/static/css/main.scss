@@ -267,7 +267,10 @@ div#submenus {
   div {
     padding: 10px;
     vertical-align: top;
-  }  
+  }
+  div.piechart {
+    display: inline-block;
+  }
 }
 
 #popup {
