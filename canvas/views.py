@@ -170,14 +170,14 @@ def statistics(request):
 		if tupleOrNone:
 			categoryCountsByMonth[month][tupleOrNone[0]] += item['pk__count']
 
-	categories = detail_form_generator.settings["Feeling groups"].keys()
+	categories = sorted(detail_form_generator.settings["Feeling groups"].keys())
+
 	monthlyBreakdown = []
 	for category in categories:
-		for month in range(12):
+		for month in range(1, 13):
 			monthlyBreakdown.append(categoryCountsByMonth[month][category])
 
-	print monthlyBreakdown
-	print categories
+	categories.reverse()  # g.raphael shows these reversed
 
 	context = {
 		"feelingDataSize": feelingDataSize,
