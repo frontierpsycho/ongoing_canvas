@@ -9,12 +9,13 @@ import urllib
 import urllib2
 import os
 
-sys.path.append('../../../')
-sys.path.append('../')
+#sys.path.append('../../../')
+#sys.path.append('../../')
+#sys.path.append('../')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'ongoing_canvas.settings'
 from ongoing_canvas import settings
 
-from canvas.models import FeelingData
+from ongoing_canvas.canvas.models import FeelingData
 
 logging.basicConfig()
 logger = logging.getLogger("canvas.form_generator")

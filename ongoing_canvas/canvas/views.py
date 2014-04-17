@@ -13,15 +13,15 @@ from django.shortcuts import render
 
 from django_socketio import broadcast_channel, NoSocket
 
-from canvas.models import FeelingData, Feeling
-from canvas.form_generator.form_generator import *
-from canvas.form_generator.placement_strategy import GridPlacementStrategy
-from canvas.forms import PlaygroundFilterForm
+from ongoing_canvas.canvas.models import FeelingData, Feeling
+from ongoing_canvas.canvas.form_generator.form_generator import *
+from ongoing_canvas.canvas.form_generator.placement_strategy import GridPlacementStrategy
+from ongoing_canvas.canvas.forms import PlaygroundFilterForm
 
 def start_generator(cells_manager, grid_manager):
-	form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, settings.SHAPE_HEIGHT, settings.SHAPE_WIDTH, grid_manager, depth=1), cells_manager, ongoing=True)
+	form_generator = FormGenerator("ongoing_canvas/canvas/form_data/colors.json", "ongoing_canvas/canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, settings.SHAPE_HEIGHT, settings.SHAPE_WIDTH, grid_manager, depth=1), cells_manager, ongoing=True)
 
-detail_form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, settings.SHAPE_HEIGHT, settings.SHAPE_WIDTH, depth=1))
+detail_form_generator = FormGenerator("ongoing_canvas/canvas/form_data/colors.json", "ongoing_canvas/canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, settings.SHAPE_HEIGHT, settings.SHAPE_WIDTH, depth=1))
 
 manager = Manager()
 
@@ -67,7 +67,7 @@ class PlaygroundView(CanvasView):
 		self.blackwhite = False
 		self.specificFeeling = ""
 
-		playground_form_generator = FormGenerator("canvas/form_data/colors.json", "canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, settings.SHAPE_HEIGHT, settings.SHAPE_WIDTH, grid=[], depth=1))
+		playground_form_generator = FormGenerator("ongoing_canvas/canvas/form_data/colors.json", "ongoing_canvas/canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, settings.SHAPE_HEIGHT, settings.SHAPE_WIDTH, grid=[], depth=1))
 
 		if self.request.GET:
 			self.form = PlaygroundFilterForm(self.request.GET)

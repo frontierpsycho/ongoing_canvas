@@ -135,7 +135,7 @@ INSTALLED_APPS = (
     'compressor',
     'south',
     'django_socketio',
-    'canvas'
+    'ongoing_canvas.canvas'
 )
 
 # A sample logging configuration. The only tangible logging
