@@ -35,7 +35,7 @@
 		<div class="filterboxHeader">Show me:</div>
 		<div class="filterboxSection left">
 			<input type="text" id="specificFeeling" placeholder="by Specific Mood" name="specificFeeling" form="filterboxForm" {% if specificFeeling %}value="{{ specificFeeling }}"{% endif %}/>
-			<input type="text" id="id_date" placeholder="by Date {{ chosen_date }}" name="date" form="filterboxForm"/>
+			<input type="text" id="id_date" placeholder="by Date" name="date" form="filterboxForm" {% if chosen_date %}value="{{ chosen_date|date:"m/d/Y" }}"{% endif %}/>
 		</div>
 		<div class="filterboxSection">
 			<table>
