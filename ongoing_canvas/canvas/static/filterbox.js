@@ -135,6 +135,24 @@ var buildFilterBox = function(treedata, checked_nodes, special) {
 		}
 		$("#"+specialNames[i]).click(activateSpecial(specialNames[i]));
 	}
+
+  if(filtersEmpty(checked_nodes, special)) {
+    expandFilterBox();
+  }
+};
+
+var filtersEmpty = function(checked_nodes, special) {
+  if (typeof(checked_nodes) !== "undefined" && checked_nodes.length > 0) {
+    return false;
+  }
+
+  if (typeof(special) !== "undefined") {
+    if (special.blackwhite || typeof(special.intensities) !== "undefined" && special.intensities.length > 0) {
+      return false;
+    }
+  }
+
+  return true;
 };
 
 var expandFilterBox = function() {
@@ -146,7 +164,7 @@ var expandFilterBox = function() {
 
 	// make arrow disappear
 	$("#menu #menuArrow").hide();
-}
+};
 
 var collapseFilterBox = function() {
 	$("#filterbox").slideToggle({
@@ -159,4 +177,4 @@ var collapseFilterBox = function() {
 		}
 	});
 
-}
+};
