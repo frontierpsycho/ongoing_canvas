@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load static %}
+{% load base_extras %}
 {% load canvas_tags %}
 {% load compress %}
 
@@ -34,7 +35,7 @@
 	<div class="filterboxContent">
 		<div class="filterboxHeader">Show me:</div>
 		<div class="filterboxSection left">
-			<input type="text" id="specificFeeling" placeholder="by Specific Mood" name="specificFeeling" form="filterboxForm" {% if specificFeeling %}value="{{ specificFeeling }}"{% endif %}/>
+			<input type="text" id="specific_feeling" placeholder="by Specific Mood" name="specific_feeling" form="filterboxForm" {% if specific_feeling %}value="{{ specific_feeling }}"{% endif %}/>
 			<input type="text" id="id_date" placeholder="by Date" name="date" form="filterboxForm" {% if chosen_date %}value="{{ chosen_date|date:"m/d/Y" }}"{% endif %}/>
 		</div>
 		<div class="filterboxSection">
@@ -93,7 +94,7 @@
 		</div>
 	</div>
 </div>
-<span id="specificFeelingWrapper"></span>
+<span id="specific_feelingWrapper"></span>
 <div id="submenus">
 	<div class="submenu" id="feelingChoose">
 		<input type="text" id="treeSearch" /> <button id="searchButton">Search</button>
@@ -128,6 +129,8 @@ $(function() {
 	var search_list = {{ search_list|safe }};
 	var checked_nodes = {{ checked_nodes|safe }};
 	var special = {{ special|safe }};
+	var specific_feeling = {{ specific_feeling|format:"\"%s\""|default:"null"|safe }};
+	var chosen_date = {{ chosen_date|format:"\"%s\""|default:"null"|safe }};
 	$.jstree._themes="/static/themes/";
 	var tree = loadTree(treedata, checked_nodes);
 
@@ -137,11 +140,11 @@ $(function() {
 	add_interaction(APP.shapes["{{ shape.fd.id }}"], {{ shape.fd.id }}, "{{ shape.colour }}");
 {% endfor %}
 
-	buildFilterBox(treedata, checked_nodes, special);
+	buildFilterBox(treedata, checked_nodes, special, specific_feeling, chosen_date);
 
-	$("#filterbox #specificFeeling").autocomplete({
+	$("#filterbox #specific_feeling").autocomplete({
 		source: search_list,
-		appendTo: "#specificFeelingWrapper",
+		appendTo: "#specific_feelingWrapper",
 		change: function() {
 			APP.filtersChanged = true;
 		},

@@ -65,7 +65,7 @@ class PlaygroundView(CanvasView):
 		self.date = None
 		self.intensities = []
 		self.blackwhite = False
-		self.specificFeeling = ""
+		self.specific_feeling = ""
 
 		playground_form_generator = FormGenerator("ongoing_canvas/canvas/form_data/colors.json", "ongoing_canvas/canvas/form_data/shapes.json", GridPlacementStrategy(settings.CANVAS_HEIGHT, settings.CANVAS_WIDTH, settings.SHAPE_HEIGHT, settings.SHAPE_WIDTH, grid=[], depth=1))
 
@@ -87,9 +87,9 @@ class PlaygroundView(CanvasView):
 				playground_form_generator.blackwhite = self.blackwhite
 
 				self.feelings.extend(self.request.GET.getlist('feeling'))
-				if 'specificFeeling' in self.request.GET and len(self.request.GET['specificFeeling']) > 0:
-					self.specificFeeling = self.request.GET['specificFeeling']
-					self.feelings.append(self.specificFeeling)
+				if 'specific_feeling' in self.request.GET and len(self.request.GET['specific_feeling']) > 0:
+					self.specific_feeling = self.request.GET['specific_feeling']
+					self.feelings.append(self.specific_feeling)
 
 				if self.feelings:
 					filters.append(Q(feeling__name__in=playground_form_generator.expand_feeling_list(self.feelings, intensity_list=self.intensities)))
@@ -121,8 +121,8 @@ class PlaygroundView(CanvasView):
 		context['special'] = json.dumps({'intensities': self.intensities, 'blackwhite': self.blackwhite})
 		if self.date:
 			context['chosen_date'] = self.date
-		if self.specificFeeling:
-			context['specificFeeling'] = self.specificFeeling
+		if self.specific_feeling:
+			context['specific_feeling'] = self.specific_feeling
 
 		return context
 

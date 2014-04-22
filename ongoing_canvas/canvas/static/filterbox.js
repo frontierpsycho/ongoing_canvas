@@ -45,7 +45,7 @@ $(function() {
 	});
 });
 
-var buildFilterBox = function(treedata, checked_nodes, special) {
+var buildFilterBox = function(treedata, checked_nodes, special, specific_feeling, chosen_date) {
 	var tree = $.jstree._reference("#feelingtree");
 
 	for(var i = 0; i < treedata.length; i++) {
@@ -136,12 +136,12 @@ var buildFilterBox = function(treedata, checked_nodes, special) {
 		$("#"+specialNames[i]).click(activateSpecial(specialNames[i]));
 	}
 
-  if(filtersEmpty(checked_nodes, special)) {
+  if(filtersEmpty(checked_nodes, special, specific_feeling, chosen_date)) {
     expandFilterBox();
   }
 };
 
-var filtersEmpty = function(checked_nodes, special) {
+var filtersEmpty = function(checked_nodes, special, specific_feeling, chosen_date) {
   if (typeof(checked_nodes) !== "undefined" && checked_nodes.length > 0) {
     return false;
   }
@@ -150,6 +150,14 @@ var filtersEmpty = function(checked_nodes, special) {
     if (special.blackwhite || typeof(special.intensities) !== "undefined" && special.intensities.length > 0) {
       return false;
     }
+  }
+
+  if (specific_feeling !== null) {
+    return false;
+  }
+
+  if (chosen_date !== null) {
+    return false;
   }
 
   return true;
