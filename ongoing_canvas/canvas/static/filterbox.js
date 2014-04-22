@@ -15,7 +15,9 @@ $(function() {
 	$("#filterbox #id_date").datepicker({
 		onSelect: function() {
 			APP.filtersChanged = true;
-		}
+		},
+		changeYear: true,
+		changeMonth: true
 	});
 
 	$("#submenus #feelingChoose button").click(function() {
