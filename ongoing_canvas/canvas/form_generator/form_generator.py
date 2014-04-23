@@ -131,10 +131,10 @@ class FormGenerator:
 				shape = Shape(self.shapes['default'][0], feeling_data)
 
 			if self.blackwhite:
-				colour = [(0, 100, 0)]
+				shape.colour = FormGenerator.get_blackwhite()
 			else:
-				colour = FormGenerator.get_colour(self.settings["Coloring schemes"][current_group_name][subgroup_index])
-			shape.colour = "hsl(%d, %d, %d)" % colour[0]
+				shape.colour = FormGenerator.get_colour(self.settings["Coloring schemes"][current_group_name][subgroup_index], in_hsl=True)
+
 			remove_list = self.placement_strategy.place(feeling_data.id, shape)
 			return shape, remove_list
 		return None, None  # always return tuple
@@ -177,7 +177,7 @@ class FormGenerator:
 		return json.dumps(jsonFeelings)
 
 	@staticmethod
-	def get_colour(scheme):
+	def get_colour(scheme, in_hsl=False):
 		colours = scheme["colors"]
 		result = []
 		for colour in colours:
@@ -185,7 +185,14 @@ class FormGenerator:
 			hsl = FormGenerator.hsv_to_hsl(t[0], t[1], t[2])
 			# print "HSL colour: %d, %d, %d" % (hsl[0], hsl[1], hsl[2])
 			result.append(hsl)
-		return result
+		if in_hsl:
+			return "hsl(%d, %d, %d)" % result[0]
+		else:
+			return result
+
+	@staticmethod
+	def get_blackwhite():
+		return "hsl(%d, %d, %d)" % (0, 100, 0)
 
 	@staticmethod
 	def generate_hsv(colour_scheme):

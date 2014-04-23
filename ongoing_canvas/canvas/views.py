@@ -162,9 +162,7 @@ def statistics(request):
 		tupleOrNone = detail_form_generator.get_feeling_coordinates(annotated_feeling[0].name)
 		if tupleOrNone:
 			(current_group_name, subgroup_index) = tupleOrNone
-			colour = FormGenerator.get_colour(detail_form_generator.settings["Coloring schemes"][current_group_name][subgroup_index])
-			
-			colour = "hsl(%d, %d, %d)" % colour[0]
+			colour = FormGenerator.get_colour(detail_form_generator.settings["Coloring schemes"][current_group_name][subgroup_index], in_hsl=True)
 
 			feeling_colours.append(colour)
 
