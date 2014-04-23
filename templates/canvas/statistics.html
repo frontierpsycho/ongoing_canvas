@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load static %}
+{% load base_extras %}
 
 {% block title %}Statistics{% endblock %}
 
@@ -26,7 +27,17 @@ var fout = function () {
 	this.flag.animate({opacity: 0}, 300);
 };
 
-paper.barchart(10, 10, 900, 300, {{ feelingCounts|safe }}, { colors: {{ feelingColours|safe }} }).hover(fin, fout);
+paper.hbarchart(100, 10, 760, 300, {{ feelingCounts|safe }}, { colors: {{ feelingColours|safe }} }).hover(fin, fout);
+
+var feelingLegend = {{ feelingLegend|default:"null"|safe }};
+if (feelingLegend) {
+	feelingLegend = feelingLegend.join("\n");
+}
+
+
+paper.text(50, 150, feelingLegend).attr({ 
+		"font-size": 24
+	});
 
 </script>
 {% endblock %}

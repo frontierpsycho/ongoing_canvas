@@ -168,8 +168,6 @@ def statistics(request):
 
 			feeling_colours.append(colour)
 
-	annotated_feelings.reverse()
-
 	context = {
 		"feelingDataSize": feelingDataSize,
 		"feelingCounts": json.dumps([t[1] for t in annotated_feelings]),
