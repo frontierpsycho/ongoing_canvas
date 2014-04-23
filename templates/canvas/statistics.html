@@ -17,13 +17,13 @@
 var paper = new Raphael("feelingsBarChart", 920, 400);
 
 var fin = function () {
-    if (!this.hasOwnProperty("flag")) {
-        this.flag = paper.popup(this.bar.x, this.bar.y, this.bar.value || "0").insertBefore(this);
-    }
-    this.flag.attr("opacity", 1);
+	if (!this.hasOwnProperty("flag")) {
+		this.flag = paper.popup(this.bar.x, this.bar.y, this.bar.value || "0").insertBefore(this);
+	}
+	this.flag.attr("opacity", 1);
 };
 var fout = function () {
-    this.flag.animate({opacity: 0}, 300);
+	this.flag.animate({opacity: 0}, 300);
 };
 
 paper.barchart(10, 10, 900, 300, {{ feelingCounts|safe }}, { colors: {{ feelingColours|safe }} }).hover(fin, fout);
