@@ -17,7 +17,7 @@ body {
   margin: 0px auto;
   width: $total-width;
   font-family: "Trebuchet MS", Helvetica, sans-serif;
-  color: #EEE;
+  color: #000;
   font-size: 9.5px;
 }
 
@@ -41,7 +41,7 @@ a:link {
 #menuLogo {
   position: absolute;
   left: 40px;
-  top: 21px;
+  top: 25px;
 }
 
 #menuArrow {
@@ -263,12 +263,16 @@ div#submenus {
 
 #statistics {
   padding: 5px;
-  background-color: #808080;
+  background-color: #FFF;
+  h2 {
+    text-align: center;
+    font-size: 2em;
+  }
   div {
     padding: 10px;
     vertical-align: top;
   }
-  div.piechart {
+  div.barchart {
     display: inline-block;
   }
 }
