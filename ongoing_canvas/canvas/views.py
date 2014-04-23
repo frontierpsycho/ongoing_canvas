@@ -154,40 +154,27 @@ class FeelingDataDetailView(DetailView):
 
 def statistics(request):
 	feelingDataSize = FeelingData.objects.count()
-	annotated_feelings = [(annotated_feeling, annotated_feeling.fd_count) for annotated_feeling in Feeling.objects.annotate(fd_count=Count('feelingdata')).order_by('-fd_count') if annotated_feeling.fd_count > 0]
-	categoryCounts = defaultdict(int)
+	annotated_feelings = [(annotated_feeling, annotated_feeling.fd_count) for annotated_feeling in Feeling.objects.annotate(fd_count=Count('feelingdata')).order_by('-fd_count')[:10] if annotated_feeling.fd_count > 0]
+
+	feeling_colours = []
+
 	for annotated_feeling in annotated_feelings:
 		tupleOrNone = detail_form_generator.get_feeling_coordinates(annotated_feeling[0].name)
 		if tupleOrNone:
-			categoryCounts[tupleOrNone[0]] += annotated_feeling[1]
-	categoryCounts = categoryCounts.items()
-	
-	feelingsByMonth = FeelingData.objects.extra(select={'month': connections[FeelingData.objects.db].ops.date_trunc_sql('month', 'postdatetime')}).values('month', 'feeling__name').annotate(Count('pk'))
-	
-	categoryCountsByMonth = defaultdict(lambda: defaultdict(int))
-	for item in feelingsByMonth:
-		month = time.strptime(item['month'], "%Y-%m-%d %H:%M:%S").tm_mon
-		tupleOrNone = detail_form_generator.get_feeling_coordinates(item['feeling__name'])
-		if tupleOrNone:
-			categoryCountsByMonth[month][tupleOrNone[0]] += item['pk__count']
+			(current_group_name, subgroup_index) = tupleOrNone
+			colour = FormGenerator.get_colour(detail_form_generator.settings["Coloring schemes"][current_group_name][subgroup_index])
+			
+			colour = "hsl(%d, %d, %d)" % colour[0]
 
-	categories = sorted(detail_form_generator.settings["Feeling groups"].keys())
+			feeling_colours.append(colour)
 
-	monthlyBreakdown = []
-	for category in categories:
-		for month in range(1, 13):
-			monthlyBreakdown.append(categoryCountsByMonth[month][category])
-
-	categories.reverse()  # g.raphael shows these reversed
+	annotated_feelings.reverse()
 
 	context = {
 		"feelingDataSize": feelingDataSize,
 		"feelingCounts": json.dumps([t[1] for t in annotated_feelings]),
 		"feelingLegend": json.dumps([t[0].name for t in annotated_feelings]),
-		"categoryCounts": json.dumps([t[1] for t in categoryCounts]),
-		"categoryLegend": json.dumps([t[0] for t in categoryCounts]),
-		"categories": json.dumps(categories),
-		"monthlyBreakdown": json.dumps(monthlyBreakdown)
+		"feelingColours": feeling_colours
 	}
 	return render(request, 'canvas/statistics.html', context)
 
