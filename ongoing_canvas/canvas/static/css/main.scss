@@ -264,12 +264,16 @@ div#submenus {
 #statistics {
   padding: 5px;
   background-color: #FFF;
+  h1 {
+    text-align: center;
+    font-size: 2.5em;
+  }
   h2 {
     text-align: center;
     font-size: 2em;
   }
   div {
-    padding: 10px;
+    padding: 10px 0;
     vertical-align: top;
   }
   div.barchart {

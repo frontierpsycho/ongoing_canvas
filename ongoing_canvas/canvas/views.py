@@ -1,5 +1,6 @@
 from multiprocessing import Process, Manager
 import datetime
+import string
 from collections import OrderedDict, defaultdict
 
 
@@ -169,7 +170,7 @@ def statistics(request):
 	context = {
 		"feelingDataSize": feelingDataSize,
 		"feelingCounts": json.dumps([t[1] for t in annotated_feelings]),
-		"feelingLegend": json.dumps([t[0].name for t in annotated_feelings]),
+		"feelingLegend": json.dumps([string.capitalize(t[0].name) for t in annotated_feelings]),
 		"feelingColours": feeling_colours
 	}
 	return render(request, 'canvas/statistics.html', context)
