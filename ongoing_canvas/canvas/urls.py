@@ -17,6 +17,6 @@ urlpatterns = patterns('ongoing_canvas.canvas.views.basic_views',
 
 urlpatterns += patterns('ongoing_canvas.canvas.views.stats_views',
 	url(r'^statistics/ajax$', AJAXStatisticsView.as_view(), name="statistics_ajax"),
-	url(r'^statistics/topmoods$', TopMoods.as_view(), name="statistics_topmoods")
+	url(r'^statistics/moods/(?P<end>\w+)/?$', Moods.as_view(), name="statistics_topmoods")
 )
 

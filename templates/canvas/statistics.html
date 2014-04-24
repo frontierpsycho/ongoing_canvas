@@ -18,12 +18,17 @@
 {% block inline-javascript %}
 <script type="text/javascript">
 
-$.getJSON("/statistics/topmoods", function(data) {
-	var paper = new Raphael("feelingsBarChart", 920, 400);
+$.getJSON("/statistics/moods/top", function(data) {
+	var paper = new Raphael("topMoods", 920, 400);
 
 	addHorizontalBarChart(paper, data.feelingCounts, data.feelingColours, data.feelingLegend, "Top Moods");
 });
 
+$.getJSON("/statistics/moods/bottom", function(data) {
+	var paper = new Raphael("bottomMoods", 920, 400);
+
+	addHorizontalBarChart(paper, data.feelingCounts, data.feelingColours, data.feelingLegend, "Bottom Moods");
+});
 
 </script>
 {% endblock %}
@@ -36,8 +41,8 @@ $.getJSON("/statistics/topmoods", function(data) {
 	</div>
 	<hr />
 	<div class="barchart">
-		<div id="feelingsBarChart">
-		</div>
+		<div id="topMoods" />
+		<div id="topMoods" />
 	</div>
 </div>
 {% endblock %}

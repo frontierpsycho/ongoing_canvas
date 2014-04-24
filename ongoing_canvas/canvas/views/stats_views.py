@@ -16,14 +16,25 @@ class AJAXStatisticsView(View):
 
 	def get(self, request, *args, **kwargs):
 		response = HttpResponse(content_type="application/json")
-		response.write(self.get_data())
+		response.write(self.get_data(self.kwargs['end']))
 
 		return response
 
-class TopMoods(AJAXStatisticsView):
-	def get_data(self):
+class Moods(AJAXStatisticsView):
+	def get_data(self, end):
 		feelingDataSize = FeelingData.objects.count()
-		annotated_feelings = [(annotated_feeling, annotated_feeling.fd_count) for annotated_feeling in Feeling.objects.annotate(fd_count=Count('feelingdata')).order_by('-fd_count')[:10] if annotated_feeling.fd_count > 0]
+
+		if end == "top":
+			order_by = '-fd_count'
+		elif end == "bottom":
+			order_by = 'fd_count'
+		else:
+			return "{}"
+
+		annotated_feelings = [(annotated_feeling, annotated_feeling.fd_count) for annotated_feeling in Feeling.objects.annotate(fd_count=Count('feelingdata')).order_by(order_by)[:10] if annotated_feeling.fd_count > 0]
+
+		if end == "bottom":
+			annotated_feelings.reverse()
 
 		feeling_colours = []
 
