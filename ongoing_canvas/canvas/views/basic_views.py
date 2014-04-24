@@ -3,7 +3,6 @@ import datetime
 import string
 from collections import OrderedDict, defaultdict
 
-
 from django.http import HttpResponse
 from django.views.generic import View, ListView, DetailView
 from django.conf import settings
@@ -174,13 +173,6 @@ def statistics(request):
 		"feelingColours": feeling_colours
 	}
 	return render(request, 'canvas/statistics.html', context)
-
-class AJAXStatisticsView(View):
-	def get(self, request, *args, **kwargs):
-		response = HttpResponse(content_type="application/json")
-		response.write('{ "girl": "dayum!" }')
-
-		return response
 
 @csrf_exempt
 def broadcast(request):
