@@ -154,23 +154,9 @@ class FeelingDataDetailView(DetailView):
 
 def statistics(request):
 	feelingDataSize = FeelingData.objects.count()
-	annotated_feelings = [(annotated_feeling, annotated_feeling.fd_count) for annotated_feeling in Feeling.objects.annotate(fd_count=Count('feelingdata')).order_by('-fd_count')[:10] if annotated_feeling.fd_count > 0]
-
-	feeling_colours = []
-
-	for annotated_feeling in annotated_feelings:
-		tupleOrNone = detail_form_generator.get_feeling_coordinates(annotated_feeling[0].name)
-		if tupleOrNone:
-			(current_group_name, subgroup_index) = tupleOrNone
-			colour = FormGenerator.get_colour(detail_form_generator.settings["Coloring schemes"][current_group_name][subgroup_index], in_hsl=True)
-
-			feeling_colours.append(colour)
 
 	context = {
 		"feelingDataSize": feelingDataSize,
-		"feelingCounts": json.dumps([t[1] for t in annotated_feelings]),
-		"feelingLegend": json.dumps([string.capitalize(t[0].name) for t in annotated_feelings]),
-		"feelingColours": feeling_colours
 	}
 	return render(request, 'canvas/statistics.html', context)
 

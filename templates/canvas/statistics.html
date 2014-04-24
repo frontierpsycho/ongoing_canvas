@@ -6,6 +6,7 @@
 {% block title %}Statistics{% endblock %}
 
 {% block javascript-includes %}
+<script type="text/javascript" src="{% get_static_prefix %}jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}raphael-min.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}graphael/g.raphael-min.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}graphael/g.pie-min.js"></script>
@@ -17,13 +18,12 @@
 {% block inline-javascript %}
 <script type="text/javascript">
 
-var paper = new Raphael("feelingsBarChart", 920, 400);
+$.getJSON("/statistics/topmoods", function(data) {
+	var paper = new Raphael("feelingsBarChart", 920, 400);
 
-var feelingCounts = {{ feelingCounts|default:"[]"|safe }};
-var feelingColours = {{ feelingColours|default:"[]"|safe }};
-var feelingLegend = {{ feelingLegend|default:"[]"|safe }};
+	addHorizontalBarChart(paper, data.feelingCounts, data.feelingColours, data.feelingLegend, "Top Moods");
+});
 
-addHorizontalBarChart(paper, feelingCounts, feelingColours, feelingLegend, "Top Moods");
 
 </script>
 {% endblock %}
