@@ -30,6 +30,17 @@ $.getJSON("/statistics/moods/bottom", function(data) {
 	addHorizontalBarChart(paper, data.feelingCounts, data.feelingColours, data.feelingLegend, "Bottom Moods");
 });
 
+$.getJSON("/statistics/categories", function(data) {
+	var paper = new Raphael("categories", 920, 400);
+
+	var colours = [];
+	for (var i = 0; i < data.categoryCounts.length; i++) {
+		colours.push("#000");
+	}
+
+	addHorizontalBarChart(paper, data.categoryCounts, colours, data.categoryLegend, "Category breakdown");
+});
+
 </script>
 {% endblock %}
 
@@ -42,7 +53,8 @@ $.getJSON("/statistics/moods/bottom", function(data) {
 	<hr />
 	<div class="barchart">
 		<div id="topMoods" />
-		<div id="topMoods" />
+		<div id="bottomMoods" />
+		<div id="categories" />
 	</div>
 </div>
 {% endblock %}

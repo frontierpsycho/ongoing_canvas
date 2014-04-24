@@ -1,5 +1,7 @@
 import string
+from collections import defaultdict
 
+from django.conf import settings
 from django.views.generic import View
 from django.http import HttpResponse
 from django.db.models import Q, Count
@@ -16,13 +18,16 @@ class AJAXStatisticsView(View):
 
 	def get(self, request, *args, **kwargs):
 		response = HttpResponse(content_type="application/json")
-		response.write(self.get_data(self.kwargs['end']))
+		response.write(json.dumps(self.get_data(**kwargs)))
 
 		return response
 
 class Moods(AJAXStatisticsView):
-	def get_data(self, end):
-		feelingDataSize = FeelingData.objects.count()
+	def get_data(self, **kwargs):
+		if 'end' not in kwargs:
+			return "{}"
+
+		end = kwargs['end']
 
 		if end == "top":
 			order_by = '-fd_count'
@@ -47,11 +52,25 @@ class Moods(AJAXStatisticsView):
 				feeling_colours.append(colour)
 
 		data = {
-			"feelingDataSize": feelingDataSize,
 			"feelingCounts": [t[1] for t in annotated_feelings],
 			"feelingLegend": [string.capitalize(t[0].name) for t in annotated_feelings],
 			"feelingColours": feeling_colours
 		}
-		return json.dumps(data)
+		return data
 
+class Categories(AJAXStatisticsView):
+	def get_data(self, **kwargs):
+		annotated_feelings = [(annotated_feeling, annotated_feeling.fd_count) for annotated_feeling in Feeling.objects.annotate(fd_count=Count('feelingdata')).order_by('-fd_count') if annotated_feeling.fd_count > 0]
+		categoryCounts = defaultdict(int)
+		for annotated_feeling in annotated_feelings:
+			tupleOrNone = form_generator.get_feeling_coordinates(annotated_feeling[0].name)
+			if tupleOrNone:
+				categoryCounts[tupleOrNone[0]] += annotated_feeling[1]
+		categoryCounts = categoryCounts.items()
+
+		data = {
+			"categoryCounts": [t[1] for t in categoryCounts],
+			"categoryLegend": [t[0] for t in categoryCounts],
+		}
+		return data
 
