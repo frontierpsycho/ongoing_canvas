@@ -67,10 +67,11 @@ class Categories(AJAXStatisticsView):
 			if tupleOrNone:
 				categoryCounts[tupleOrNone[0]] += annotated_feeling[1]
 		categoryCounts = categoryCounts.items()
+		categoryCounts.sort(key=lambda categoryTuple: -categoryTuple[1])
 
 		data = {
 			"categoryCounts": [t[1] for t in categoryCounts],
-			"categoryLegend": [t[0] for t in categoryCounts],
+			"categoryLegend": [string.capitalize(t[0]) for t in categoryCounts],
 		}
 		return data
 
