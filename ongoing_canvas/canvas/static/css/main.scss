@@ -43,18 +43,26 @@ a:link {
   }
   #menuSocial {
     position: absolute;
-    top: 10px;
+    top: 15px;
     right: 36px;
-    img {
+    div {
+      display: inline-block;
       height: 30px;
       width: 30px;
-      padding: 5px;
+      margin-left: 10px;
+      &.facebook {
+        background: url("/static/images/facebook-white.png"), url("/static/images/facebook-black.png") -99px -99px no-repeat;
+      }
+      &.facebook:hover {
+        background-image: url("/static/images/facebook-black.png");
+      }
     }
   }
 }
 
 ul.horizontal {
   list-style-type: none;
+  padding: 0;
   > li {
     display: inline;
   }
