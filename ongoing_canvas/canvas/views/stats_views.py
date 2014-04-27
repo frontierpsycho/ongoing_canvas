@@ -14,7 +14,7 @@ form_generator = FormGenerator("ongoing_canvas/canvas/form_data/colors.json", "o
 
 class AJAXStatisticsView(View):
 	def get_data(self):
-		return '{ "girl": "dayum!" }'
+		return {}
 
 	def get(self, request, *args, **kwargs):
 		response = HttpResponse(content_type="application/json")
@@ -25,7 +25,7 @@ class AJAXStatisticsView(View):
 class Moods(AJAXStatisticsView):
 	def get_data(self, **kwargs):
 		if 'end' not in kwargs:
-			return "{}"
+			return {}
 
 		end = kwargs['end']
 
@@ -34,7 +34,7 @@ class Moods(AJAXStatisticsView):
 		elif end == "bottom":
 			order_by = 'fd_count'
 		else:
-			return "{}"
+			return {}
 
 		annotated_feelings = [(annotated_feeling, annotated_feeling.fd_count) for annotated_feeling in Feeling.objects.annotate(fd_count=Count('feelingdata')).order_by(order_by)[:10] if annotated_feeling.fd_count > 0]
 
