@@ -50,11 +50,24 @@ a:link {
       height: 30px;
       width: 30px;
       margin-left: 10px;
+      cursor: pointer;
       &.facebook {
-        background: url("/static/images/facebook-white.png"), url("/static/images/facebook-black.png") -99px -99px no-repeat;
+        background: url("/static/images/facebook-32.png"), url("/static/images/facebook-32-white.png") -99px -99px no-repeat;
       }
       &.facebook:hover {
-        background-image: url("/static/images/facebook-black.png");
+        background-image: url("/static/images/facebook-32-white.png");
+      }
+      &.google-plus {
+        background: url("/static/images/google-plus-32.png"), url("/static/images/google-plus-32-white.png") -99px -99px no-repeat;
+      }
+      &.google-plus:hover {
+        background-image: url("/static/images/google-plus-32-white.png");
+      }
+      &.twitter {
+        background: url("/static/images/twitter-32.png"), url("/static/images/twitter-32-white.png") -99px -99px no-repeat;
+      }
+      &.twitter:hover {
+        background-image: url("/static/images/twitter-32-white.png");
       }
     }
   }
