@@ -18,20 +18,23 @@
 {% block inline-javascript %}
 <script type="text/javascript">
 
+var chart_width = 960;
+var chart_height = 360;
+
 $.getJSON("/statistics/moods/top", function(data) {
-	var paper = new Raphael("topMoods", 920, 400);
+	var paper = new Raphael("topMoods", chart_width, chart_height);
 
 	addHorizontalBarChart(paper, data.feelingCounts, data.feelingColours, data.feelingLegend, "Top Moods");
 });
 
 $.getJSON("/statistics/moods/bottom", function(data) {
-	var paper = new Raphael("bottomMoods", 920, 400);
+	var paper = new Raphael("bottomMoods", chart_width, chart_height);
 
 	addHorizontalBarChart(paper, data.feelingCounts, data.feelingColours, data.feelingLegend, "Bottom Moods");
 });
 
 $.getJSON("/statistics/categories", function(data) {
-	var paper = new Raphael("categories", 920, 400);
+	var paper = new Raphael("categories", chart_width, chart_height);
 
 	var colours = [];
 	for (var i = 0; i < data.categoryCounts.length; i++) {
@@ -42,7 +45,7 @@ $.getJSON("/statistics/categories", function(data) {
 
 	addHorizontalBarChart(paper, data.categoryCounts, colours, data.categoryLegend, "Category breakdown");
 
-	var paper = new Raphael("shapes", 920, 400);
+	var paper = new Raphael("shapes", chart_width, chart_height);
 
 	addHorizontalBarChart(paper, data.shape_counts, colours, data.shape_legend, "Shape breakdown");
 });
@@ -56,12 +59,11 @@ $.getJSON("/statistics/categories", function(data) {
 		<h2>Moods collected</h2>
 		<h1>{{ feelingDataSize }}</h1>
 	</div>
-	<hr />
-	<div class="barchart">
-		<div id="topMoods" />
-		<div id="bottomMoods" />
-		<div id="categories" />
-		<div id="shapes" />
+	<div class="barcharts">
+		<div id="topMoods"></div>
+		<div id="bottomMoods"></div>
+		<div id="categories"></div>
+		<div id="shapes"></div>
 	</div>
 </div>
 {% endblock %}

@@ -297,7 +297,6 @@ div#submenus {
 }
 
 #statistics {
-  padding: 5px;
   background-color: #FFF;
   h1 {
     text-align: center;
@@ -309,12 +308,12 @@ div#submenus {
     font-size: 2em;
     margin-bottom: 0;
   }
-  div {
-    padding: 10px 0;
-    vertical-align: top;
-  }
-  div.barchart {
+  div.barcharts {
     display: inline-block;
+    > div {
+      padding: 20px 0 0 0;
+      border-top: dashed 2px #808080;
+    }
   }
 }
 
