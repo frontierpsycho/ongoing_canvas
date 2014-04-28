@@ -88,3 +88,33 @@ class Categories(AJAXStatisticsView):
 			"shape_legend": [t[0] for t in shape_counts]
 		}
 		return data
+
+class Colours(AJAXStatisticsView):
+	def get_data(self, **kwargs):
+		annotated_feelings = [(annotated_feeling, annotated_feeling.fd_count) for annotated_feeling in Feeling.objects.annotate(fd_count=Count('feelingdata')).order_by('-fd_count') if annotated_feeling.fd_count > 0]
+
+		subcategory_counts = defaultdict(int)
+		subcategory_colours = []
+
+		for annotated_feeling in annotated_feelings:
+			tupleOrNone = form_generator.get_feeling_coordinates(annotated_feeling[0].name)
+			if tupleOrNone:
+
+				(current_group_name, subgroup_index) = tupleOrNone
+				colour = FormGenerator.get_colour(form_generator.settings["Coloring schemes"][current_group_name][subgroup_index], in_hsl=True)
+
+				if colour not in subcategory_counts:
+					subcategory_colours.append(colour)
+
+				subcategory_counts[colour] += annotated_feeling[1]
+
+		print repr(subcategory_counts)
+
+		subcategory_counts = subcategory_counts.items()
+		subcategory_counts.sort(key=lambda subcategoryTuple: -subcategoryTuple[1])
+
+		data = {
+			"colour_counts": [t[1] for t in subcategory_counts],
+			"colour_colours": subcategory_colours # teehee
+		}
+		return data
