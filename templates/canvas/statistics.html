@@ -38,7 +38,13 @@ $.getJSON("/statistics/categories", function(data) {
 		colours.push("#000");
 	}
 
+	console.debug(data.shape_counts);
+
 	addHorizontalBarChart(paper, data.categoryCounts, colours, data.categoryLegend, "Category breakdown");
+
+	var paper = new Raphael("shapes", 920, 400);
+
+	addHorizontalBarChart(paper, data.shape_counts, colours, data.shape_legend, "Shape breakdown");
 });
 
 </script>
@@ -55,6 +61,7 @@ $.getJSON("/statistics/categories", function(data) {
 		<div id="topMoods" />
 		<div id="bottomMoods" />
 		<div id="categories" />
+		<div id="shapes" />
 	</div>
 </div>
 {% endblock %}

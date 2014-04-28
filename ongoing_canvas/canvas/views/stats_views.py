@@ -61,17 +61,30 @@ class Moods(AJAXStatisticsView):
 class Categories(AJAXStatisticsView):
 	def get_data(self, **kwargs):
 		annotated_feelings = [(annotated_feeling, annotated_feeling.fd_count) for annotated_feeling in Feeling.objects.annotate(fd_count=Count('feelingdata')).order_by('-fd_count') if annotated_feeling.fd_count > 0]
+
 		categoryCounts = defaultdict(int)
+
 		for annotated_feeling in annotated_feelings:
 			tupleOrNone = form_generator.get_feeling_coordinates(annotated_feeling[0].name)
 			if tupleOrNone:
 				categoryCounts[tupleOrNone[0]] += annotated_feeling[1]
+
 		categoryCounts = categoryCounts.items()
 		categoryCounts.sort(key=lambda categoryTuple: -categoryTuple[1])
+
+		shape_dict = form_generator.shapes.copy()
+		shape_counts = { shapes[0] : 0 for name, shapes in shape_dict.items() }
+
+		for categoryCount in categoryCounts:
+			shape_counts[shape_dict[categoryCount[0]][0]] += categoryCount[1]
+
+		shape_counts = shape_counts.items()
+		shape_counts.sort(key=lambda shapeTuple: -shapeTuple[1])
 
 		data = {
 			"categoryCounts": [t[1] for t in categoryCounts],
 			"categoryLegend": [string.capitalize(t[0]) for t in categoryCounts],
+			"shape_counts": [t[1] for t in shape_counts],
+			"shape_legend": [t[0] for t in shape_counts]
 		}
 		return data
-
