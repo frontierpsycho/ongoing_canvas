@@ -21,6 +21,11 @@ body {
   font-size: 9.5px;
 }
 
+div#attribution {
+  width: $total-width;
+  text-align: center;
+}
+
 a:link {
   text-decoration: none;
 }
