@@ -14,9 +14,23 @@ class GridPlacementStrategy:
 			raise ArgumentException("At least one cell should fit in the canvas's width")
 		[grid.append([[] for d in range(self.width())]) for e in range(self.height())]
 		self.grid = grid
-		
+		self.last_placement = (-1, 0)
+
+	def next_place(self):
+		new_x = self.last_placement[0] + 1
+		if new_x == self.width():
+			new_y = self.last_placement[1] + 1
+			new_x = 0
+			if new_y == self.height():
+				new_y = 0
+		else:
+			new_y = self.last_placement[1]
+
+		self.last_placement = (new_x, new_y)
+		return self.last_placement
+
 	def place(self, fd_id, shape):
-		coord_j, coord_i, remove_list = self.find_place(fd_id)
+		coord_j, coord_i, remove_list = self.fill_place(fd_id)
 		coords = (coord_j, coord_i)
 		depth = self.cell_depth(coords)
 
@@ -82,7 +96,24 @@ class GridPlacementStrategy:
 
 		shape.translate(translate_x, translate_y)
 
-	def find_place(self, fd_id):
+	def fill_place(self, fd_id):
+		(next_y, next_x) = self.next_place()
+
+		# grid is a managed sync object
+		# we must reassign instead of mutate
+		# for sync to be done correctly
+		row = self.grid[next_x]
+
+		previous_content = row[next_y]
+		if not previous_content:
+			previous_content = None
+
+		row[next_y] = [fd_id]
+
+		self.grid[next_x] = row
+
+		return next_x, next_y, previous_content
+
 		width = range(self.width())
 		random.shuffle(width)
 		height = range(self.height())
