@@ -34,6 +34,7 @@ class FormGenerator:
 		while(ongoing):
 			self.add_feeling()
 			time.sleep(2)
+			# solve this bug: https://code.djangoproject.com/ticket/21597
 			django.db.close_connection()
 
 
