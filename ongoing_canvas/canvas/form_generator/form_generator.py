@@ -9,9 +9,8 @@ import urllib
 import urllib2
 import os
 
-#sys.path.append('../../../')
-#sys.path.append('../../')
-#sys.path.append('../')
+import django.db
+
 os.environ['DJANGO_SETTINGS_MODULE'] = 'ongoing_canvas.settings'
 from ongoing_canvas import settings
 
@@ -35,6 +34,8 @@ class FormGenerator:
 		while(ongoing):
 			self.add_feeling()
 			time.sleep(2)
+			django.db.close_connection()
+
 
 	def add_feeling(self):
 		if len(self.feelingdata) > self.counter:
