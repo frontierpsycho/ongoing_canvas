@@ -17,13 +17,11 @@
 <script type="text/javascript" src="{% get_static_prefix %}jquery.bpopup.min.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}jquery-ui-1.10.3.custom.min.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}jquery.ui.autocomplete.html.js"></script>
-{% compress js %}
 <!-- done importing libraries, import app specific stuff -->
 <script type="text/javascript" src="{% get_static_prefix %}init.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}loadtree.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}filterbox.js"></script>
 <script type="text/javascript" src="{% get_static_prefix %}interaction.js"></script>
-{% endcompress %}
 {% endblock %}
 
 {% block head-includes %}

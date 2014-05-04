@@ -1,0 +1,300 @@
+body {
+  background-color: #fff;
+  margin: 0px auto;
+  width: 962px;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  color: #000;
+  font-size: 9.5px; }
+
+div#attribution {
+  width: 962px;
+  text-align: center; }
+
+a:link {
+  text-decoration: none; }
+
+#canvas {
+  border: 1px #000 solid; }
+
+#menu {
+  height: 80px;
+  background-color: #221E1F;
+  color: #808080;
+  margin: 0 auto;
+  width: 962px;
+  position: relative; }
+  #menu #menuLogo {
+    position: absolute;
+    left: 40px;
+    top: 25px; }
+  #menu #menuSocial {
+    position: absolute;
+    top: 19px;
+    right: 36px; }
+    #menu #menuSocial div {
+      display: inline-block;
+      height: 24px;
+      width: 24px;
+      margin-left: 10px;
+      cursor: pointer; }
+      #menu #menuSocial div.facebook {
+        background: url('/static/images/facebook-24.png'), url('/static/images/facebook-24-white.png') -99px -99px no-repeat; }
+      #menu #menuSocial div.facebook:hover {
+        background-image: url('/static/images/facebook-24-white.png'); }
+      #menu #menuSocial div.google-plus {
+        background: url('/static/images/google-plus-24.png'), url('/static/images/google-plus-24-white.png') -99px -99px no-repeat; }
+      #menu #menuSocial div.google-plus:hover {
+        background-image: url('/static/images/google-plus-24-white.png'); }
+      #menu #menuSocial div.twitter {
+        margin-left: 7px;
+        background: url('/static/images/twitter-24.png'), url('/static/images/twitter-24-white.png') -99px -99px no-repeat; }
+      #menu #menuSocial div.twitter:hover {
+        background-image: url('/static/images/twitter-24-white.png'); }
+
+ul.horizontal {
+  list-style-type: none;
+  padding: 0; }
+  ul.horizontal > li {
+    display: inline; }
+
+#menuArrow {
+  position: absolute;
+  left: 471px;
+  top: 60px; }
+  #menuArrow div#openButton {
+    width: 20px;
+    height: 12px; }
+
+#menuList {
+  margin: 0 auto;
+  #width: 962px;
+  text-align: center;
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 80px;
+  position: relative;
+  left: -10px; }
+  #menuList > ul {
+    margin: 0 auto;
+    padding: 0; }
+    #menuList > ul > li {
+      margin: 0 10px;
+      min-height: 80px; }
+      #menuList > ul > li > a:link {
+        color: #808080; }
+
+a:visited {
+  color: #808080; }
+
+#menuList > ul > li > a:hover {
+  color: #FFF; }
+#menuList > ul > li > a.active {
+  color: #FFF;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.65); }
+
+#filterbox {
+  background-color: rgba(34, 30, 31, 0.95);
+  color: #808080;
+  z-index: 10;
+  margin: 0 auto;
+  width: 962px;
+  height: 201px;
+  overflow: hidden;
+  font-weight: bold;
+  display: none;
+  position: absolute; }
+  #filterbox div.filterboxHeader {
+    display: block;
+    width: 100%;
+    height: 15px;
+    padding: 5px 0 15px 0;
+    margin: 0;
+    text-align: center;
+    color: #FFF;
+    font-size: 16px; }
+  #filterbox div.filterboxFooter {
+    display: block;
+    width: 100%;
+    height: 15px;
+    padding: 5px;
+    margin: 0;
+    text-align: center; }
+    #filterbox div.filterboxFooter div#closeButton {
+      width: 20px;
+      height: 12px;
+      margin: 0 auto;
+      position: relative; }
+  #filterbox div.filterboxSection {
+    padding: 4px 0;
+    display: inline-block;
+    width: 165px;
+    vertical-align: middle;
+    margin: 0 20px; }
+  #filterbox div.left {
+    border-right: #474444 2px solid;
+    margin: 0;
+    padding-right: 20px; }
+    #filterbox div.left input {
+      border: none;
+      outline: none;
+      border-radius: 4px;
+      height: 36px;
+      color: #808080;
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+      font-family: "Trebuchet MS", Helvetica, sans-serif; }
+  #filterbox div.right {
+    border-left: #474444 2px solid;
+    margin: 0;
+    padding-left: 20px; }
+  #filterbox div button {
+    border-radius: 4px;
+    width: 100%;
+    height: 36px;
+    display: block;
+    border: none;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    color: #808080;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: white; }
+  #filterbox div.right button {
+    background-color: transparent;
+    border: 2px #808080 solid; }
+  #filterbox div.right button:hover {
+    color: #FFF;
+    border-color: #FFF; }
+  #filterbox div input:first-of-type {
+    margin-bottom: 8px; }
+  #filterbox div > table {
+    color: #808080;
+    width: 170px;
+    font-weight: bold;
+    table-layout: fixed;
+    border-spacing: 0; }
+    #filterbox div > table tr > td.catName {
+      padding: 0;
+      width: 90px;
+      cursor: pointer; }
+      #filterbox div > table tr > td.catName:hover {
+        color: #FFF; }
+      #filterbox div > table tr > td.catName.active {
+        color: #FFF;
+        text-shadow: 0 0 3px rgba(255, 255, 255, 0.65); }
+    #filterbox div > table tr > td.rowName {
+      padding: 0;
+      width: 90px; }
+  #filterbox div.right > table {
+    margin: 7px 0; }
+    #filterbox div.right > table tr > td > span.subCategorySquare {
+      font-size: 10px;
+      text-align: center;
+      line-height: 10px; }
+      #filterbox div.right > table tr > td > span.subCategorySquare:hover {
+        color: #FFF; }
+  #filterbox > div.filterboxContent {
+    margin: 20px 80px;
+    width: 800px;
+    height: 160px; }
+
+.subCategorySquare {
+  width: 10px;
+  height: 10px;
+  border: 2px #808080 solid;
+  border-radius: 5px;
+  margin: 1px;
+  display: inline-block;
+  vertical-align: bottom; }
+  .subCategorySquare:hover {
+    border-color: #FFF;
+    cursor: pointer; }
+
+td.active > .subCategorySquare {
+  border-color: #FFF;
+  -webkit-box-shadow: 0 0 3px rgba(255, 255, 255, 0.65);
+  -moz-box-shadow: 0 0 3px rgba(255, 255, 255, 0.65);
+  box-shadow: 0 0 3px rgba(255, 255, 255, 0.65);
+  color: #FFF; }
+
+div#submenus {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10; }
+
+.submenu {
+  padding: 5px 5px 20px 5px;
+  width: 250px !important;
+  background-color: rgba(239, 239, 239, 0.8);
+  position: absolute; }
+
+#feelingChoose, #dateChoose {
+  display: none; }
+
+#statistics {
+  background-color: #FFF; }
+  #statistics h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-top: 0; }
+  #statistics h2 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 0; }
+  #statistics div.barcharts {
+    display: inline-block; }
+    #statistics div.barcharts > div {
+      padding: 20px 0 0 0;
+      border-top: dashed 2px #808080; }
+
+#popup {
+  color: #FFF;
+  display: none;
+  padding: 0px;
+  width: 962px;
+  height: 760px; }
+  #popup div.content {
+    margin: 0 40px; }
+  #popup div#header {
+    padding: 20px 0;
+    border-bottom: 2px solid #FFF;
+    font-size: 48px;
+    margin: 0 0 40px 0; }
+  #popup div#feelingName {
+    display: inline-block; }
+    #popup div#feelingName span#feelingShape {
+      margin-right: 20px; }
+    #popup div#feelingName span#feelingCategory {
+      font-size: 36px; }
+  #popup div#feelingDate {
+    float: right; }
+  #popup div#feelingData {
+    margin: 0 12px;
+    width: 856px;
+    height: 480px; }
+    #popup div#feelingData a:link, #popup div#feelingData a:visited {
+      color: #FFF; }
+    #popup div#feelingData a:hover {
+      text-decoration: underline; }
+  #popup div#closeButton {
+    width: 40px;
+    height: 40px;
+    margin: 40px auto;
+    position: relative;
+    z-index: 0; }
+
+div.actualButton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: inherit;
+  height: inherit;
+  cursor: pointer; }
+
+#ui-datepicker-div {
+  font-size: 9.5px; }
+
+#specificFeelingWrapper {
+  position: absolute; }

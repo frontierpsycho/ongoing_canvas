@@ -4,9 +4,7 @@
 <html>
 <head>
     <title>{% block title %}{% endblock %}</title>
-    {% compress css %}
-    <link rel="stylesheet" type="text/x-scss" href="{% get_static_prefix %}css/main.scss" />
-    {% endcompress %}
+    <link rel="stylesheet" type="text/css" href="{% get_static_prefix %}css/main.css" />
     {% block head-includes %}{% endblock %}
 </head>
 <body>
