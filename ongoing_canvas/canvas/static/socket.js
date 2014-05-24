@@ -3,6 +3,9 @@ $(function () {
 	var addShape = function(data) {
 		var remove_list = string_to_list(data["remove"]);
 		remove_list.forEach(function(item) {
+			if (item.slice(-1) === "L") {
+				item = item.slice(0, -1);
+			}
 			APP.shapes[item].remove();
 		});
 
