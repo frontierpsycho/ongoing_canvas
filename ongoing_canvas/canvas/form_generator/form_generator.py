@@ -27,10 +27,24 @@ class FormGenerator:
 		self.shapes = json.loads(open(shapes_path).read())
 		self.placement_strategy = placement_strategy
 		self.cells = cells
-		self.feelingdata = list(FeelingData.objects.order_by("postdatetime")[:200])
+
+		initial_fds = self.placement_strategy.number_of_cells()
+		print initial_fds
+
+		self.feelingdata = list(FeelingData.objects.order_by("postdatetime")[:initial_fds])
 		self.latest_postdatetime = self.feelingdata[-1].postdatetime if len(self.feelingdata) > 0 else datetime.datetime.min
-		self.counter = 0
 		self.blackwhite = False
+
+		if(ongoing):
+			for fd in self.feelingdata:
+				self.add_shape(fd)
+				django.db.close_connection()
+
+		self.counter = 0
+		if len(self.feelingdata) > 0:
+			self.latest_postdatetime = self.feelingdata[-1].postdatetime
+		self.feelingdata = list(FeelingData.objects.filter(postdatetime__gt = self.latest_postdatetime).order_by("postdatetime")[:200])
+
 		while(ongoing):
 			self.add_feeling()
 			time.sleep(2)
